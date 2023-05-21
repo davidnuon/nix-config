@@ -45,8 +45,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the XFCE Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
@@ -55,6 +53,9 @@
     layout = "us";
     xkbVariant = "";
   };
+
+  virtualisation.docker.enable = true;
+  users.extraGroups.docker.members = [ "davidnuon" ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
