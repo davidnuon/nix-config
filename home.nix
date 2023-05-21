@@ -3,6 +3,7 @@ with pkgs; {
   home.packages = [
     discord
     vscode
+    firefox
   ];
   programs.git = {
     enable = true;

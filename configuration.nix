@@ -94,9 +94,6 @@ in {
     isNormalUser = true;
     description = "David Nuon";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      firefox
-    ];
   };
 
   # Allow unfree packages
