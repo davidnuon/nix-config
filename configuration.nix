@@ -103,6 +103,7 @@
     tmux
     htop
     git
+    nettools
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
