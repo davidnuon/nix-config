@@ -5,6 +5,7 @@ with pkgs; {
     vscode
   ];
   programs.git = {
+    enable = true;
     userName = "David Nuon";
     userEmail = "davidnuongm@gmail.com";  
     extraConfig.core.editor = "vim";
