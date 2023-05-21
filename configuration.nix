@@ -8,6 +8,7 @@ let
    home-manager = builtins.fetchTarball {
       url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
    };
+   davidnuon-home = import ./home.nix;
 in
 {
   imports =
@@ -15,6 +16,10 @@ in
       /etc/nixos/hardware-configuration.nix
       (import "${home-manager}/nixos")
     ];
+  
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.davidnuon = davidnuon-home;
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -93,7 +98,7 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-    ] ++ cursed;
+    ];
   };
 
   # Allow unfree packages
