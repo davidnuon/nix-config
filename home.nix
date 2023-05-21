@@ -1,7 +1,11 @@
 {
  pkgs, ...
 }:
+with pkgs;
 {
-     home.packages = [ pkgs.discord ];
+     home.packages = [ 
+	discord 
+        vscode
+      ];
      home.stateVersion = "22.11";
 }
