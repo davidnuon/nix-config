@@ -4,10 +4,16 @@
 
 { config, pkgs, ... }:
 
+let 
+   home-manager = builtins.fetchTarball {
+      url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
+   };
+in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       /etc/nixos/hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
 
   # Bootloader.
@@ -87,8 +93,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-    #  thunderbird
-    ];
+    ] ++ cursed;
   };
 
   # Allow unfree packages
@@ -97,7 +102,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim 
     wget
     curl
     tmux
