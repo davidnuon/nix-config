@@ -8,7 +8,7 @@ let
    home-manager = builtins.fetchTarball {
       url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
    };
-   davidnuon-home = import ./home.nix;
+   home-davidnuon = import ./home.nix;
 in
 {
   imports =
@@ -19,7 +19,7 @@ in
   
 
   home-manager.useGlobalPkgs = true;
-  home-manager.users.davidnuon = davidnuon-home;
+  home-manager.users.davidnuon = home-davidnuon;
 
   # Bootloader.
   boot.loader.grub.enable = true;
