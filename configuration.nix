@@ -1,22 +1,20 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
-let 
-   home-manager = builtins.fetchTarball {
-      url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
-   };
-   home-davidnuon = import ./home.nix;
-in
 {
-  imports =
-    [ 
-      /etc/nixos/hardware-configuration.nix
-      (import "${home-manager}/nixos")
-    ];
-  
+  config,
+  pkgs,
+  ...
+}: let
+  home-manager = builtins.fetchTarball {
+    url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
+  };
+  home-davidnuon = import ./home.nix;
+in {
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    (import "${home-manager}/nixos")
+  ];
 
   home-manager.useGlobalPkgs = true;
   home-manager.users.davidnuon = home-davidnuon;
@@ -66,7 +64,7 @@ in
   };
 
   virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "davidnuon" ];
+  users.extraGroups.docker.members = ["davidnuon"];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -95,7 +93,7 @@ in
   users.users.davidnuon = {
     isNormalUser = true;
     description = "David Nuon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
     ];
@@ -107,7 +105,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
     wget
     curl
     tmux
@@ -142,5 +140,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
 }

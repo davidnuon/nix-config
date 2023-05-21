@@ -1,11 +1,8 @@
-{
- pkgs, ...
-}:
-with pkgs;
-{
-     home.packages = [ 
-	discord 
-        vscode
-      ];
-     home.stateVersion = "22.11";
+{pkgs, ...}:
+with pkgs; {
+  home.packages = [
+    discord
+    vscode
+  ];
+  home.stateVersion = "22.11";
 }
