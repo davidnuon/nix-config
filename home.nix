@@ -4,5 +4,10 @@ with pkgs; {
     discord
     vscode
   ];
+  programs.git = {
+    userName = "David Nuon";
+    userEmail = "davidnuongm@gmail.com";  
+    extraConfig.core.editor = "vim";
+  };
   home.stateVersion = "22.11";
 }
