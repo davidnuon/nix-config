@@ -6,6 +6,7 @@
 			nix
 			home-manager
 			git
+                        gnumake
 		];
 	};
 } 

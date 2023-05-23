@@ -9,7 +9,7 @@
   home-manager = builtins.fetchTarball {
     url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
   };
-  home-davidnuon = import ./home.nix;
+  home-davidnuon = import ./home;
 in {
   imports = [
     /etc/nixos/hardware-configuration.nix
