@@ -1,9 +1,9 @@
 # NixOS Workstation Config
 
-## Bootstrap
+## Get a new system with this
 
-After installing NixOS, run this script to start the initial config:
 
 ```
-	./bootstrap.sh
+	nix-shell
+	make nixos.switch
 ```
