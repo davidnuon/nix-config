@@ -1,14 +1,8 @@
 {pkgs ? import <nixpkgs> {}}: let
   USER_HOME = builtins.getEnv "HOME";
-  joinStr = sep: acc: list:
-    with pkgs.lib.lists; let
-      left = foldr (a: b: a + sep + b) acc (init list);
-      right = last list;
-    in
-      left + right;
 in {
   default = pkgs.mkShell {
-    NIX_PATH = joinStr ":" "" [
+    NIX_PATH = pkgs.lib.strings.concatStringsSep ":" [
       "${USER_HOME}/.nix-defexpr/channels"
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "nixos-config=./configuration.nix"
