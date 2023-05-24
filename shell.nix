@@ -1,11 +1,11 @@
 {pkgs ? import <nixpkgs> {}}: let
   USER_HOME = builtins.getEnv "HOME";
-  joinStr = sep: acc: _list:
+  joinStr = sep: acc: list:
     with pkgs.lib.lists; let
-      _left = foldr (a: b: a + sep + b) acc (init _list);
-      _right = last _list;
+      left = foldr (a: b: a + sep + b) acc (init list);
+      right = last list;
     in
-      _left + _right;
+      left + right;
 in {
   default = pkgs.mkShell {
     NIX_PATH = joinStr ":" "" [
