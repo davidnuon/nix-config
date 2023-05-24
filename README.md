@@ -1,6 +1,6 @@
 # NixOS Workstation Config
 
-## Get a new system with this
+## Quickstart
 
 
 ```
