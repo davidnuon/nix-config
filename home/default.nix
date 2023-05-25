@@ -11,5 +11,6 @@ with pkgs; {
     userEmail = "davidnuongm@gmail.com";
     extraConfig.core.editor = "vim";
   };
+
   home.stateVersion = "22.11";
 }
