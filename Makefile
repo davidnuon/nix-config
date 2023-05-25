@@ -13,6 +13,9 @@ lint: check-env
 nixos.build: check-env
 	sudo nixos-rebuild build -I nixos-config=./configuration.nix
 
+nixos.dry-build: check-env
+	sudo nixos-rebuild dry-build -I nixos-config=./configuration.nix
+
 nixos.switch: check-env
 	sudo nixos-rebuild switch -I nixos-config=./configuration.nix
 
