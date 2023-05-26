@@ -6,4 +6,4 @@
 ```
 	nix-shell
 	make nixos.switch
-```
+``
