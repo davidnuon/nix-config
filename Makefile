@@ -21,3 +21,6 @@ nixos.switch: check-env
 
 nixos.upgrade: check-env
 	sudo nixos-rebuild switch -I nixos-config=./configuration.nix --upgrade
+
+nixos.build-vm: check-env
+	sudo nixos-rebuild build-vm -I nixos-config=./configuration.nix
