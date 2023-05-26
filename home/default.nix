@@ -39,6 +39,18 @@ with pkgs; {
     };
   };
 
+  programs.gnome-terminal = {
+      themeVariant = "dark";
+      profile = {
+        colors = {
+          backgroundColor = "rgb(0, 43, 54)";
+          foregroundColor = "rgb(131, 148, 150)";
+          useThemeColors = false;
+        };
+        visibleName = "default";
+      };
+  };
+
   home.sessionVariables.GTK_THEME = "palenight";
 
   home.stateVersion = "22.11";
