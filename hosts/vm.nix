@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./configuration.nix
+	./base
   ];
 
   users.users = {

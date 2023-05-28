@@ -1,6 +1,7 @@
 #!/bin/sh
 
-TARGET=./hosts/$(host).nix;
+HOSTS_PATH=./hosts
+TARGET=${HOSTS_PATH}/$(host).nix;
 
 check-target:
 ifeq ("$(host)", "")
@@ -29,4 +30,4 @@ nixos.upgrade: check-env check-target
 	sudo nixos-rebuild switch -I nixos-config=${TARGET} --upgrade
 
 nixos.build-vm: check-env 
-	sudo nixos-rebuild build-vm -I nixos-config=./vm.nix
+	sudo nixos-rebuild build-vm -I nixos-config=${HOSTS_PATH}/vm.nix
