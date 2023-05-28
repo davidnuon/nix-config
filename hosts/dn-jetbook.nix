@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./base
+    ./home
   ];
 
   networking.hostName = "dn-jetbook";

@@ -5,19 +5,10 @@
   config,
   pkgs,
   ...
-}: let
-  home-manager = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
-  };
-  home-davidnuon = import ./home;
-in {
+}:{
   imports = [
     /etc/nixos/hardware-configuration.nix
-    (import "${home-manager}/nixos")
   ];
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.users.davidnuon = home-davidnuon;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
