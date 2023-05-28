@@ -5,26 +5,11 @@
   config,
   pkgs,
   ...
-}: let
-  home-manager = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
-  };
-  home-davidnuon = import ./home;
-in {
+}: {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    (import "${home-manager}/nixos")
   ];
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.users.davidnuon = home-davidnuon;
-
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -56,6 +41,7 @@ in {
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  programs.gnome-terminal.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -110,6 +96,7 @@ in {
     git
     nettools
     gnumake
+    alejandra
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
