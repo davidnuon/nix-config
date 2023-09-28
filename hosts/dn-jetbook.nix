@@ -15,7 +15,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "dn-jetbook";
-  
+
   # Tailscale
   networking.firewall.checkReversePath = "loose";
   services.tailscale.enable = true;
