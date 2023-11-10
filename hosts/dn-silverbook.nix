@@ -7,6 +7,7 @@
   imports = [
     ./base
     ./home
+    ./virtualization
   ];
 
   # Bootloader.
@@ -18,4 +19,6 @@
   # Tailscale
   networking.firewall.checkReversePath = "loose";
   services.tailscale.enable = true;
+
+  services.flatpak.enable = true;
 }
