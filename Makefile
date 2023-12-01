@@ -1,7 +1,7 @@
 #!/bin/sh
 
 HOSTS_PATH=./hosts
-TARGET=${HOSTS_PATH}/$(host).nix;
+TARGET=${HOSTS_PATH}/$(host);
 
 check-target:
 ifeq ("$(host)", "")

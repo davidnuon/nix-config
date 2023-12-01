@@ -9,9 +9,9 @@
   };
 in {
   imports = [
-    ./base
-    ./home
-    ./virtualization
+    ../../mixins/base
+    ../../mixins/home
+    ../../mixins/virtualization
     "${nixos-hardware}/framework/13-inch/7040-amd"
   ];
 
