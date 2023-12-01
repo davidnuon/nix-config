@@ -12,6 +12,7 @@ with pkgs; {
     userEmail = "davidnuongm@gmail.com";
     extraConfig.core.editor = "vim";
     extraConfig.init.defaultBranch = "main";
+    lfs.enable = true;
   };
 
   gtk = {
