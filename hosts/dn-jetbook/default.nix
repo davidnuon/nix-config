@@ -5,8 +5,8 @@
   ...
 }: {
   imports = [
-    ./base
-    ./home
+    ../../mixins/base
+    ../../mixins/home
   ];
 
   # Bootloader.

@@ -9,9 +9,9 @@
   };
 in {
   imports = [
-    ./base
-    ./home
-    "${nixos-hardware}/framework/12th-gen-intel"
+    ../../mixins/base
+    ../../mixins/home
+    "${nixos-hardware}/framework/13-inch/12th-gen-intel"
   ];
 
   # Bootloader.

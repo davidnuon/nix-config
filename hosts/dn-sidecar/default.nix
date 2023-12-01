@@ -9,8 +9,8 @@
   };
 in {
   imports = [
-    ./base
-    ./home
+    ../../mixins/base
+    ../../mixins/home
     "${nixos-hardware}/framework/12th-gen-intel"
   ];
 
