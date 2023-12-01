@@ -3,11 +3,16 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  nixos-hardware = builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixos-hardware/archive/master.tar.gz";
+  };
+in {
   imports = [
     ./base
     ./home
     ./virtualization
+    "${nixos-hardware}/framework/13-inch/7040-amd"
   ];
 
   # Bootloader.
