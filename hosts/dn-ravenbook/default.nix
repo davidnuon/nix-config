@@ -7,6 +7,8 @@
   imports = [
     ../../mixins/base
     ../../mixins/home
+    ../../mixins/tailscale
+    ../../mixins/flatpak
   ];
 
   # Bootloader.
@@ -15,8 +17,4 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
 
   networking.hostName = "dn-ravenbook";
-
-  # Tailscale
-  networking.firewall.checkReversePath = "loose";
-  services.tailscale.enable = true;
 }
