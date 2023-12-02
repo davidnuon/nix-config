@@ -7,6 +7,8 @@
   imports = [
     ../../mixins/base
     ../../mixins/home
+    ../../mixins/tailscale
+    ../../mixins/flatpak
   ];
 
   # Bootloader.
@@ -15,10 +17,4 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "dn-jetbook";
-
-  # Tailscale
-  networking.firewall.checkReversePath = "loose";
-  services.tailscale.enable = true;
-  
-  services.flatpak.enable = true;
 }
