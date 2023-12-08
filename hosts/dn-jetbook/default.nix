@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./hardware-configuration.nix
     ../../mixins/base
     ../../mixins/home
     ../../mixins/tailscale
@@ -17,4 +18,6 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "dn-jetbook";
+
+  system.stateVersion = "22.11";
 }
