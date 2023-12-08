@@ -10,6 +10,7 @@
 in {
   imports = [
     "${nixos-hardware}/framework/13-inch/7040-amd"
+    ./hardware-configuration.nix
     ../../mixins/base
     ../../mixins/home
     ../../mixins/virtualization
@@ -22,4 +23,6 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "dn-silverbook";
+
+  system.stateVersion = "23.05"; # Did you read the comment?
 }

@@ -6,9 +6,7 @@
   pkgs,
   ...
 }: {
-  imports = [
-    /etc/nixos/hardware-configuration.nix
-  ];
+  imports = [];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -136,5 +134,4 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
 }
