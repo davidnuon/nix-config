@@ -5,8 +5,11 @@
   ...
 }: {
   imports = [
-    ./base
-    ./home
+    ./hardware-configuration.nix
+    ../../mixins/base
+    ../../mixins/home
+    ../../mixins/tailscale
+    ../../mixins/flatpak
   ];
 
   # Bootloader.
@@ -16,7 +19,5 @@
 
   networking.hostName = "dn-jetbook";
 
-  # Tailscale
-  networking.firewall.checkReversePath = "loose";
-  services.tailscale.enable = true;
+  system.stateVersion = "22.11";
 }

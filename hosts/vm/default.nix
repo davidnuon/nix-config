@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./base
+    ../../mixins/base
   ];
 
   users.users = {

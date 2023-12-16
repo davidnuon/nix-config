@@ -9,21 +9,19 @@
   };
 in {
   imports = [
-    ./base
-    ./home
-    ./virtualization
-    "${nixos-hardware}/framework/13-inch/7040-amd"
+    ../../mixins/base
+    ../../mixins/home
+    "${nixos-hardware}/framework/13-inch/12th-gen-intel"
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
 
-  networking.hostName = "dn-silverbook";
+  networking.hostName = "dn-grill";
 
   # Tailscale
   networking.firewall.checkReversePath = "loose";
   services.tailscale.enable = true;
-
-  services.flatpak.enable = true;
 }
