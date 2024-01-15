@@ -9,19 +9,22 @@
   };
 in {
   imports = [
-    ../../mixins/base
-    ../../mixins/home
     "${nixos-hardware}/framework/13-inch/12th-gen-intel"
+    ./hardware-configuration.nix
+    ../../mixins/base-2311
+    ../../mixins/home-2311
+    ../../mixins/virtualization
+    ../../mixins/tailscale
+    ../../mixins/flatpak
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
 
   networking.hostName = "dn-grill";
+  services.openssh.enable = true;
+  services.avahi.enable = true;
 
-  # Tailscale
-  networking.firewall.checkReversePath = "loose";
-  services.tailscale.enable = true;
+  system.stateVersion = "23.11";
 }
