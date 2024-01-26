@@ -4,4 +4,8 @@
   ...
 }: {
   imports = [];
+
+  environment.systemPackages = with pkgs; [
+    libreoffice
+  ];
 }

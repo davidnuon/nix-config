@@ -16,6 +16,7 @@ in {
     ../../mixins/virtualization
     ../../mixins/tailscale
     ../../mixins/flatpak
+    ../../mixins/libreoffice
   ];
 
   # Bootloader.
