@@ -12,7 +12,7 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./config.nix
+    ./davidnuon.nix
   ];
 
   home-manager.useGlobalPkgs = true;
