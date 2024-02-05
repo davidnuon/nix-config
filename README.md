@@ -3,7 +3,7 @@
 ## Quickstart
 
 
-```
-	nix-shell
-	make nixos.switch
+```bash
+$ nix-shell
+$ make nixos.switch
 ```
