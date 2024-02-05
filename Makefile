@@ -1,7 +1,6 @@
-#!/bin/sh
-
+host?=$(shell hostname)
 HOSTS_PATH=./hosts
-TARGET=${HOSTS_PATH}/$(host)
+TARGET=${HOSTS_PATH}/${host}
 
 check-target:
 ifeq ("$(host)", "")
