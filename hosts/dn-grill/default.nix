@@ -11,8 +11,8 @@ in {
   imports = [
     "${nixos-hardware}/framework/13-inch/12th-gen-intel"
     ./hardware-configuration.nix
+    (import ../../mixins/home/23.11.nix { version = "23.11"; })
     ../../mixins/base-2311
-    ../../mixins/home/23.11.nix
     ../../mixins/virtualization
     ../../mixins/tailscale
     ../../mixins/flatpak
