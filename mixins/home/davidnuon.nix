@@ -1,4 +1,4 @@
-{
+{stateVersion}: {
   pkgs,
   config,
   ...
@@ -58,7 +58,14 @@ with pkgs; {
       };
     };
 
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
+    };
+
     home.sessionVariables.GTK_THEME = "palenight";
-    home.stateVersion = "22.11";
+    home.stateVersion = stateVersion;
   };
 }

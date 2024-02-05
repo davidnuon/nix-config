@@ -12,7 +12,7 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./davidnuon.nix
+    (import ./davidnuon.nix {stateVersion = "22.11";})
   ];
 
   home-manager.useGlobalPkgs = true;
