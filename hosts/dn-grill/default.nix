@@ -25,9 +25,9 @@ in {
   networking.hostName = "dn-grill";
   services.openssh.enable = true;
   services.avahi.enable = true;
-  
-  time.timeZone = "America/Los_Angeles"; 
- 
+
+  time.timeZone = "America/Los_Angeles";
+
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;

@@ -10,6 +10,7 @@
     ../../mixins/home
     ../../mixins/tailscale
     ../../mixins/flatpak
+    ../../mixins/virtualization
   ];
 
   # Bootloader.
