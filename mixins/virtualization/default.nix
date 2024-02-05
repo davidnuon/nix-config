@@ -11,6 +11,10 @@
 
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
-  environment.systemPackages = with pkgs; [virt-manager];
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    virt-top
+    gnome.gnome-boxes
+  ];
   users.extraGroups.libvirtd.members = ["davidnuon"];
 }
