@@ -106,7 +106,7 @@
     nettools
     gnumake
     alejandra
-    python39
+    python311
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

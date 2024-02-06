@@ -7,7 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../mixins/base
-    ../../mixins/home
+    # ../../mixins/home
     ../../mixins/tailscale
     ../../mixins/flatpak
     ../../mixins/virtualization

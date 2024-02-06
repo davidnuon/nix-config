@@ -8,6 +8,7 @@
 }: let
   home-manager = builtins.fetchTarball {
     url = "https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz";
+    sha256 = "1kx7rzi8ycm5hsldihr7a2h19402qw454zgpc16m6y8ghcnfbsxm";
   };
 in {
   imports = [
