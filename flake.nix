@@ -8,6 +8,8 @@
 
     home-manager-2311.url = "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
     nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
+
+    flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
   };
 
   outputs = inputs @ {
