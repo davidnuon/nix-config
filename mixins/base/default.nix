@@ -88,12 +88,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [
-    (self: super: {
-      fcitx-engines = self.fcitx5;
-    })
-  ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -106,7 +100,7 @@
     nettools
     gnumake
     alejandra
-    python39
+    python311
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

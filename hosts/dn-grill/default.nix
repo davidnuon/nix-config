@@ -3,19 +3,9 @@
   config,
   pkgs,
   ...
-}: let
-  nixos-hardware = builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixos-hardware/archive/master.tar.gz";
-  };
-in {
+}: {
   imports = [
-    "${nixos-hardware}/framework/13-inch/12th-gen-intel"
     ./hardware-configuration.nix
-    (import ../../mixins/home/23.11.nix { version = "23.11"; })
-    ../../mixins/base-2311
-    ../../mixins/virtualization
-    ../../mixins/tailscale
-    ../../mixins/flatpak
   ];
 
   # Bootloader.

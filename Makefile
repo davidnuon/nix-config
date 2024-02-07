@@ -1,6 +1,6 @@
 host?=$(shell hostname)
 HOSTS_PATH=./hosts
-TARGET=${HOSTS_PATH}/${host}
+TARGET=${host}
 
 check-target:
 ifeq ("$(host)", "")
@@ -17,16 +17,16 @@ lint: check-env
 	alejandra .
 
 nixos.build: check-env check-target
-	sudo nixos-rebuild build -I nixos-config=${TARGET}
+	sudo nixos-rebuild build --flake .#${TARGET}
 
 nixos.dry-build: check-env check-target
-	sudo nixos-rebuild dry-build -I nixos-config=${TARGET}
+	sudo nixos-rebuild dry-build --flake .#${TARGET}
 
 nixos.switch: check-env check-target
-	sudo nixos-rebuild switch -I nixos-config=${TARGET}
+	sudo nixos-rebuild switch --flake .#${TARGET}
 
 nixos.upgrade: check-env check-target
-	sudo nixos-rebuild switch -I nixos-config=${TARGET} --upgrade
+	sudo nixos-rebuild switch --flake .#${TARGET} --upgrade
 
 nixos.build-vm: check-env 
-	sudo nixos-rebuild build-vm -I nixos-config=${HOSTS_PATH}/vm.nix
+	sudo nixos-rebuild build-vm --flake .#${HOSTS_PATH}/vm.nix

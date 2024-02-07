@@ -5,11 +5,11 @@
 }:
 with pkgs; {
   home-manager.users.davidnuon = {
-    home.packages = [
-      discord
-      vscode
-      firefox
-    ];
+    # home.packages = [
+    #   discord
+    #   vscode
+    #   firefox
+    # ];
 
     programs.git = {
       enable = true;
@@ -65,7 +65,7 @@ with pkgs; {
       };
     };
 
-    home.sessionVariables.GTK_THEME = "palenight";
+    # home.sessionVariables.GTK_THEME = "palenight";
     home.stateVersion = stateVersion;
   };
 }
