@@ -15,6 +15,23 @@
     nixpkgs,
     ...
   }: {
+    devShells."x86_64-linux".default = let
+      pkgs = import inputs.nixpkgs-2311 {
+        system = "x86_64-linux";
+      };
+    in
+      pkgs.mkShell {
+        NIX_CONFIG = "extra-experimental-features = nix-command";
+        nativeBuildInputs = with pkgs; [
+          nix
+          vim
+          home-manager
+          git
+          gnumake
+          alejandra
+        ];
+      };
+
     nixosConfigurations = {
       dn-jetbook = inputs.nixpkgs-2211.lib.nixosSystem {
         system = "x86_64-linux";
