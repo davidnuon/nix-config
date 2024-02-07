@@ -32,11 +32,19 @@
         ];
       };
 
-      dn-ravenbook = nixpkgs.lib.nixosSystem {
+      dn-ravenbook = inputs.nixpkgs-2311.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = inputs;
         modules = [
           ./hosts/dn-ravenbook
+
+          (import "${inputs.home-manager-2311}/nixos")
+          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
+
+          ./mixins/base
+          ./mixins/tailscale
+          ./mixins/flatpak
+          ./mixins/libreoffice
         ];
       };
 

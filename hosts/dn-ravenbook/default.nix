@@ -6,11 +6,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../mixins/base
-    ../../mixins/home
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/libreoffice
   ];
 
   # Bootloader.
@@ -20,5 +15,5 @@
 
   networking.hostName = "dn-ravenbook";
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
