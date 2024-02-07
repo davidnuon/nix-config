@@ -5,11 +5,11 @@
 }:
 with pkgs; {
   home-manager.users.davidnuon = {
-    home.packages = [
-      discord
-      vscode
-      firefox
-    ];
+    # home.packages = [
+    #   discord
+    #   vscode
+    #   firefox
+    # ];
 
     programs.git = {
       enable = true;
@@ -20,52 +20,52 @@ with pkgs; {
       lfs.enable = true;
     };
 
-    gtk = {
-      enable = true;
+    # gtk = {
+    #   enable = true;
 
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
+    #   iconTheme = {
+    #     name = "Papirus-Dark";
+    #     package = pkgs.papirus-icon-theme;
+    #   };
 
-      cursorTheme = {
-        name = "Numix-Cursor";
-        package = pkgs.numix-cursor-theme;
-      };
+    #   cursorTheme = {
+    #     name = "Numix-Cursor";
+    #     package = pkgs.numix-cursor-theme;
+    #   };
 
-      gtk3.extraConfig = {
-        Settings = ''
-          gtk-application-prefer-dark-theme=1
-        '';
-      };
+    #   gtk3.extraConfig = {
+    #     Settings = ''
+    #       gtk-application-prefer-dark-theme=1
+    #     '';
+    #   };
 
-      gtk4.extraConfig = {
-        Settings = ''
-          gtk-application-prefer-dark-theme=1
-        '';
-      };
-    };
+    #   gtk4.extraConfig = {
+    #     Settings = ''
+    #       gtk-application-prefer-dark-theme=1
+    #     '';
+    #   };
+    # };
 
-    programs.gnome-terminal = {
-      themeVariant = "dark";
-      profile = {
-        colors = {
-          backgroundColor = "rgb(0, 43, 54)";
-          foregroundColor = "rgb(131, 148, 150)";
-          useThemeColors = false;
-        };
-        visibleName = "default";
-      };
-    };
+    # programs.gnome-terminal = {
+    #   themeVariant = "dark";
+    #   profile = {
+    #     colors = {
+    #       backgroundColor = "rgb(0, 43, 54)";
+    #       foregroundColor = "rgb(131, 148, 150)";
+    #       useThemeColors = false;
+    #     };
+    #     visibleName = "default";
+    #   };
+    # };
 
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
-      };
-    };
+    # dconf.settings = {
+    #   "org/virt-manager/virt-manager/connections" = {
+    #     autoconnect = ["qemu:///system"];
+    #     uris = ["qemu:///system"];
+    #   };
+    # };
 
-    home.sessionVariables.GTK_THEME = "palenight";
+    # home.sessionVariables.GTK_THEME = "palenight";
     home.stateVersion = stateVersion;
   };
 }

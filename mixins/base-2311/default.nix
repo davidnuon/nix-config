@@ -88,11 +88,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [
-    (self: super: {
-      fcitx-engines = self.fcitx5;
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (self: super: {
+  #     fcitx-engines = self.fcitx5;
+  #   })
+  # ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
