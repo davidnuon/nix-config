@@ -32,14 +32,14 @@
         ];
       };
 
-      dn-silverbook = nixpkgs-2211.lib.nixosSystem {
+      dn-silverbook = inputs.nixpkgs-2311.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
           ./hosts/dn-silverbook
 
-          (import "${inputs.home-manager-2211}/nixos")
-          (import ./mixins/home/davidnuon.nix {stateVersion = "22.11";})
+          (import "${inputs.home-manager-2311}/nixos")
+          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
 
           "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
 
