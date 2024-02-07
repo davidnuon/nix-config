@@ -5,8 +5,7 @@
   ...
 }: {
   imports = [
-    ../../mixins/base
-    ../../mixins/home
+    ./hardware-configuration.nix
   ];
 
   # Bootloader.
@@ -19,4 +18,6 @@
   # Tailscale
   networking.firewall.checkReversePath = "loose";
   services.tailscale.enable = true;
+
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
