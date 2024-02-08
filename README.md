@@ -4,6 +4,6 @@
 
 
 ```bash
-$ nix-shell
+$ nix  --experimental-features 'nix-command flakes' develop
 $ make nixos.switch
 ```
