@@ -31,4 +31,31 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  fonts = {
+    fontDir.enable = true;
+
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      ubuntu_font_family
+      vazir-fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
+    ];
+
+    fontconfig = {
+      defaultFonts = {
+        serif = ["Noto Serif" "Ubuntu"];
+        sansSerif = ["Noto Sans" "Ubuntu"];
+        monospace = ["Noto Mono" "Ubuntu"];
+      };
+    };
+  };
 }
