@@ -48,13 +48,16 @@
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
+
+      corefonts
+      vistafonts
     ];
 
     fontconfig = {
       defaultFonts = {
-        serif = ["Noto Serif" "Ubuntu"];
+        serif = ["Noto Serif"];
         sansSerif = ["Noto Sans" "Ubuntu"];
-        monospace = ["Noto Mono" "Ubuntu"];
+        monospace = ["Noto Mono" "Ubuntu Mono"];
       };
     };
   };
