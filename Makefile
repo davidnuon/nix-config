@@ -26,7 +26,8 @@ nixos.switch: check-env check-target
 	sudo nixos-rebuild switch --flake .#${TARGET}
 
 nixos.upgrade: check-env check-target
-	sudo nixos-rebuild switch --flake .#${TARGET} --upgrade
+	nix flake update
+	sudo nixos-rebuild switch --flake .#${TARGET}
 
 nixos.build-vm: check-env 
 	sudo nixos-rebuild build-vm --flake .#${HOSTS_PATH}/vm.nix
