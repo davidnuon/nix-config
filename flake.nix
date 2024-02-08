@@ -45,6 +45,7 @@
           (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/virtualization
@@ -61,6 +62,7 @@
           (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/libreoffice
@@ -77,6 +79,7 @@
           (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/flatpak
         ];
       };
@@ -93,6 +96,7 @@
           "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/virtualization
           ./mixins/tailscale
           ./mixins/flatpak
@@ -112,6 +116,7 @@
           "${inputs.nixos-hardware}/framework/13-inch/12th-gen-intel"
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/virtualization
           ./mixins/tailscale
           ./mixins/flatpak
