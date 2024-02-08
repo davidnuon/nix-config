@@ -10,8 +10,6 @@
     nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager-2311.url = "github:nix-community/home-manager/release-23.11";
     home-manager-2311.inputs.nixpkgs.follows = "nixpkgs-2311";
-
-    flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
   };
 
   outputs = inputs @ {
@@ -37,16 +35,17 @@
       };
 
     nixosConfigurations = {
-      dn-jetbook = inputs.nixpkgs-2211.lib.nixosSystem {
+      dn-jetbook = inputs.nixpkgs-2311.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
           ./hosts/dn-jetbook
 
-          (import "${inputs.home-manager-2211}/nixos")
-          (import ./mixins/home/davidnuon.nix {stateVersion = "22.11";})
+          (import "${inputs.home-manager-2311}/nixos")
+          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/virtualization
@@ -63,6 +62,7 @@
           (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/libreoffice
@@ -79,6 +79,7 @@
           (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/flatpak
         ];
       };
@@ -95,6 +96,7 @@
           "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/virtualization
           ./mixins/tailscale
           ./mixins/flatpak
@@ -113,7 +115,8 @@
 
           "${inputs.nixos-hardware}/framework/13-inch/12th-gen-intel"
 
-          ./mixins/base-2311
+          ./mixins/base
+          ./mixins/docker
           ./mixins/virtualization
           ./mixins/tailscale
           ./mixins/flatpak
