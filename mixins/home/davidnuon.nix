@@ -5,11 +5,9 @@
 }:
 with pkgs; {
   home-manager.users.davidnuon = {
-    # home.packages = [
-    #   discord
-    #   vscode
-    #   firefox
-    # ];
+    home.packages = [
+      discord
+    ];
 
     programs.git = {
       enable = true;
