@@ -18,9 +18,9 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 |---------------|------------------------------------|---------|
 | dn-silverbook | [Framework 13" with AMD 7840U Board](https://en.wikipedia.org/wiki/Framework_Laptop) | Laptop  |
 | dn-grill      | [Framework i7-1260P Board](https://en.wikipedia.org/wiki/Framework_Laptop) | Server  |
-| dn-jetbook    | [Lenovo X1 Carbon](https://en.wikipedia.org/wiki/ThinkPad_X1_Carbon) | Laptop  |
-| dn-ravenbook  | [Lenovo T480](https://en.wikipedia.org/wiki/ThinkPad_T_Series) | Laptop  |
-| dn-thickbook  | [Lenovo T440](https://en.wikipedia.org/wiki/ThinkPad_T_Series) | Laptop  |
+| dn-jetbook    | [Lenovo ThinkPad X1 Carbon 5th Gen](https://en.wikipedia.org/wiki/ThinkPad_X1_Carbon) | Laptop  |
+| dn-ravenbook  | [Lenovo ThinkPad T480](https://en.wikipedia.org/wiki/ThinkPad_T_Series) | Laptop  |
+| dn-thickbook  | [Lenovo ThinkPad T440](https://en.wikipedia.org/wiki/ThinkPad_T_Series) | Laptop  |
 
 # History
 
