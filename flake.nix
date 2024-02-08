@@ -3,10 +3,6 @@
   inputs = {
     nixos-hardware.url = "github:NixOS/nixos-hardware/83e571b";
 
-    nixpkgs-2211.url = "github:NixOS/nixpkgs/nixos-22.11";
-    home-manager-2211.url = "github:nix-community/home-manager/release-22.11";
-    home-manager-2211.inputs.nixpkgs.follows = "nixpkgs-2211";
-
     nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager-2311.url = "github:nix-community/home-manager/release-23.11";
     home-manager-2311.inputs.nixpkgs.follows = "nixpkgs-2311";
