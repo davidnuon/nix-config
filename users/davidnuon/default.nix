@@ -1,6 +1,7 @@
 {stateVersion}: {
   pkgs,
   config,
+  lib,
   ...
 }: {
   imports = [
@@ -13,9 +14,10 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "libvirtd"
-      "vboxusers"
-      "docker"
+
+      (lib.mkIf (config.virtualisation.libvirtd.enable) "libvirtd")
+      (lib.mkIf (config.virtualisation.virtualbox.host.enable) "vboxusers")
+      (lib.mkIf (config.virtualisation.docker.enable) "docker")
     ];
   };
 
