@@ -39,7 +39,7 @@
           ./hosts/dn-jetbook
 
           (import "${inputs.home-manager-2311}/nixos")
-          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
+          (import ./users/davidnuon {stateVersion = "23.11";})
 
           ./mixins/base
           ./mixins/docker
@@ -56,7 +56,7 @@
           ./hosts/dn-ravenbook
 
           (import "${inputs.home-manager-2311}/nixos")
-          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
+          (import ./users/davidnuon {stateVersion = "23.11";})
 
           ./mixins/base
           ./mixins/docker
@@ -73,7 +73,7 @@
           ./hosts/dn-thickbook
 
           (import "${inputs.home-manager-2311}/nixos")
-          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
+          (import ./users/davidnuon {stateVersion = "23.11";})
 
           ./mixins/base
           ./mixins/docker
@@ -88,7 +88,7 @@
           ./hosts/dn-silverbook
 
           (import "${inputs.home-manager-2311}/nixos")
-          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
+          (import ./users/davidnuon {stateVersion = "23.11";})
 
           "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
 
@@ -109,7 +109,7 @@
           ./hosts/dn-grill
 
           (import "${inputs.home-manager-2311}/nixos")
-          (import ./mixins/home/davidnuon.nix {stateVersion = "23.11";})
+          (import ./users/davidnuon {stateVersion = "23.11";})
 
           "${inputs.nixos-hardware}/framework/13-inch/12th-gen-intel"
 
