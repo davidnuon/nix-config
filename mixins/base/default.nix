@@ -9,7 +9,6 @@
     ./desktop-core.nix
     ./desktop-gnome.nix
     ./desktop-lang-jp.nix
-    ./user-davidnuon.nix
     ./unstable.nix
   ];
 }
