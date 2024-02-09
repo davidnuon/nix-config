@@ -10,7 +10,13 @@
   users.users.davidnuon = {
     isNormalUser = true;
     description = "David Nuon";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "vboxusers"
+      "docker"
+    ];
   };
 
   home-manager.users.davidnuon.home.stateVersion = stateVersion;

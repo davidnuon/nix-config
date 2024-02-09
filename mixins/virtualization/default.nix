@@ -5,7 +5,6 @@
 }: {
   imports = [];
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = ["davidnuon"];
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.x11 = true;
 
@@ -16,5 +15,4 @@
     virt-top
     gnome.gnome-boxes
   ];
-  users.extraGroups.libvirtd.members = ["davidnuon"];
 }
