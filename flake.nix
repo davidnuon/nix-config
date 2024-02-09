@@ -92,6 +92,7 @@
 
           "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
 
+          ./mixins/steam
           ./mixins/base
           ./mixins/docker
           ./mixins/virtualization
