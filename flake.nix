@@ -41,6 +41,7 @@
           (import "${inputs.home-manager-2311}/nixos")
           (import ./users/davidnuon {stateVersion = "23.11";})
 
+          ./mixins/kde
           ./mixins/base
           ./mixins/docker
           ./mixins/tailscale
