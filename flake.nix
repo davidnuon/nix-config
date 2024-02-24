@@ -41,6 +41,7 @@
           (import "${inputs.home-manager-2311}/nixos")
           (import ./users/davidnuon {stateVersion = "23.11";})
 
+          ./mixins/kde
           ./mixins/base
           ./mixins/docker
           ./mixins/tailscale
@@ -92,6 +93,7 @@
 
           "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
 
+          ./mixins/kde
           ./mixins/steam
           ./mixins/base
           ./mixins/docker
