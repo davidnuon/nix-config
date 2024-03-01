@@ -6,4 +6,6 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   programs.gnome-terminal.enable = true;
+
+  services.xserver.displayManager.defaultSession = "gnome";
 }
