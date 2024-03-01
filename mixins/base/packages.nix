@@ -16,5 +16,8 @@
     gnumake
     alejandra
     python311
+
+    zellij
+    btop
   ];
 }
