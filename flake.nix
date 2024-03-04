@@ -97,6 +97,7 @@
           ./mixins/steam
           ./mixins/base
           ./mixins/docker
+          ./mixins/remote-desktop
           ./mixins/virtualization
           ./mixins/tailscale
           ./mixins/flatpak
