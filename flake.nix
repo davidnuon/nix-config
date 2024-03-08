@@ -98,6 +98,7 @@
           ./mixins/base
           ./mixins/docker
           ./mixins/remote-desktop
+          ./mixins/lutris
           ./mixins/virtualization
           ./mixins/tailscale
           ./mixins/flatpak
