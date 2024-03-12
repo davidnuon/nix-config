@@ -19,5 +19,11 @@
 
     zellij
     btop
+
+    usbutils
+    pciutils
+    hwinfo
+   
+    dnsutils
   ];
 }
