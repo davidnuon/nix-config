@@ -21,14 +21,18 @@
 
   # enp0s13f0u2 is the Framework Ethernet Module
   networking.interfaces.enp0s13f0u2.useDHCP = true;
-  networking.interfaces.br0.useDHCP = true;
 
   # Bridge network so VMs can be exposed to the network
-  networking.bridges = {
-    "br0" = {
-      interfaces = ["enp0s13f0u2"];
-    };
-  };
+  # networking.bridges = {
+  #   "bridge0" = {
+  #     interfaces = ["enp0s13f0u2"];
+  #   };
+  # };
+  # networking.interfaces.bridge0.useDHCP = true;
+
+
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   # This isn't going anywhere
   time.timeZone = "America/Los_Angeles";
