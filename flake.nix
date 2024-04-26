@@ -99,6 +99,7 @@
           ./mixins/docker
           ./mixins/remote-desktop
           ./mixins/virtualization
+          ./mixins/virtualbox
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/libreoffice
