@@ -21,13 +21,13 @@
 
   # enp0s13f0u2 is the Framework Ethernet Module
 
-  networking.interfaces.enp0s13f0u4c2.useDHCP = true;
+  networking.interfaces.enp0s13f0u2.useDHCP = false;
   networking.interfaces.br0.useDHCP = true;
 
   # Bridge network so VMs can be exposed to the network
   networking.bridges = {
     "br0" = {
-      interfaces = ["enp0s13f0u4c2"];
+      interfaces = ["enp0s13f0u2"];
     };
   };
 
