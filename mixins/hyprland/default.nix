@@ -4,5 +4,8 @@
   config,
   ...
 }: {
-  program.hyprland.enable = true;
+  programs.hyprland.enable = true;
+  environment.systemPackages = with pkgs; [
+	kitty
+  ];
 }
