@@ -20,7 +20,8 @@
   services.avahi.enable = true;
 
   # enp0s13f0u2 is the Framework Ethernet Module
-  networking.interfaces.enp0s13f0u2.useDHCP = true;
+
+  networking.interfaces.enp0s13f0u2.useDHCP = false;
   networking.interfaces.br0.useDHCP = true;
 
   # Bridge network so VMs can be exposed to the network
@@ -29,6 +30,9 @@
       interfaces = ["enp0s13f0u2"];
     };
   };
+
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   # This isn't going anywhere
   time.timeZone = "America/Los_Angeles";

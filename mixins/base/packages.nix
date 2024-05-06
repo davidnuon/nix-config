@@ -23,7 +23,7 @@
     usbutils
     pciutils
     hwinfo
-   
+
     dnsutils
   ];
 }
