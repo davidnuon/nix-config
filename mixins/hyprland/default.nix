@@ -2,8 +2,11 @@
   lib,
   pkgs,
   config,
+  specialArgs,
   ...
 }: {
+  imports = [
+  ];
   programs = {
     hyprland = {
       enable = true;
@@ -26,6 +29,7 @@
   environment.systemPackages = with pkgs; [
     kitty
     mako
+    specialArgs.ags
 
     polkit_gnome
     libva-utils

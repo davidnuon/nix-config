@@ -8,6 +8,7 @@
     nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager-2311.url = "github:nix-community/home-manager/release-23.11";
     home-manager-2311.inputs.nixpkgs.follows = "nixpkgs-2311";
+    ags.url = "github:Aylur/ags";
   };
 
   outputs = inputs @ {

@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  specialArgs,
   ...
 }: {
   imports = [
@@ -9,6 +10,7 @@
     ./git.nix
     ./gnome.nix
     ./gtk.nix
+    ./hyprland.nix
   ];
 
   home-manager.users.davidnuon.dconf.settings = lib.mkIf (config.virtualisation.libvirtd.enable) {
