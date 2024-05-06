@@ -29,7 +29,8 @@
   environment.systemPackages = with pkgs; [
     kitty
     mako
-    (pkgs.callPackage "${specialArgs.ags}/nix" {})
+  #  (pkgs.callPackage "${specialArgs.ags}/nix" {})
+    specialArgs.ags.packages.x86_64-linux.ags
 
     polkit_gnome
     libva-utils
