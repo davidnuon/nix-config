@@ -98,6 +98,7 @@
           ./mixins/steam
           ./mixins/base
           ./mixins/docker
+          ./mixins/hyprland
           ./mixins/remote-desktop
           ./mixins/virtualization
           ./mixins/tailscale
