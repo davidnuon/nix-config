@@ -3,5 +3,6 @@
     gtksourceview
     webkitgtk
     accountsservice
+    yadm
   ];
 }

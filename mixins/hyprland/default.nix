@@ -3,6 +3,7 @@
   pkgs,
   config,
   specialArgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -29,8 +30,7 @@
   environment.systemPackages = with pkgs; [
     kitty
     mako
-  #  (pkgs.callPackage "${specialArgs.ags}/nix" {})
-    specialArgs.ags.packages.x86_64-linux.ags
+    inputs.ags.packages.x86_64-linux.ags
 
     polkit_gnome
     libva-utils
