@@ -103,6 +103,8 @@
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/libreoffice
+
+          ./mixins/godot
         ];
       };
 
