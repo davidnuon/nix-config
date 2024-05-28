@@ -47,6 +47,7 @@
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/virtualization
+          ./mixins/godot
         ];
       };
 

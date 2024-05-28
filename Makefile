@@ -16,6 +16,9 @@ endif
 lint: check-env
 	alejandra .
 
+update:
+	nix flake update
+
 nixos.build: check-env check-target
 	sudo nixos-rebuild build --flake .#${TARGET}
 
@@ -25,8 +28,7 @@ nixos.dry-build: check-env check-target
 nixos.switch: check-env check-target
 	sudo nixos-rebuild switch --flake .#${TARGET}
 
-nixos.upgrade: check-env check-target
-	nix flake update
+nixos.upgrade: check-env check-target update nixos.build
 	sudo nixos-rebuild switch --flake .#${TARGET}
 
 nixos.build-vm: check-env 
