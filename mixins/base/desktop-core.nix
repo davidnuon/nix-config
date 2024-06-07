@@ -8,8 +8,13 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    # # Remove after upgrade
+    # xkbVariant = "";
+    # layout = "us";
+
+    # For 24.05
+    xkb.variant = "";
+    xkb.layout = "us";
   };
 
   # Enable sound with pipewire.
