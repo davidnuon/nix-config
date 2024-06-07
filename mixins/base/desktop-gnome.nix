@@ -10,6 +10,6 @@
 
   programs.gnome-terminal.enable = true;
 
-  # services.xserver.displayManager.defaultSession = "gnome";
+  services.xserver.displayManager.defaultSession = "gnome";
   services.displayManager.defaultSession = "gnome";
 }
