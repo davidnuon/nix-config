@@ -36,16 +36,15 @@
       };
 
     nixosConfigurations = {
-      dn-jetbook = inputs.nixpkgs-2311.lib.nixosSystem {
+      dn-jetbook = inputs.nixpkgs-2405.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
           ./hosts/dn-jetbook
 
-          (import "${inputs.home-manager-2311}/nixos")
-          (import ./users/davidnuon {stateVersion = "23.11";})
+          (import "${inputs.home-manager-2405}/nixos")
+          (import ./users/davidnuon {stateVersion = "24.05";})
 
-          ./mixins/kde
           ./mixins/base
           ./mixins/docker
           ./mixins/tailscale
