@@ -8,6 +8,10 @@
     nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager-2311.url = "github:nix-community/home-manager/release-23.11";
     home-manager-2311.inputs.nixpkgs.follows = "nixpkgs-2311";
+
+    nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
+    home-manager-2405.url = "github:nix-community/home-manager/release-24.05";
+    home-manager-2405.inputs.nixpkgs.follows = "nixpkgs-2405";
   };
 
   outputs = inputs @ {
@@ -83,14 +87,14 @@
         ];
       };
 
-      dn-silverbook = inputs.nixpkgs-2311.lib.nixosSystem {
+      dn-silverbook = inputs.nixpkgs-2405.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs;
         modules = [
           ./hosts/dn-silverbook
 
-          (import "${inputs.home-manager-2311}/nixos")
-          (import ./users/davidnuon {stateVersion = "23.11";})
+          (import "${inputs.home-manager-2405}/nixos")
+          (import ./users/davidnuon {stateVersion = "24.05";})
 
           "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
 
@@ -100,7 +104,6 @@
           ./mixins/docker
           ./mixins/remote-desktop
           ./mixins/virtualization
-          ./mixins/virtualbox
           ./mixins/tailscale
           ./mixins/flatpak
           ./mixins/libreoffice
