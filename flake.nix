@@ -107,6 +107,7 @@
           ./mixins/flatpak
           ./mixins/libreoffice
 
+          ./mixins/input-remapper
           ./mixins/godot
         ];
       };
