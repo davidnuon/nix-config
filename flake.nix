@@ -1,7 +1,7 @@
 {
   description = "davidnuon's NixOS configuration";
   inputs = {
-    nixos-hardware.url = "github:NixOS/nixos-hardware/ad2fd7b978d5e462048729a6c635c45d3d33c9ba";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs";
 

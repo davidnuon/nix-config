@@ -10,7 +10,6 @@
   };
 in {
   environment.systemPackages = with pkgs; [
-    google-chrome
     vscode
   ];
 }
