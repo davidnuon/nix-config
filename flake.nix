@@ -2,6 +2,7 @@
   description = "davidnuon's NixOS configuration";
   inputs = {
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-x13s.url = "github:davidnuon/x13s-nixos/x13s-changes";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs";
 
@@ -154,6 +155,7 @@
         system = "aarch64-linux";
         specialArgs = inputs;
         modules = [
+          inputs.nixos-x13s.nixosModules.default
           ./hosts/dn-blackleg
 
           (import "${inputs.home-manager-2411}/nixos")
