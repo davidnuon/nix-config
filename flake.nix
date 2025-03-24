@@ -162,6 +162,7 @@
           (import ./users/davidnuon {stateVersion = "24.11";})
 
           ./mixins/base
+          ./mixins/docker
           ./mixins/tailscale
           ./mixins/flatpak
         ];
