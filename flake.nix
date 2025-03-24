@@ -158,6 +158,10 @@
 
           (import "${inputs.home-manager-2411}/nixos")
           (import ./users/davidnuon {stateVersion = "24.11";})
+
+          ./mixins/base
+          ./mixins/tailscale
+          ./mixins/flatpak
         ];
       };
     };
