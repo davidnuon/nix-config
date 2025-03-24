@@ -12,6 +12,10 @@
     nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     home-manager-2405.url = "github:nix-community/home-manager/release-24.05";
     home-manager-2405.inputs.nixpkgs.follows = "nixpkgs-2405";
+
+    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
+    home-manager-2411.url = "github:nix-community/home-manager/release-24.11";
+    home-manager-2411.inputs.nixpkgs.follows = "nixpkgs-2411";
   };
 
   outputs = inputs @ {
@@ -22,6 +26,22 @@
     devShells."x86_64-linux".default = let
       pkgs = import inputs.nixpkgs-2311 {
         system = "x86_64-linux";
+      };
+    in
+      pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          nix
+          vim
+          home-manager
+          git
+          gnumake
+          alejandra
+        ];
+      };
+
+    devShells."aarch64-linux".default = let
+      pkgs = import inputs.nixpkgs-2411 {
+        system = "aarch64-linux";
       };
     in
       pkgs.mkShell {
@@ -127,6 +147,17 @@
           ./mixins/virtualization
           ./mixins/tailscale
           ./mixins/flatpak
+        ];
+      };
+
+      dn-blackleg = inputs.nixpkgs-2411.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = inputs;
+        modules = [
+          ./hosts/dn-blackleg
+
+          (import "${inputs.home-manager-2411}/nixos")
+          (import ./users/davidnuon {stateVersion = "24.11";})
         ];
       };
     };
