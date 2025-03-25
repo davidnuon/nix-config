@@ -65,19 +65,8 @@
         specialArgs = inputs;
       };
 
-      dn-thickbook = inputs.nixpkgs-2311.lib.nixosSystem {
-        system = "x86_64-linux";
+      dn-thickbook = import ./hosts/dn-thickbook {
         specialArgs = inputs;
-        modules = [
-          ./hosts/dn-thickbook
-
-          (import "${inputs.home-manager-2311}/nixos")
-          (import ./users/davidnuon {stateVersion = "23.11";})
-
-          ./mixins/base
-          ./mixins/docker
-          ./mixins/flatpak
-        ];
       };
 
       dn-silverbook = import ./hosts/dn-silverbook {
