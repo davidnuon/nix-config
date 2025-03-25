@@ -8,17 +8,11 @@
 
   # Configure keymap in X11
   services.xserver = {
-    # Remove after upgrade
-    xkbVariant = "";
-    layout = "us";
-
-    # For 24.05
     xkb.variant = "";
     xkb.layout = "us";
   };
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -45,7 +39,7 @@
       ubuntu_font_family
       vazir-fonts
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       liberation_ttf
       fira-code

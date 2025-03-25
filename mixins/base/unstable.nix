@@ -4,12 +4,12 @@
   specialArgs,
   ...
 }: let
-  pkgs = import specialArgs.nixpkgs-unstable {
-    system = "x86_64-linux";
+  unstable-pkgs = import specialArgs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
     config.allowUnfree = true;
   };
 in {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with unstable-pkgs; [
     vscode
   ];
 }
