@@ -24,37 +24,20 @@
     nixpkgs,
     ...
   }: {
-    devShells."x86_64-linux".default = let
-      pkgs = import inputs.nixpkgs-2311 {
-        system = "x86_64-linux";
-      };
+    devShells = let
+      systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
+      inherit (builtins) listToAttrs map;
     in
-      pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
-          nix
-          vim
-          home-manager
-          git
-          gnumake
-          alejandra
-        ];
-      };
-
-    devShells."aarch64-linux".default = let
-      pkgs = import inputs.nixpkgs-2411 {
-        system = "aarch64-linux";
-      };
-    in
-      pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
-          nix
-          vim
-          home-manager
-          git
-          gnumake
-          alejandra
-        ];
-      };
+      listToAttrs (map (system: {
+          name = system;
+          value =
+            import ./devShell.nix
+            {
+              inherit system;
+              specialArgs = inputs;
+            };
+        })
+        systems);
 
     nixosConfigurations = let
       inherit
