@@ -25,6 +25,8 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 | dn-blackleg  | [Lenovo ThinkPad x13s Gen 1 ARM](https://wiki.gentoo.org/wiki/Lenovo_ThinkPad_X13s) | Laptop  |
 
 ### Servers and Machines that stay in one place
+| Hostname      | Model                              | Type    |
+|---------------|------------------------------------|---------|
 | dn-grill      | [Framework i7-1260P Board](https://en.wikipedia.org/wiki/Framework_Laptop) | Server  |
 
 # History
