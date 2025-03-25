@@ -56,30 +56,20 @@
         ];
       };
 
-    nixosConfigurations = {
-      dn-jetbook = import ./hosts/dn-jetbook {
-        specialArgs = inputs;
-      };
-
-      dn-ravenbook = import ./hosts/dn-ravenbook {
-        specialArgs = inputs;
-      };
-
-      dn-thickbook = import ./hosts/dn-thickbook {
-        specialArgs = inputs;
-      };
-
-      dn-silverbook = import ./hosts/dn-silverbook {
-        specialArgs = inputs;
-      };
-
-      dn-grill = import ./hosts/dn-grill {
-        specialArgs = inputs;
-      };
-
-      dn-blackleg = import ./hosts/dn-blackleg {
-        specialArgs = inputs;
-      };
-    };
+    nixosConfigurations = let
+      inherit
+        (builtins)
+        listToAttrs
+        map
+        readDir
+        attrNames
+        ;
+    in
+      listToAttrs (map (name: {
+        inherit name;
+        value = import ./hosts/${name}/default.nix {
+          specialArgs = inputs;
+        };
+      }) (attrNames (readDir ./hosts)));
   };
 }
