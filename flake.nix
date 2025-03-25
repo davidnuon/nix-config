@@ -23,10 +23,17 @@
     self,
     nixpkgs,
     ...
-  }: {
+  }: let
+    inherit
+      (builtins)
+      listToAttrs
+      map
+      readDir
+      attrNames
+      ;
+  in {
     devShells = let
       systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
-      inherit (builtins) listToAttrs map;
     in
       listToAttrs (map (system: {
           name = system;
@@ -39,20 +46,11 @@
         })
         systems);
 
-    nixosConfigurations = let
-      inherit
-        (builtins)
-        listToAttrs
-        map
-        readDir
-        attrNames
-        ;
-    in
-      listToAttrs (map (name: {
-        inherit name;
-        value = import ./hosts/${name}/default.nix {
-          specialArgs = inputs;
-        };
-      }) (attrNames (readDir ./hosts)));
+    nixosConfigurations = listToAttrs (map (name: {
+      inherit name;
+      value = import ./hosts/${name}/default.nix {
+        specialArgs = inputs;
+      };
+    }) (attrNames (readDir ./hosts)));
   };
 }
