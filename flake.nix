@@ -57,39 +57,12 @@
       };
 
     nixosConfigurations = {
-      dn-jetbook = inputs.nixpkgs-2405.lib.nixosSystem {
-        system = "x86_64-linux";
+      dn-jetbook = import ./hosts/dn-jetbook {
         specialArgs = inputs;
-        modules = [
-          ./hosts/dn-jetbook
-
-          (import "${inputs.home-manager-2405}/nixos")
-          (import ./users/davidnuon {stateVersion = "24.05";})
-
-          ./mixins/base
-          ./mixins/docker
-          ./mixins/tailscale
-          ./mixins/flatpak
-          ./mixins/virtualization
-          ./mixins/godot
-        ];
       };
 
-      dn-ravenbook = inputs.nixpkgs-2311.lib.nixosSystem {
-        system = "x86_64-linux";
+      dn-ravenbook = import ./hosts/dn-ravenbook {
         specialArgs = inputs;
-        modules = [
-          ./hosts/dn-ravenbook
-
-          (import "${inputs.home-manager-2311}/nixos")
-          (import ./users/davidnuon {stateVersion = "23.11";})
-
-          ./mixins/base
-          ./mixins/docker
-          ./mixins/tailscale
-          ./mixins/flatpak
-          ./mixins/libreoffice
-        ];
       };
 
       dn-thickbook = inputs.nixpkgs-2311.lib.nixosSystem {
@@ -107,65 +80,16 @@
         ];
       };
 
-      dn-silverbook = inputs.nixpkgs-2405.lib.nixosSystem {
-        system = "x86_64-linux";
+      dn-silverbook = import ./hosts/dn-silverbook {
         specialArgs = inputs;
-        modules = [
-          ./hosts/dn-silverbook
-
-          (import "${inputs.home-manager-2405}/nixos")
-          (import ./users/davidnuon {stateVersion = "24.05";})
-
-          "${inputs.nixos-hardware}/framework/13-inch/7040-amd"
-
-          ./mixins/kde
-          ./mixins/steam
-          ./mixins/base
-          ./mixins/docker
-          ./mixins/remote-desktop
-          ./mixins/virtualization
-          ./mixins/tailscale
-          ./mixins/flatpak
-          ./mixins/libreoffice
-
-          ./mixins/godot
-        ];
       };
 
-      dn-grill = inputs.nixpkgs-2311.lib.nixosSystem {
-        system = "x86_64-linux";
+      dn-grill = import ./hosts/dn-grill {
         specialArgs = inputs;
-        modules = [
-          ./hosts/dn-grill
-
-          (import "${inputs.home-manager-2311}/nixos")
-          (import ./users/davidnuon {stateVersion = "23.11";})
-
-          "${inputs.nixos-hardware}/framework/13-inch/12th-gen-intel"
-
-          ./mixins/base
-          ./mixins/docker
-          ./mixins/virtualization
-          ./mixins/tailscale
-          ./mixins/flatpak
-        ];
       };
 
-      dn-blackleg = inputs.nixpkgs-2411.lib.nixosSystem {
-        system = "aarch64-linux";
+      dn-blackleg = import ./hosts/dn-blackleg {
         specialArgs = inputs;
-        modules = [
-          inputs.nixos-x13s.nixosModules.default
-          ./hosts/dn-blackleg
-
-          (import "${inputs.home-manager-2411}/nixos")
-          (import ./users/davidnuon {stateVersion = "24.11";})
-
-          ./mixins/base
-          ./mixins/docker
-          ./mixins/tailscale
-          ./mixins/flatpak
-        ];
       };
     };
   };

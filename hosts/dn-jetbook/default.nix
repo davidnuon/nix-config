@@ -1,19 +1,21 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
-  imports = [
+{specialArgs, ...}:
+specialArgs.nixpkgs-2405.lib.nixosSystem {
+  inherit specialArgs;
+  system = "x86_64-linux";
+  modules = [
+    ./configuration.nix
     ./hardware-configuration.nix
+
+    (import "${specialArgs.home-manager-2405}/nixos")
+    (import ../../users/davidnuon {stateVersion = "24.05";})
+
+    "${specialArgs.nixos-hardware}/framework/13-inch/7040-amd"
+
+    ../../mixins/base
+    ../../mixins/docker
+    ../../mixins/tailscale
+    ../../mixins/flatpak
+    ../../mixins/virtualization
+    ../../mixins/godot
   ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  networking.hostName = "dn-jetbook";
-
-  system.stateVersion = "24.05";
 }

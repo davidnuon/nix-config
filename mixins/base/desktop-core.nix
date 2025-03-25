@@ -8,11 +8,6 @@
 
   # Configure keymap in X11
   services.xserver = {
-    # Remove after upgrade
-    xkbVariant = "";
-    layout = "us";
-
-    # For 24.05
     xkb.variant = "";
     xkb.layout = "us";
   };

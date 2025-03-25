@@ -1,10 +1,13 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -19,7 +22,7 @@
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "dn-blackleg";
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   users.users.davidnuon = {
     isNormalUser = true;
@@ -32,7 +35,7 @@
   services.xserver.desktopManager.gnome.enable = true;
   services.displayManager.defaultSession = "gnome";
 
+  services.avahi.enable = true;
+
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
-
