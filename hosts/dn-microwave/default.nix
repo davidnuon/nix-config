@@ -9,8 +9,11 @@ specialArgs.nixpkgs-unstable.lib.nixosSystem {
     (import "${specialArgs.home-manager-2411}/nixos")
     (import ../../users/davidnuon {stateVersion = "25.05";})
 
+    ../../mixins/base
+
+    # Below two modules stolen from @jmbaur
+    # https://github.com/jmbaur/homelab/tree/main/nixos-modules/hardware/
     ./blackrock
     ./qualcomm
-    ../../mixins/base
   ];
 }
