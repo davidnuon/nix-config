@@ -28,17 +28,11 @@ in
   config = mkIf config.hardware.blackrock.enable {
     nixpkgs.hostPlatform = mkDefault "aarch64-linux";
 
-    hardware.qualcomm.enable = true;
+ #   hardware.qualcomm.enable = true;
 
     # TODO(jared): ACPI not enabled in johan_defconfig, needed by tpm-crb
     # kernel module.
     boot.initrd.systemd.tpm2.enable = false;
-    custom.recovery.modules = [
-      {
-        boot.initrd.includeDefaultModules = false;
-        boot.initrd.systemd.tpm2.enable = false;
-      }
-    ];
 
     boot.kernelPackages = pkgs.linuxPackagesFor (
       pkgs.callPackage

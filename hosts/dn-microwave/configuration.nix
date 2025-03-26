@@ -7,7 +7,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  
   networking.hostName = "dn-microwave";
 
   services.openssh.enable = true;
