@@ -28,6 +28,7 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 | Hostname      | Model                              | Type    |
 |---------------|------------------------------------|---------|
 | dn-grill      | [Framework i7-1260P Board](https://en.wikipedia.org/wiki/Framework_Laptop) | Server  |
+| dn-microwave      | [Windows Dev Kit 2023](https://learn.microsoft.com/en-us/windows/arm/dev-kit/) | Server  |
 
 # History
 
