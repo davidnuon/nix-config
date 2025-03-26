@@ -29,6 +29,7 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 |---------------|------------------------------------|---------|
 | dn-grill      | [Framework i7-1260P Board](https://en.wikipedia.org/wiki/Framework_Laptop) | Server  |
 | dn-oven      | [Dell OptiPlex 3040 Micro Intel](https://www.hardware-corner.net/desktop-models/Dell-OptiPlex-3040M/) | Server  |
+| dn-tandoor      | [Dell OptiPlex 3020 Micro Intel](https://www.hardware-corner.net/desktop-models/Dell-OptiPlex-3020M/) | Server  |
 | dn-microwave      | [Windows Dev Kit 2023](https://learn.microsoft.com/en-us/windows/arm/dev-kit/) | Server  |
 
 # History
