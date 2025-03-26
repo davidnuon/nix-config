@@ -10,6 +10,9 @@ specialArgs.nixpkgs-unstable.lib.nixosSystem {
     (import ../../users/davidnuon {stateVersion = "25.05";})
 
     ../../mixins/base
+    ../../mixins/tailscale
+    ../../mixins/docker
+    ../../mixins/flatpak
 
     # Below two modules stolen from @jmbaur
     # https://github.com/jmbaur/homelab/tree/main/nixos-modules/hardware/
