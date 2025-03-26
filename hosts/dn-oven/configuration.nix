@@ -12,6 +12,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.openssh.enable = true;
+  services.avahi.enable = true;
+
   networking.hostName = "dn-oven";
 
   # Disable sleepy behavior

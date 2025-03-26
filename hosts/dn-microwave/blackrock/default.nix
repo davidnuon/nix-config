@@ -1,14 +1,12 @@
 # TODO(jared): wifi: https://bugzilla.kernel.org/show_bug.cgi?id=219454
-
 {
   config,
   lib,
   pkgs,
   ...
-}:
-
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkDefault
     mkEnableOption
     mkIf
@@ -21,14 +19,13 @@ let
     rev = "359b6c2304516f5ea3f754214625a720cc976ef6";
     hash = "sha256-84QB1jGQwQWEq3gZ3I1vG3DKAxXCC5eKbkZo2egmFuU=";
   };
-in
-{
+in {
   options.hardware.blackrock.enable = mkEnableOption "microsoft,blackrock";
 
   config = mkIf config.hardware.blackrock.enable {
     nixpkgs.hostPlatform = mkDefault "aarch64-linux";
 
- #   hardware.qualcomm.enable = true;
+    #   hardware.qualcomm.enable = true;
 
     # TODO(jared): ACPI not enabled in johan_defconfig, needed by tpm-crb
     # kernel module.
@@ -36,8 +33,8 @@ in
 
     boot.kernelPackages = pkgs.linuxPackagesFor (
       pkgs.callPackage
-        (
-          { buildLinux, ... }@args:
+      (
+        {buildLinux, ...} @ args:
           buildLinux (
             args
             // rec {
@@ -54,14 +51,14 @@ in
                 rev = "755290802eba30e0621b420f6d6617965669e4cf";
                 hash = "sha256-SivrKO3+5l30In58X9n/z2XqvlFmJQ/oYo1qxxR7NYo=";
               };
-              kernelPatches = (args.kernelPatches or [ ]);
+              kernelPatches = args.kernelPatches or [];
             }
-            // (args.argsOverride or { })
+            // (args.argsOverride or {})
           )
-        )
-        {
-          defconfig = "johan_defconfig";
-        }
+      )
+      {
+        defconfig = "johan_defconfig";
+      }
     );
 
     boot.consoleLogLevel = 7;

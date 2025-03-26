@@ -4,7 +4,6 @@
   lib,
   bash,
 }:
-
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "msm-cros-efs-loader";
   version = lib.substring 0 7 finalAttrs.src.rev;
@@ -21,7 +20,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   dontBuild = true;
 
   # used in fixupPhase to provide shell for patchShebangs
-  buildInputs = [ bash ];
+  buildInputs = [bash];
 
   installPhase = ''
     runHook preInstall
