@@ -13,10 +13,37 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/a6b2fb80-5709-4edd-9e3e-8da040ecd914";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/A7D1-9FD3";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
   swapDevices = [ ];
 
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;  # (installs 550)
+
+
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.powerManagement.enable = false;
+  hardware.nvidia.powerManagement.finegrained = false;
+  hardware.nvidia.open = false;
+  hardware.nvidia.nvidiaSettings = true;
+
+  services.xserver.videoDrivers = ["nvidia"];
+  # Enable OpenGL
+  hardware.graphics = {
+    enable = true;
+  };
+
+
 }
