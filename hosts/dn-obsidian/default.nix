@@ -15,5 +15,6 @@ specialArgs.nixpkgs-2411.lib.nixosSystem {
     ../../mixins/tailscale
     ../../mixins/flatpak
     ../../mixins/steam
+    ../../mixins/godot
   ];
 }
