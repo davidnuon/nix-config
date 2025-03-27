@@ -6,9 +6,10 @@
   imports = [];
 
   environment.systemPackages = with pkgs; [
-    godot_422
+    godot_4
   ];
 
+/*
   nixpkgs.overlays = [
     (final: prev: {
       godot_422 = prev.godot_4.overrideAttrs (old: {
@@ -23,4 +24,5 @@
       });
     })
   ];
+*/
 }
