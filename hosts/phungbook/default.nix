@@ -10,9 +10,6 @@ specialArgs.nixpkgs-2411.lib.nixosSystem {
     (import ../../users/phung {stateVersion = "24.11";})
 
     ../../mixins/base
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/virtualization
+    ../../mixins/kde
   ];
 }
