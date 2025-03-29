@@ -11,6 +11,7 @@ specialArgs.nixpkgs-2411.lib.nixosSystem {
     ../../mixins/base
     ../../mixins/docker
     ../../mixins/tailscale
+    ../../mixins/xosview
     ../../mixins/flatpak
     ./hardware-configuration.nix
     ./configuration.nix
