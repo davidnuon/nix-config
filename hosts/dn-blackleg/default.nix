@@ -13,6 +13,8 @@ specialArgs.nixpkgs-2411.lib.nixosSystem {
     ../../mixins/tailscale
     ../../mixins/xosview
     ../../mixins/flatpak
+    ../../mixins/classic-windows
+    ../../mixins/budgie
     ./hardware-configuration.nix
     ./configuration.nix
   ];
