@@ -3,10 +3,9 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
   inherit specialArgs;
   system = "aarch64-linux";
   modules = [
-    specialArgs.nixos-x13s.nixosModules.default
-
     (import "${specialArgs.home-manager-2505}/nixos")
     (import ../../users/davidnuon {stateVersion = "25.05";})
+    ./x13s-nixos/module.nix
 
     ../../mixins/base
     ../../mixins/docker
