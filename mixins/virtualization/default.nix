@@ -13,6 +13,6 @@
   environment.systemPackages = with pkgs; [
     virt-manager
     virt-top
-    gnome.gnome-boxes
+    gnome-boxes
   ];
 }
