@@ -5,6 +5,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
+    ./nvidia.nix
 
     (import "${specialArgs.home-manager-2505}/nixos")
     (import ../../users/davidnuon {stateVersion = "25.05";})
