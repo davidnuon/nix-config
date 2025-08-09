@@ -11,7 +11,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
 
     ../../mixins/base
     ../../mixins/docker
-    ../../mixins/virtualization
     ../../mixins/tailscale
     ../../mixins/flatpak
   ];
