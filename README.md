@@ -31,6 +31,11 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 | dn-tandoor      | [Dell OptiPlex 3020 Micro Intel](https://www.hardware-corner.net/desktop-models/Dell-OptiPlex-3020M/) | Server  |
 | dn-microwave      | [Windows Dev Kit 2023](https://learn.microsoft.com/en-us/windows/arm/dev-kit/) | Server  |
 
+### Gaming Rigs
+| Hostname      | Model                              | Type    |
+|---------------|------------------------------------|---------|
+| dn-obsidian   |  AMD Ryzen 7 5800X NVIDIA GeForce RTX 3070 | Gaming Rig |
+
 # History
 
 I used to use Ansible to provision Ubuntu machines in this [repo](https://github.com/davidnuon/ubuntu-setup/).
