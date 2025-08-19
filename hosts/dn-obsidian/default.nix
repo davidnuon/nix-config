@@ -17,5 +17,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/xivlauncher
     ../../mixins/steam
     ../../mixins/input-remapper
+    ../../mixins/distrobox
   ];
 }
