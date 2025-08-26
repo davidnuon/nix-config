@@ -13,6 +13,10 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/xosview
     ../../mixins/flatpak
     ../../mixins/waydroid
+    ../../mixins/distrobox
+    ../../mixins/box86
+    ../../mixins/steam
+
     ./hardware-configuration.nix
     ./configuration.nix
   ];
