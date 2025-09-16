@@ -19,5 +19,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/kde
     ../../mixins/input-remapper
     ../../mixins/distrobox
+    ../../mixins/forge-mtg
   ];
 }
