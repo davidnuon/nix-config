@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  home-manager.users.davidnuon.gtk = {
+  home-manager.users.lars.gtk = {
     enable = true;
 
     iconTheme = {

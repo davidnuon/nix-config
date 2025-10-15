@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  home-manager.users.davidnuon.programs.gnome-terminal = {
+  home-manager.users.lars.programs.gnome-terminal = {
     themeVariant = "dark";
     profile = {
       colors = {

@@ -3,6 +3,6 @@
   config,
   ...
 }: {
-  home-manager.users.davidnuon.home.packages = with pkgs; [
+  home-manager.users.lars.home.packages = with pkgs; [
   ];
 }
