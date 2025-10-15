@@ -11,9 +11,9 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     (import ../../users/lars {stateVersion = "25.05";})
 
     ../../mixins/base
+    ../../mixins/kde
     ../../mixins/docker
     ../../mixins/tailscale
     ../../mixins/flatpak
-    ../../mixins/virtualization
   ];
 }
