@@ -14,5 +14,10 @@
 
   networking.hostName = "dn-clapper";
 
+  services.openssh.enable = true;
+
+  # Zeroconf DNS
+  services.avahi.enable = true;
+
   system.stateVersion = "25.05";
 }
