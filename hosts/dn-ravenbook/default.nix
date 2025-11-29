@@ -13,5 +13,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/docker
     ../../mixins/tailscale
     ../../mixins/flatpak
+    ../../mixins/kde
   ];
 }
