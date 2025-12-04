@@ -4,9 +4,10 @@
   ...
 }: {
   imports = [];
-  # virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.guest.enable = true;
-  # virtualisation.virtualbox.guest.x11 = true;
+
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["davidnuon"];
+  virtualisation.spiceUSBRedirection.enable = true;
 
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
