@@ -15,5 +15,9 @@
 
   networking.hostName = "dn-obsidian";
 
+  programs.ssh.forwardX11 = true;
+  services.openssh.settings.X11Forwarding = true;
+
+
   system.stateVersion = "25.05"; # Did you read the comment?
 }
