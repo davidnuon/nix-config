@@ -13,6 +13,8 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/xosview
     ../../mixins/flatpak
     ../../mixins/waydroid
+    ../../mixins/kde
+    ../../mixins/forge-mtg
     ./hardware-configuration.nix
     ./configuration.nix
   ];
