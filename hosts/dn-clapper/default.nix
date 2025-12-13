@@ -8,11 +8,12 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
 
     (import "${specialArgs.home-manager-2505}/nixos")
     (import ../../users/davidnuon {stateVersion = "25.05";})
+    (import ../../users/lars {stateVersion = "25.05";})
 
     ../../mixins/base
+    ../../mixins/kde
     ../../mixins/docker
     ../../mixins/tailscale
     ../../mixins/flatpak
-    ../../mixins/kde
   ];
 }
