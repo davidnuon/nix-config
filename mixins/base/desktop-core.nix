@@ -36,11 +36,11 @@
 
     enableDefaultPackages = true;
     packages = with pkgs; [
-      ubuntu_font_family
+      ubuntu-classic
       vazir-fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       liberation_ttf
       fira-code
       fira-code-symbols
@@ -49,7 +49,7 @@
       proggyfonts
 
       corefonts
-      vistafonts
+      vista-fonts
     ];
 
     fontconfig = {

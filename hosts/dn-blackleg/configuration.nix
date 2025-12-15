@@ -14,10 +14,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixos-x13s.enable = true;
-  nixos-x13s.kernel = "jhovold"; # jhovold is default, but mainline supported
-  specialisation = {
-    mainline.configuration.nixos-x13s.kernel = "jhovold";
-  };
+  nixos-x13s.kernel = "mainline"; # jhovold is default, but mainline supported
+  # specialisation = {
+  #   mainline.configuration.nixos-x13s.kernel = "jhovold";
+  # };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -37,5 +37,5 @@
 
   services.avahi.enable = true;
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 }

@@ -21,6 +21,10 @@
     nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager-2505.url = "github:nix-community/home-manager/release-25.05";
     home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2505";
+
+    nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
+    home-manager-2511.url = "github:nix-community/home-manager/release-25.11";
+    home-manager-2511.inputs.nixpkgs.follows = "nixpkgs-2511";
   };
 
   outputs = inputs @ {
