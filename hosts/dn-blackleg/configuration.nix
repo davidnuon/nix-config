@@ -30,10 +30,8 @@
     extraGroups = ["wheel" "networkManager"];
   };
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.displayManager.defaultSession = "gnome";
+  systemd.tpm2.enable = false;
+  boot.initrd.systemd.tpm2.enable = false;
 
   services.avahi.enable = true;
 
