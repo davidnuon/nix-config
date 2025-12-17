@@ -20,6 +20,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/input-remapper
     ../../mixins/distrobox
     ../../mixins/forge-mtg
-    ../../mixins/virtualization 
+    ../../mixins/virtualization
+    ../../mixins/godot
   ];
 }
