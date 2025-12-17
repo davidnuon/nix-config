@@ -14,10 +14,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixos-x13s.enable = true;
-  nixos-x13s.kernel = "jhovold"; # jhovold is default, but mainline supported
-  specialisation = {
-    mainline.configuration.nixos-x13s.kernel = "jhovold";
-  };
+  nixos-x13s.kernel = "mainline"; # jhovold is default, but mainline supported
+  # specialisation = {
+  #   mainline.configuration.nixos-x13s.kernel = "jhovold";
+  # };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -30,12 +30,10 @@
     extraGroups = ["wheel" "networkManager"];
   };
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.displayManager.defaultSession = "gnome";
+  systemd.tpm2.enable = false;
+  boot.initrd.systemd.tpm2.enable = false;
 
   services.avahi.enable = true;
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 }
