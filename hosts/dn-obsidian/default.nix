@@ -1,5 +1,5 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-2505.lib.nixosSystem {
+specialArgs.nixpkgs-2511.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
@@ -7,8 +7,8 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ./hardware-configuration.nix
     ./nvidia.nix
 
-    (import "${specialArgs.home-manager-2505}/nixos")
-    (import ../../users/davidnuon {stateVersion = "25.05";})
+    (import "${specialArgs.home-manager-2511}/nixos")
+    (import ../../users/davidnuon {stateVersion = "25.11";})
 
     ../../mixins/base
     ../../mixins/docker
