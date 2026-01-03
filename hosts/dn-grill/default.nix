@@ -1,5 +1,8 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-2311.lib.nixosSystem {
+let 
+  homeManageStateVersion = builtins.replaceStrings ["pre-git"] [""] specialArgs.nixpkgs.lib.version;
+in 
+specialArgs.nixpkgs.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
@@ -7,7 +10,7 @@ specialArgs.nixpkgs-2311.lib.nixosSystem {
     ./hardware-configuration.nix
 
     (import "${specialArgs.home-manager-2311}/nixos")
-    (import ../../users/davidnuon {stateVersion = "23.11";})
+            (import ../../users/davidnuon {stateVersion = homeManageStateVersion;})
 
     "${specialArgs.nixos-hardware}/framework/13-inch/12th-gen-intel"
 
