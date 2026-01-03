@@ -4,15 +4,13 @@
   mtools,
   parted,
   runCommand,
-  uefi ? (callPackage ./uefi.nix { }),
+  uefi ? (callPackage ./uefi.nix {}),
   util-linux,
-}:
-
-let
+}: let
   name = "bios_update_utility";
   version = uefi.version;
 in
-runCommand name
+  runCommand name
   {
     inherit version;
     nativeBuildInputs = [

@@ -3,9 +3,9 @@
   fetchFromGitHub,
   lib,
   ...
-}:
-let
-  inherit (builtins)
+}: let
+  inherit
+    (builtins)
     attrNames
     filter
     fromJSON
@@ -15,14 +15,16 @@ let
     readFile
     ;
 
-  inherit (lib.strings)
+  inherit
+    (lib.strings)
     hasSuffix
     ;
 
   source = fromJSON (readFile ./source.json);
 
   linux_jhovold_src = fetchFromGitHub {
-    inherit (source)
+    inherit
+      (source)
       hash
       owner
       repo
@@ -30,32 +32,31 @@ let
       ;
   };
 
-  patches =
-    let
-      basePatchDir = ./patches/${source.rev};
-      entries = readDir basePatchDir;
-      files = filter (key: (getAttr key entries) == "regular" && (hasSuffix ".patch" key)) (
-        attrNames entries
-      );
-    in
-    if pathExists basePatchDir then
+  patches = let
+    basePatchDir = ./patches/${source.rev};
+    entries = readDir basePatchDir;
+    files = filter (key: (getAttr key entries) == "regular" && (hasSuffix ".patch" key)) (
+      attrNames entries
+    );
+  in
+    if pathExists basePatchDir
+    then
       map (filename: {
         name = filename;
         patch = basePatchDir + "/${filename}";
-      }) files
-    else
-      [ ];
-
+      })
+      files
+    else [];
 in
-buildLinux {
-  modDirVersion = source.version;
+  buildLinux {
+    modDirVersion = source.version;
 
-  src = linux_jhovold_src;
-  version = source.version;
-  defconfig = "johan_defconfig";
+    src = linux_jhovold_src;
+    version = source.version;
+    defconfig = "johan_defconfig";
 
-  kernelPatches = patches;
-  ignoreConfigErrors = true;
+    kernelPatches = patches;
+    ignoreConfigErrors = true;
 
-  extraMeta.branch = source.rev;
-}
+    extraMeta.branch = source.rev;
+  }
