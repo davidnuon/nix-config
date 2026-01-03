@@ -1,4 +1,7 @@
 {specialArgs, ...}:
+let 
+  homeManageStateVersion = builtins.replaceStrings ["pre-git"] [""] specialArgs.nixpkgs.lib.version;
+in 
 specialArgs.nixpkgs-unstable.lib.nixosSystem {
   inherit specialArgs;
   system = "aarch64-linux";
@@ -7,7 +10,7 @@ specialArgs.nixpkgs-unstable.lib.nixosSystem {
     ./hardware-configuration.nix
 
     (import "${specialArgs.home-manager-2411}/nixos")
-    (import ../../users/davidnuon {stateVersion = "25.05";})
+            (import ../../users/davidnuon {stateVersion = homeManageStateVersion;})
 
     ../../mixins/base
     ../../mixins/tailscale

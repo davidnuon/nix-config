@@ -1,5 +1,8 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-2505.lib.nixosSystem {
+let 
+  homeManageStateVersion = builtins.replaceStrings ["pre-git"] [""] specialArgs.nixpkgs.lib.version;
+in 
+specialArgs.nixpkgs.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
@@ -7,7 +10,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ./hardware-configuration.nix
 
     (import "${specialArgs.home-manager-2505}/nixos")
-    (import ../../users/davidnuon {stateVersion = "25.05";})
+            (import ../../users/davidnuon {stateVersion = homeManageStateVersion;})
 
     ../../mixins/base
     ../../mixins/docker

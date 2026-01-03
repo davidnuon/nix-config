@@ -25,6 +25,10 @@
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager-2511.url = "github:nix-community/home-manager/release-25.11";
     home-manager-2511.inputs.nixpkgs.follows = "nixpkgs-2511";
+
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -57,7 +61,9 @@
     nixosConfigurations = listToAttrs (map (name: {
       inherit name;
       value = import ./hosts/${name}/default.nix {
-        specialArgs = inputs;
+        specialArgs = inputs // {
+          cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
+        };
       };
     }) (attrNames (readDir ./hosts)));
   };

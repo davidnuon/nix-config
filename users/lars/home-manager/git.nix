@@ -5,10 +5,10 @@
 }: {
   home-manager.users.davidnuon.programs.git = {
     enable = true;
-    userName = "David Nuon";
-    userEmail = "davidnuongm@gmail.com";
-    extraConfig.core.editor = "vim";
-    extraConfig.init.defaultBranch = "main";
+    settings.user.name = "David Nuon";
+    settings.user.email = "davidnuongm@gmail.com";
+    settings.core.editor = "vim";
+    settings.init.defaultBranch = "main";
     lfs.enable = true;
   };
 }
