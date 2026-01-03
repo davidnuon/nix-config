@@ -1,5 +1,4 @@
 {specialArgs, ...}:
-
 specialArgs.nixpkgs.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
@@ -21,6 +20,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/input-remapper
     ../../mixins/distrobox
     ../../mixins/forge-mtg
-    ../../mixins/virtualization 
+    ../../mixins/virtualization
   ];
 }

@@ -8,62 +8,61 @@
     };
   };
 
-  outputs =
-    { nixpkgs, flake-utils, ... }@inputs:
-    let
-      nixosModules = {
-        default = import ./module.nix;
-      };
-      nixosConfigurations =
-        let
-          inherit (builtins)
-            listToAttrs
-            map
-            readDir
-            elemAt
-            filter
-            getAttr
-            match
-            attrNames
-            ;
-        in
-        listToAttrs (
-          map
-            (config: {
-              name = config;
-              value = nixpkgs.lib.nixosSystem {
-                system = "aarch64-linux";
-                specialArgs = {
-                  inherit inputs;
-                };
-                modules = [
-                  inputs.self.nixosModules.default
-                  (import (./configurations + "/${config}.nix"))
-                ];
-              };
-            })
-            (
-              let
-                entries = readDir ./configurations;
-              in
-              map (key: elemAt (match "(.+)\\.nix" (baseNameOf key)) 0) (
-                filter (key: (getAttr key entries) == "regular") (attrNames entries)
-              )
-            )
-        );
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    ...
+  } @ inputs: let
+    nixosModules = {
+      default = import ./module.nix;
+    };
+    nixosConfigurations = let
+      inherit
+        (builtins)
+        listToAttrs
+        map
+        readDir
+        elemAt
+        filter
+        getAttr
+        match
+        attrNames
+        ;
     in
+      listToAttrs (
+        map
+        (config: {
+          name = config;
+          value = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              inputs.self.nixosModules.default
+              (import (./configurations + "/${config}.nix"))
+            ];
+          };
+        })
+        (
+          let
+            entries = readDir ./configurations;
+          in
+            map (key: elemAt (match "(.+)\\.nix" (baseNameOf key)) 0) (
+              filter (key: (getAttr key entries) == "regular") (attrNames entries)
+            )
+        )
+      );
+  in
     (flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         pkgs = nixpkgs.legacyPackages.${system};
-
-      in
-      {
+      in {
         inherit nixosModules;
 
-        devShells.default = import ./shell.nix { inherit pkgs; };
+        devShells.default = import ./shell.nix {inherit pkgs;};
 
-        packages = import ./default.nix { inherit pkgs; };
+        packages = import ./default.nix {inherit pkgs;};
       }
     ))
     // {

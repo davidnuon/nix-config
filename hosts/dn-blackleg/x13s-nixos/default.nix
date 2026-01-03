@@ -1,7 +1,4 @@
-{
-  pkgs ? (import <nixpkgs> { }),
-}:
-(pkgs.lib.packagesFromDirectoryRecursive {
+{pkgs ? (import <nixpkgs> {})}: (pkgs.lib.packagesFromDirectoryRecursive {
   callPackage = pkgs.callPackage;
   directory = ./packages;
 })

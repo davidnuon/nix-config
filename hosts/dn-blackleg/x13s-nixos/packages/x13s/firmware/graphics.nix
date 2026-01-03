@@ -3,9 +3,8 @@
   innoextract,
   lib,
   stdenv,
-}:
-let
-  allDownloads = (builtins.fromJSON (builtins.readFile ./lenovo-downloads.json));
+}: let
+  allDownloads = builtins.fromJSON (builtins.readFile ./lenovo-downloads.json);
   downloads = builtins.concatLists (
     builtins.map (d: d.Files) (builtins.filter (d: lib.hasInfix "Graphics Driver" d.Title) allDownloads)
   );
@@ -15,30 +14,30 @@ let
     builtins.head (builtins.match "^.+/([a-zA-Z0-9]+).exe$" exeDownload.URL)
   );
 in
-stdenv.mkDerivation {
-  name = "graphics-firmware";
-  version = exeDownload.Version;
+  stdenv.mkDerivation {
+    name = "graphics-firmware";
+    version = exeDownload.Version;
 
-  src = fetchurl {
-    url = exeDownload.URL;
-    sha256 = exeDownload.SHA256;
-  };
+    src = fetchurl {
+      url = exeDownload.URL;
+      sha256 = exeDownload.SHA256;
+    };
 
-  nativeBuildInputs = [ innoextract ];
+    nativeBuildInputs = [innoextract];
 
-  unpackPhase = ''
-    innoextract $src
-  '';
+    unpackPhase = ''
+      innoextract $src
+    '';
 
-  doBuild = false;
-  dontFixup = true;
+    doBuild = false;
+    dontFixup = true;
 
-  installPhase = ''
-    mkdir -vp "$out/lib/firmware/qcom/sc8280xp/LENOVO/21BX"
-    cp -v code\$GetExtractPath\$/${versionName}/**/*.mbn "$out/lib/firmware/qcom/sc8280xp/LENOVO/21BX/"
-  '';
+    installPhase = ''
+      mkdir -vp "$out/lib/firmware/qcom/sc8280xp/LENOVO/21BX"
+      cp -v code\$GetExtractPath\$/${versionName}/**/*.mbn "$out/lib/firmware/qcom/sc8280xp/LENOVO/21BX/"
+    '';
 
-  meta = {
-    license = lib.licenses.unfree;
-  };
-}
+    meta = {
+      license = lib.licenses.unfree;
+    };
+  }

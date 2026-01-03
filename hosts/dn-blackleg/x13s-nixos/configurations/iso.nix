@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{pkgs, ...}:
 # nix run github:nix-community/nixos-generators -- --flake .#iso -f iso
 {
   nixpkgs.config.allowUnfree = true;
   nix = {
-    settings.trusted-users = [ "@wheel" ];
+    settings.trusted-users = ["@wheel"];
     extraOptions = "experimental-features = nix-command flakes";
   };
 
@@ -22,7 +22,6 @@
   };
   networking.networkmanager.enable = true;
 
-
   environment.defaultPackages = [
     pkgs.gparted
     pkgs.vim
@@ -32,7 +31,7 @@
   users.users.root.initialHashedPassword = "";
   users.users.nixos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" ];
+    extraGroups = ["wheel" "networkmanager" "video"];
     initialHashedPassword = "";
   };
 

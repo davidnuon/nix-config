@@ -3,23 +3,21 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   dtbName = "sc8280xp-lenovo-thinkpad-x13s.dtb";
   cfg = config.nixos-x13s;
 
   linuxPackages =
-    if lib.isDerivation cfg.kernel then
-      pkgs.linuxPackagesFor cfg.kernel
-    else if lib.isString cfg.kernel then
-      if cfg.kernel == "mainline" then
-        pkgs.linuxPackages_latest
-      else if cfg.kernel == "jhovold" then
-        pkgs.linuxPackagesFor pkgs.x13s.linux_jhovold
-      else
-        throw "unsupported enum value for kernel. use a kernel package instead. eg: pkgs.linux_latest"
-    else
-      throw "unsupported type for kernel!";
+    if lib.isDerivation cfg.kernel
+    then pkgs.linuxPackagesFor cfg.kernel
+    else if lib.isString cfg.kernel
+    then
+      if cfg.kernel == "mainline"
+      then pkgs.linuxPackages_latest
+      else if cfg.kernel == "jhovold"
+      then pkgs.linuxPackagesFor pkgs.x13s.linux_jhovold
+      else throw "unsupported enum value for kernel. use a kernel package instead. eg: pkgs.linux_latest"
+    else throw "unsupported type for kernel!";
 
   dtb = "${linuxPackages.kernel}/dtbs/qcom/${dtbName}";
   dtbEfiPath = "dtbs/x13s-${linuxPackages.kernel.version}.dtb";
@@ -38,8 +36,7 @@ let
       pkgs.x13s.firmware.graphics
     ];
   };
-in
-{
+in {
   options.nixos-x13s = {
     enable = lib.mkEnableOption "x13s hardware support";
 
@@ -69,10 +66,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.efibootmgr ];
+    environment.systemPackages = [pkgs.efibootmgr];
 
     hardware.enableAllFirmware = true;
-    hardware.firmware = lib.mkBefore [ pkgs.x13s.firmware.graphics ];
+    hardware.firmware = lib.mkBefore [pkgs.x13s.firmware.graphics];
 
     boot = {
       initrd.systemd.enable = true;
@@ -136,16 +133,15 @@ in
 
     nixpkgs.overlays = [
       (
-        _: super:
-        (
+        _: super: (
           {
             # don't try and use zfs
             zfs = super.zfs.overrideAttrs (_: {
-              meta.platforms = [ ];
+              meta.platforms = [];
             });
 
             # allow missing modules
-            makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+            makeModulesClosure = x: super.makeModulesClosure (x // {allowMissing = true;});
           }
           # add our custom x13s packages
           // (lib.packagesFromDirectoryRecursive {
@@ -168,21 +164,20 @@ in
         ''
       ]
       ++ (
-        if cfg.wifiMac != null then
-          [
-            ''
-              ACTION=="add", SUBSYSTEM=="net", KERNELS=="0006:01:00.0", RUN+="${pkgs.iproute2}/bin/ip link set dev $name address ${cfg.wifiMac}"
-            ''
-          ]
-        else
-          [ ]
+        if cfg.wifiMac != null
+        then [
+          ''
+            ACTION=="add", SUBSYSTEM=="net", KERNELS=="0006:01:00.0", RUN+="${pkgs.iproute2}/bin/ip link set dev $name address ${cfg.wifiMac}"
+          ''
+        ]
+        else []
       )
     );
 
     systemd.services.bluetooth-x13s-mac = lib.mkIf (cfg.bluetoothMac != null) {
-      wantedBy = [ "multi-user.target" ];
-      before = [ "bluetooth.service" ];
-      requiredBy = [ "bluetooth.service" ];
+      wantedBy = ["multi-user.target"];
+      before = ["bluetooth.service"];
+      requiredBy = ["bluetooth.service"];
 
       serviceConfig = {
         Type = "oneshot";

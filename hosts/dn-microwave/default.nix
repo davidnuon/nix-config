@@ -1,5 +1,4 @@
 {specialArgs, ...}:
-
 specialArgs.nixpkgs-unstable.lib.nixosSystem {
   inherit specialArgs;
   system = "aarch64-linux";
