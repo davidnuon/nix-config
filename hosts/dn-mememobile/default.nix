@@ -7,7 +7,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./hardware-configuration.nix
     ./nvidia.nix
 
-    (import "${specialArgs.home-manager-2511}/nixos")
+    (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins/base
