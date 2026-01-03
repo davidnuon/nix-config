@@ -1,4 +1,4 @@
-{specialArgs, nixPkgsVersion, ...}:
+{specialArgs, ...}:
 specialArgs.nixpkgs.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
@@ -8,7 +8,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./nvidia.nix
 
     (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = nixPkgsVersion;})
+    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins/base
     ../../mixins/docker

@@ -61,8 +61,9 @@
     nixosConfigurations = listToAttrs (map (name: {
       inherit name;
       value = import ./hosts/${name}/default.nix {
-        specialArgs = inputs;
-        nixPkgsVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
+        specialArgs = inputs // {
+          cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
+        };
       };
     }) (attrNames (readDir ./hosts)));
   };
