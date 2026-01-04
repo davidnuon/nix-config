@@ -4,7 +4,7 @@
   ...
 }: {
   default = let
-    pkgs = import specialArgs.nixpkgs-2411 {
+    pkgs = import specialArgs.nixpkgs {
       system = "${system}";
     };
   in
@@ -16,6 +16,8 @@
         git
         gnumake
         alejandra
+        nixVersions.latest
+        nixos-rebuild
       ];
     };
 }

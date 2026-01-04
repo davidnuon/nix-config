@@ -6,26 +6,6 @@
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs";
 
-    nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
-    home-manager-2311.url = "github:nix-community/home-manager/release-23.11";
-    home-manager-2311.inputs.nixpkgs.follows = "nixpkgs-2311";
-
-    nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
-    home-manager-2405.url = "github:nix-community/home-manager/release-24.05";
-    home-manager-2405.inputs.nixpkgs.follows = "nixpkgs-2405";
-
-    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
-    home-manager-2411.url = "github:nix-community/home-manager/release-24.11";
-    home-manager-2411.inputs.nixpkgs.follows = "nixpkgs-2411";
-
-    nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
-    home-manager-2505.url = "github:nix-community/home-manager/release-25.05";
-    home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2505";
-
-    nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
-    home-manager-2511.url = "github:nix-community/home-manager/release-25.11";
-    home-manager-2511.inputs.nixpkgs.follows = "nixpkgs-2511";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

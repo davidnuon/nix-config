@@ -6,7 +6,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
 
-    (import "${specialArgs.home-manager-2411}/nixos")
+    (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
     "${specialArgs.nixos-hardware}/framework/13-inch/7040-amd"

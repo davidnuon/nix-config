@@ -6,9 +6,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
 
-    (import "${specialArgs.home-manager-2505}/nixos")
+    (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-    (import ../../users/lars {stateVersion = "25.05";})
+    (import ../../users/lars {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins/base
     ../../mixins/kde
