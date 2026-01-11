@@ -14,7 +14,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/xosview
     ../../mixins/flatpak
     ../../mixins/waydroid
-    ./jenkins.nix
     ./hardware-configuration.nix
     ./configuration.nix
   ];
