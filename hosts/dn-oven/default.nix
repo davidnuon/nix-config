@@ -13,5 +13,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/docker
     ../../mixins/tailscale
     ../../mixins/flatpak
+    ./jenkins.nix
   ];
 }
