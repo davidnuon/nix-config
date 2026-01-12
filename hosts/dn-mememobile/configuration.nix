@@ -19,4 +19,10 @@
   services.openssh.settings.X11Forwarding = true;
 
   system.stateVersion = "25.11"; # Did you read the comment?
+
+  # Disable laptop sleepy behavior
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 }
