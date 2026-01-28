@@ -8,5 +8,4 @@
   environment.systemPackages = with pkgs; [
     xosview
   ];
-
 }
