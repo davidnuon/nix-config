@@ -16,7 +16,7 @@
   services.avahi.enable = true;
 
   # enp0s13f0u2 is the Framework Ethernet Module
-/*
+  /*
   networking.interfaces.enp0s13f0u2.useDHCP = false;
   networking.interfaces.br0.useDHCP = true;
 
@@ -26,7 +26,7 @@
       interfaces = ["enp0s13f0u2"];
     };
   };
-*/
+  */
   systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
 
