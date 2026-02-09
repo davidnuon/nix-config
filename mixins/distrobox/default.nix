@@ -5,5 +5,5 @@
 }: {
   imports = [];
 
-  environment.systemPackages = [ pkgs.distrobox ];
+  environment.systemPackages = [pkgs.distrobox];
 }
