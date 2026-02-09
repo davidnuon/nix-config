@@ -6,5 +6,4 @@
   imports = [];
 
   virtualisation.waydroid.enable = true;
-
 }
