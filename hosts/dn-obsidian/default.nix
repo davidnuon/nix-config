@@ -6,6 +6,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
     ./amd.nix
+    ./ollama.nix
 
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
