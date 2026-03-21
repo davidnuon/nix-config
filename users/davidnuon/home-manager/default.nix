@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./packages.nix
-    ./git.nix
     ./gnome.nix
     ./gtk.nix
   ];
