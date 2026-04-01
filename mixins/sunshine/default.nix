@@ -23,17 +23,17 @@
       PATH = "$(PATH):$(HOME)/.local/bin";
     };
     apps = [
-        {
-          name = "Launch BigSteam";
-          detached = [
-            "${lib.getExe pkgs.steam} steam://open/bigpicture"
-          ];
-					undo = "${lib.getExe pkgs.steam} steam://close/bigpicture";
-          auto-detach = true;
-          wait-all = true;
-          exit-timeout = 5;
-          image-path = "";
-        }
+      {
+        name = "Launch BigSteam";
+        detached = [
+          "${lib.getExe pkgs.steam} steam://open/bigpicture"
+        ];
+        undo = "${lib.getExe pkgs.steam} steam://close/bigpicture";
+        auto-detach = true;
+        wait-all = true;
+        exit-timeout = 5;
+        image-path = "";
+      }
     ];
   };
 }

@@ -10,7 +10,7 @@
     config.allowUnfree = true;
   };
 in {
-  networking.firewall.allowedTCPPorts = [ 1337 ];
+  networking.firewall.allowedTCPPorts = [1337];
 
   services.open-webui = {
     enable = true;

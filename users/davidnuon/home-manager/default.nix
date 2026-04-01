@@ -7,7 +7,7 @@
   imports = [
     ./packages.nix
     ./gnome.nix
-    ./gtk.nix
+    ./git.nix
   ];
 
   home-manager.users.davidnuon.dconf.settings = lib.mkIf (config.virtualisation.libvirtd.enable) {
