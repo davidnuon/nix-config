@@ -17,6 +17,8 @@
     alejandra
     python314
 
+    hyfetch
+
     zellij
     btop
 
