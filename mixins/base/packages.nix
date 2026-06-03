@@ -15,7 +15,7 @@
     nettools
     gnumake
     alejandra
-    python311
+    python314
 
     zellij
     btop
