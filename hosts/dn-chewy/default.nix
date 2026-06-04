@@ -11,6 +11,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import ../../users/lars {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins/base
+    ../../mixins/steam
     ../../mixins/kde
     ../../mixins/docker
     ../../mixins/tailscale
