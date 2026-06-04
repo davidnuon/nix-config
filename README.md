@@ -21,6 +21,7 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 | dn-silverbook | [Framework 13" with AMD 7840U Board](https://en.wikipedia.org/wiki/Framework_Laptop) | Laptop  |
 | dn-jetbook    | [Lenovo ThinkPad X1 Carbon 5th Gen](https://en.wikipedia.org/wiki/ThinkPad_X1_Carbon) | Laptop  |
 | dn-clapper   | [Lenovo ThinkPad X13 Gen 1](https://en.wikipedia.org/wiki/ThinkPad_X_series) | Laptop  |
+| dn-chewy   | [CHUWI Minibook X](https://www.chuwi.com/product/items/chuwi-minibook-x-n150.html) | Laptop  |
 | dn-ravenbook  | [Lenovo ThinkPad T480](https://en.wikipedia.org/wiki/ThinkPad_T_Series) | Laptop  |
 | dn-blackleg  | [Lenovo ThinkPad x13s Gen 1 ARM](https://wiki.gentoo.org/wiki/Lenovo_ThinkPad_X13s) | Laptop  |
 | dn-mememachine  | [Lenovo ThinkPad P71](https://en.wikipedia.org/wiki/ThinkPad_P_series) | Laptop  |
