@@ -9,9 +9,10 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "i915" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = ["video=DSI-1:panel_orientation=right_side_up" "fbcon=rotate:1"];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/a88880c3-ba7d-4e32-986f-7c34840d58d6";
