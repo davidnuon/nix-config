@@ -12,7 +12,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     ../../mixins/base
     ../../mixins/steam
-    ../../mixins/kde
     ../../mixins/docker
     ../../mixins/tailscale
     ../../mixins/flatpak
