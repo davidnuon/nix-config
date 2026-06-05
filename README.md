@@ -37,7 +37,7 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 ### Gaming Rigs
 | Hostname      | Model                              | Type    |
 |---------------|------------------------------------|---------|
-| dn-obsidian   |  AMD Ryzen 7 5800X NVIDIA GeForce RTX 3070 | Gaming Rig |
+| dn-obsidian   |  AMD Ryzen 7 5800X + AMD ATI Radeon RX 9060 XT | Gaming Rig |
 
 # History
 
