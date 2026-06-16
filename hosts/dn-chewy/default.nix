@@ -15,5 +15,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/docker
     ../../mixins/tailscale
     ../../mixins/flatpak
+    ../../mixins/lutris
   ];
 }
