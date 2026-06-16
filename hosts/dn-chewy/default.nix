@@ -16,5 +16,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/tailscale
     ../../mixins/flatpak
     ../../mixins/lutris
+    ../../mixins/affinity
   ];
 }
