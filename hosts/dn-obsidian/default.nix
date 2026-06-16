@@ -24,6 +24,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/virtualization
     ../../mixins/godot
     ../../mixins/sunshine
-    ../../mixins/afinity
+    ../../mixins/affinity
   ];
 }
