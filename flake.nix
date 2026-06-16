@@ -9,11 +9,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    affinity-nix.url = "github:davidnuon/affinity-nix";
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
+    affinity-nix,
     ...
   }: let
     inherit
