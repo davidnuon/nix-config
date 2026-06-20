@@ -25,5 +25,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/godot
     ../../mixins/sunshine
     ../../mixins/affinity
+    ../../mixins/pos-80
   ];
 }
