@@ -18,7 +18,7 @@ stdenv.mkDerivation {
     cups
   ];
 
-  dontBuild = true;
+  # dontBuild = true;
 
   installPhase = ''
     runHook preInstall
