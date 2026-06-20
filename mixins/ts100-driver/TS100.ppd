@@ -1,0 +1,210 @@
+*PPD-Adobe:             "4.3"
+*FormatVersion:         "4.3"
+*FileVersion:           "1.2"
+*LanguageVersion:       English
+*LanguageEncoding:      ISOLatin1
+*PCFileName:            "TS100.ppd"
+*Manufacturer:          "POSS"
+*Product:               "(TS100)"
+*1284DeviceID:          "MFG:POS;CMD:POS;MDL:TS100 (POS);CLS:PRINTER;"
+*cupsVersion:           1.1
+*cupsManualCopies:      True
+*cupsModelNumber:       80
+*cupsFilter:            "application/vnd.cups-raster 0 poss"
+*ModelName:             "TS100"
+*ShortNickName:         "TS100"
+*NickName:              "TS100"
+*PSVersion:             "(3010.000) 550"
+*LanguageLevel:         "3"
+*ColorDevice:           False
+*DefaultColorSpace:     Gray
+*FileSystem:            False
+*Throughput:            "1"
+*LandscapeOrientation:  Plus90
+*VariablePaperSize:     True
+*TTRasterizer:          Type42
+*cupsSNMPSupplies:      False
+
+*OpenUI *PageSize/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageSize
+*DefaultPageSize: X72MMY210MM
+
+*PageSize X72MMY210MM/80(72mm) * 210mm:            "<</PageSize[204 595]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageSize X72MMY297MM/80(72mm) * 297mm:            "<</PageSize[204 842]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageSize X72MMY3276MM/80(72mm) * 3276mm:           "<</PageSize[204 9282]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*OrderDependency: 10 AnySetup *PageRegion
+*DefaultPageRegion: X72MMY210MM
+
+*PageRegion X72MMY210MM/80(72mm) * 210mm:            "<</PageSize[204 595]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageRegion X72MMY297MM/80(72mm) * 297mm:            "<</PageSize[204 842]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*PageRegion X72MMY3276MM/80(72mm) * 3276mm:           "<</PageSize[204 9282]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+
+*DefaultImageableArea: X72MMY210MM
+
+*ImageableArea X72MMY210MM:         "0.0 0.0 204.0 595.0"
+*ImageableArea X72MMY297MM:         "0.0 0.0 204.0 842.0"
+*ImageableArea X72MMY3276MM:        "0.0 0.0 204.0 9282.0"
+
+*DefaultPaperDimension: X72MMY200MM
+
+*PaperDimension X72MMY210MM:        "204 595"
+*PaperDimension X72MMY297MM:        "204 842"
+*PaperDimension X72MMY3276MM:       "204 9282"
+
+
+*MaxMediaWidth:  "204"
+*MaxMediaHeight: "9282"
+*HWMargins:      0 0 0 0
+*CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/HWResolution[203 203]/ImagingBBox null>>setpagedevice"
+*ParamCustomPageSize Width:        1 points 72 204
+*ParamCustomPageSize Height:       2 points 72 9282
+*ParamCustomPageSize WidthOffset:  3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation:  5 int 0 0
+
+*OpenGroup: CutGroup/Cut Options
+*OpenUI *PageCutType/1. Page Cut Type: PickOne
+*DefaultPageCutType: 0NoCutPage
+*PageCutType 0NoCutPage/No Cut: ""
+*PageCutType 1PartialCutPage/Partial Cut: ""
+*PageCutType 2FullCutPage/Full cut: ""
+*CloseUI: *PageCutType
+
+*OpenUI *DocCutType/2. Document Cut Type: PickOne
+*DefaultDocCutType: 0NoCutDoc
+*DocCutType 0NoCutDoc/No Cut: ""
+*DocCutType 1PartialCutDoc/Partial Cut: ""
+*DocCutType 2FullCutDoc/Full cut: ""
+*CloseUI: *DocCutType
+
+*OpenUI *FeedCutAfterJobEnd/3. Feed Cut After Job End: PickOne
+*DefaultFeedCutAfterJobEnd: 0None
+*FeedCutAfterJobEnd 0None/None: ""
+*FeedCutAfterJobEnd 1Line/1 Line: ""
+*FeedCutAfterJobEnd 2Line/2 Line: ""
+*FeedCutAfterJobEnd 3Line/3 Line: ""
+*FeedCutAfterJobEnd 4Line/4 Line: ""
+*FeedCutAfterJobEnd 5Line/5 Line: ""
+*FeedCutAfterJobEnd 6Line/6 Line: ""
+*FeedCutAfterJobEnd 7Line/7 Line: ""
+*FeedCutAfterJobEnd 8Line/8 Line: ""
+*FeedCutAfterJobEnd 9Line/9 Line: ""
+*FeedCutAfterJobEnd 10Line/10 Line: ""
+*FeedCutAfterJobEnd 11Line/11 Line: ""
+*FeedCutAfterJobEnd 12Line/12 Line: ""
+*FeedCutAfterJobEnd 13Line/13 Line: ""
+*FeedCutAfterJobEnd 14Line/14 Line: ""
+*FeedCutAfterJobEnd 15Line/15 Line: ""
+*CloseUI: *FeedCutAfterJobEnd
+*CloseGroup: CutGroup
+
+*OpenGroup: CashDrawerGroup/Cash Drawer Control
+*OpenUI *CashDrawer1Setting/1. Cash Drawer 1: PickOne
+*DefaultCashDrawer1Setting: 0NotCashDrawer1
+*CashDrawer1Setting 0NotCashDrawer1/Not Cash Drawer 1: ""
+*CashDrawer1Setting 1CashDrawer1BeforePrinting/Cash Drawer 1 Before Printing: ""
+*CashDrawer1Setting 2CashDrawer1AfterPrinting/Cash Drawer 1 After Printing: ""
+*CloseUI: *CashDrawer1Setting
+
+*OpenUI *CashDrawer2Setting/2. Cash Drawer 2: PickOne
+*DefaultCashDrawer2Setting: 0NotCashDrawer2
+*CashDrawer2Setting 0NotCashDrawer2/Not Cash Drawer 2: ""
+*CashDrawer2Setting 1CashDrawer2BeforePrinting/Cash Drawer 2 Before Printing: ""
+*CashDrawer2Setting 2CashDrawer2AfterPrinting/Cash Drawer 2 After Printing: ""
+*CloseUI: *CashDrawer2Setting
+*CloseGroup: CashDrawerGroup
+
+*OpenGroup: BuzzerGroup/Buzzer Control
+*OpenUI *DocumentBuzzerSetting/1. Document Buzzer: PickOne
+*DefaultDocumentBuzzerSetting: 0NoUse
+*DocumentBuzzerSetting 0NoUse/No Use: ""
+*DocumentBuzzerSetting 1DocumentBefore/Document Before: ""
+*DocumentBuzzerSetting 2DocumentAfter/Document After: ""
+*CloseUI: *DocumentBuzzerSetting
+
+*OpenUI *PageBuzzerSetting/2. Page Buzzer: PickOne
+*DefaultPageBuzzerSetting: 0NoUse
+*PageBuzzerSetting 0NoUse/No Use: ""
+*PageBuzzerSetting 1PageBefore/Page Before: ""
+*PageBuzzerSetting 2PageAfter/Page After: ""
+*CloseUI: *PageBuzzerSetting
+
+*OpenUI *BuzzerOnTime/3. Buzzer - On Time: PickOne
+*DefaultBuzzerOnTime: 1Millis50
+*BuzzerOnTime 1Millis50/50 milliseconds: ""
+*BuzzerOnTime 2Millis100/100 milliseconds: ""
+*BuzzerOnTime 3Millis150/150 milliseconds: ""
+*BuzzerOnTime 4Millis200/200 milliseconds: ""
+*BuzzerOnTime 5Millis250/250 milliseconds: ""
+*BuzzerOnTime 6Millis300/300 milliseconds: ""
+*BuzzerOnTime 7Millis350/350 milliseconds: ""
+*BuzzerOnTime 8Millis400/400 milliseconds: ""
+*BuzzerOnTime 9Millis450/450 milliseconds: ""
+*CloseUI: *BuzzerOnTime
+
+*OpenUI *BuzzerRepeat/4. Buzzer - Repeat: PickOne
+*DefaultBuzzerRepeat: 1Repeat1
+*BuzzerRepeat 1Repeat1/1: ""
+*BuzzerRepeat 2Repeat2/2: ""
+*BuzzerRepeat 3Repeat3/3: ""
+*BuzzerRepeat 4Repeat4/4: ""
+*BuzzerRepeat 5Repeat5/5: ""
+*BuzzerRepeat 6Repeat6/6: ""
+*BuzzerRepeat 7Repeat7/7: ""
+*BuzzerRepeat 8Repeat8/8: ""
+*BuzzerRepeat 9Repeat9/9: ""
+*CloseUI: *BuzzerRepeat
+*CloseGroup: BuzzerGroup
+
+*OpenGroup: LogoGroup/Logo Control
+*OpenUI *DocTopLogoID/1. Doc-Top Logo ID: PickOne
+*DefaultDocTopLogoID: 0DocTopLogoID0
+*DocTopLogoID 0DocTopLogoID0/None: ""
+*DocTopLogoID 1DocTopLogoID1/1: ""
+*DocTopLogoID 2DocTopLogoID2/2: ""
+*DocTopLogoID 3DocTopLogoID3/3: ""
+*DocTopLogoID 4DocTopLogoID4/4: ""
+*DocTopLogoID 5DocTopLogoID5/5: ""
+*DocTopLogoID 6DocTopLogoID6/6: ""
+*DocTopLogoID 7DocTopLogoID7/7: ""
+*DocTopLogoID 8DocTopLogoID8/8: ""
+*DocTopLogoID 9DocTopLogoID9/9: ""
+*CloseUI: *DocTopLogoID
+
+*OpenUI *DocTopLogoMode/2. Doc-Top Logo Mode: PickOne
+*DefaultDocTopLogoMode: 0Normal
+*DocTopLogoMode 0Normal/Normal: ""
+*DocTopLogoMode 1DoubleWidth/Double Width: ""
+*DocTopLogoMode 2DoubleHeight/Double Height: ""
+*DocTopLogoMode 3Quadruple/Quadruple: ""
+*CloseUI: *DocTopLogoMode
+
+*OpenUI *DocBottomLogoID/3. Doc-Bottom Logo ID: PickOne
+*DefaultDocBottomLogoID: 0DocBottomLogoID0
+*DocBottomLogoID 0DocBottomLogoID0/None: ""
+*DocBottomLogoID 1DocBottomLogoID1/1: ""
+*DocBottomLogoID 2DocBottomLogoID2/2: ""
+*DocBottomLogoID 3DocBottomLogoID3/3: ""
+*DocBottomLogoID 4DocBottomLogoID4/4: ""
+*DocBottomLogoID 5DocBottomLogoID5/5: ""
+*DocBottomLogoID 6DocBottomLogoID6/6: ""
+*DocBottomLogoID 7DocBottomLogoID7/7: ""
+*DocBottomLogoID 8DocBottomLogoID8/8: ""
+*DocBottomLogoID 9DocBottomLogoID9/9: ""
+*CloseUI: *DocBottomLogoID
+
+*OpenUI *DocBottomLogoMode/4. Doc-Bottom Logo Mode: PickOne
+*DefaultDocBottomLogoMode: 0Normal
+*DocBottomLogoMode 0Normal/Normal: ""
+*DocBottomLogoMode 1DoubleWidth/Double Width: ""
+*DocBottomLogoMode 2DoubleHeight/Double Height: ""
+*DocBottomLogoMode 3Quadruple/Quadruple: ""
+*CloseUI: *DocBottomLogoMode
+
+*CloseGroup: LogoGroup
+
+*% End
