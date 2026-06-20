@@ -25,6 +25,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/godot
     ../../mixins/sunshine
     ../../mixins/affinity
-    ../../mixins/pos-80
+    ../../mixins/ts100-driver
   ];
 }
