@@ -17,6 +17,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/flatpak
     ../../mixins/xivlauncher
     ../../mixins/steam
+    ../../mixins/lutris
     ../../mixins/kde
     ../../mixins/input-remapper
     ../../mixins/distrobox
