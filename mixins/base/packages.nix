@@ -17,6 +17,8 @@
     alejandra
     python314
 
+
+    ncdu
     hyfetch
 
     zellij
