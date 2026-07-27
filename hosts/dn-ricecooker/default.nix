@@ -14,5 +14,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/virtualization
     ../../mixins/tailscale
     ../../mixins/flatpak
+    ./jenkins.nix
   ];
 }
