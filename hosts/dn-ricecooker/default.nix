@@ -1,0 +1,19 @@
+{specialArgs, ...}:
+specialArgs.nixpkgs.lib.nixosSystem {
+  inherit specialArgs;
+  system = "x86_64-linux";
+  modules = [
+    ./configuration.nix
+    ./hardware-configuration.nix
+
+    (import "${specialArgs.home-manager}/nixos")
+    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
+
+    ../../mixins/base
+    ../../mixins/docker
+    ../../mixins/virtualization
+    ../../mixins/tailscale
+    ../../mixins/flatpak
+    ./jenkins.nix
+  ];
+}
