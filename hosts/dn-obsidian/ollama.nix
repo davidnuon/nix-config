@@ -28,4 +28,8 @@ in {
     package = unstable-pkgs.ollama-vulkan;
     host = "0.0.0.0";
   };
+
+  environment.systemPackages = with unstable-pkgs; [
+    opencode
+  ];
 }
