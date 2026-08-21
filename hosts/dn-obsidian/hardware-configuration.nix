@@ -21,6 +21,10 @@
     fsType = "ext4";
   };
 
+  boot.kernelParams = [
+    "usbcore.autosuspend=-1"
+  ];
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/12CE-A600";
     fsType = "vfat";
