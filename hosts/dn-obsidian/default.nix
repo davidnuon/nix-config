@@ -24,7 +24,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/forge-mtg
     ../../mixins/virtualization
     ../../mixins/godot
-    ../../mixins/sunshine
     ../../mixins/affinity
     ../../mixins/ts100-driver
   ];
