@@ -14,5 +14,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/tailscale
     ../../mixins/flatpak
     ../../mixins/kde
+    ../../mixins/guix
   ];
 }
