@@ -15,6 +15,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/flatpak
     ../../mixins/waydroid
     ../../mixins/forge-mtg
+    ../../mixins/steam-arm
     ./hardware-configuration.nix
     ./configuration.nix
   ];
