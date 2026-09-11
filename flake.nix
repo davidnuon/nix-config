@@ -10,6 +10,11 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+   aerothemeplasma-nix = {
+      url = "github:nyakase/aerothemeplasma-nix/26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     affinity-nix.url = "github:davidnuon/affinity-nix";
   };
 
@@ -17,6 +22,7 @@
     self,
     nixpkgs,
     affinity-nix,
+    aerothemeplasma-nix,
     ...
   }: let
     inherit
