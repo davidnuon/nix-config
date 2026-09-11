@@ -2,15 +2,18 @@
   config,
   pkgs,
   specialArgs,
+  lib,
   ...
 }: {
   imports = [
     specialArgs.aerothemeplasma-nix.nixosModules.aerothemeplasma-nix
   ];
- # boot.plymouth.enable = true;
-#  services.displayManager.sddm.enable = true;
+  services.displayManager.gdm.enable = lib.mkForce false;
+  boot.plymouth.enable = true;
+  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "aerothemeplasma"; # for x11, append x11
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
 
   programs.aeroshell = {
     enable = true;
