@@ -8,7 +8,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./x13s-nixos/module.nix
 
     ../../mixins/base
-    ../../mixins/kde
+    ../../mixins/aero
     ../../mixins/docker
     ../../mixins/tailscale
     ../../mixins/xosview
