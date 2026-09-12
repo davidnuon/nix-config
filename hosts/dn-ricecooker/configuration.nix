@@ -26,6 +26,9 @@
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
+ 
+
+  networking.interfaces.wlp2s0.useDHCP = false;
 
   system.stateVersion = "25.11";
 }
