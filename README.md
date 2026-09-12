@@ -33,6 +33,7 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 | dn-ricecooker      | [ACEMAGIC M1 Mini PC](https://acemagic.com/products/acemagic-m1-7735hs-mini-pc) | Server  |
 
 ### Servers Offline
+| Hostname      | Model                              | Type    |
 | dn-oven      | [Dell OptiPlex 3040 Micro Intel](https://www.hardware-corner.net/desktop-models/Dell-OptiPlex-3040M/) | Server  |
 | dn-tandoor      | [Dell OptiPlex 3020 Micro Intel](https://www.hardware-corner.net/desktop-models/Dell-OptiPlex-3020M/) | Server  |
 | dn-microwave      | [Windows Dev Kit 2023](https://learn.microsoft.com/en-us/windows/arm/dev-kit/) | Server  |
