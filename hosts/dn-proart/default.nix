@@ -15,7 +15,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./nvidia.nix
     ./proart.nix
 
-    ../../mixins/kde
     ../../mixins/steam
     ../../mixins/base
     ../../mixins/docker
