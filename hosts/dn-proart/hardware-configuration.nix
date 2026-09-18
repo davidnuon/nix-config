@@ -21,20 +21,6 @@
 
   boot.supportedFilesystems.exfat = true;
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/9bee040b-af1a-49bf-b499-a96e524610d9";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/3974-83E6";
-    fsType = "vfat";
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/52017008-4947-4884-870c-ba66a257a314";}
-  ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

@@ -9,6 +9,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
+    specialArgs.disko.nixosModules.disko
+    ./disko.nix
+
     ./proart.nix
 
     ../../mixins/kde
