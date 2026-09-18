@@ -19,6 +19,10 @@ lint: check-env
 update:
 	nix flake update
 
+nixos.install: check-env check-target
+	sudo nixos-install --flake .#${TARGET}
+	echo "Don't forget to run sudo nixos-enter to assign a password to davidnuon!"
+
 nixos.run-disko: check-env check-target
 	sudo disko --mode destroy,format,mount ./hosts/${TARGET}/disk-config.nix
 
