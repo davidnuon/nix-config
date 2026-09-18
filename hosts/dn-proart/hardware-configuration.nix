@@ -18,6 +18,7 @@
   boot.extraModulePackages = [];
   # boot.kernelPackages = pkgs.linuxPackages_6_5;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = ["hid_asus.quirks=0x0b05:0x19b6:0x4"];
 
   boot.supportedFilesystems.exfat = true;
 

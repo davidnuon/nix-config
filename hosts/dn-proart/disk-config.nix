@@ -17,6 +17,14 @@
                 mountOptions = ["umask=0077"];
               };
             };
+            swap = {
+              size = "32G"; # Adjust size as needed (e.g., "4G", "16G")
+              content = {
+                type = "swap";
+                resumeDevice = true; # Set to true if you plan to use hibernation
+              };
+            };
+
             root = {
               size = "100%";
               content = {
