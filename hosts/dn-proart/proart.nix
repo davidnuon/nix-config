@@ -10,6 +10,9 @@
   };
   powerManagement.powertop.enable = true;
   services.asusd.enable = true;
+  systemd.tmpfiles.rules = [
+    "d /etc/asusd 0755 root root"
+  ];
   services.input-remapper.enable = true;
 
   security.pam.services.gdm.enableGnomeKeyring = true;
