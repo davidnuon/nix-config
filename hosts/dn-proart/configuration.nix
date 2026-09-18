@@ -8,6 +8,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.consoleMode = "1"; # or "0", "1", "2", "auto"
+  boot.plymouth.enable = false;
 
   networking.hostName = "dn-proart";
   services.fwupd.enable = true;

@@ -22,6 +22,13 @@
 
   # Force the exact Live CD dependency chain
   boot.initrd.kernelModules = [
+    # Graphics stack (Early KMS to eliminate GDM delay)
+    "amdgpu"
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_uvm"
+    "nvidia_drm"
+
     "usbhid"
     "i8042"
     "i2c_piix4"
@@ -32,6 +39,7 @@
   ];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  boot.kernelParams = ["nvidia_drm.fbdev=1"];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
