@@ -12,6 +12,9 @@
   services.asusd.enable = true;
   services.input-remapper.enable = true;
 
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  services.gnome.gnome-keyring.enable = true;
+
   # Enable the libinput driver framework
   services.libinput = {
     enable = true;
