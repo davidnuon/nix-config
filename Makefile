@@ -19,6 +19,9 @@ lint: check-env
 update:
 	nix flake update
 
+nixos.run-disko: check-env check-target
+	sudo disko --mode destroy,format,mount ./hosts/${TARGET}/disk-config.nix
+
 nixos.build: check-env check-target
 	sudo nixos-rebuild build --flake .#${TARGET}
 

@@ -10,7 +10,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
     specialArgs.disko.nixosModules.disko
-    ./disko.nix
+    ./disk-config.nix
 
     ./proart.nix
 
@@ -18,6 +18,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/steam
     ../../mixins/base
     ../../mixins/docker
+    ../../mixins/xivlauncher
     ../../mixins/remote-desktop
     ../../mixins/virtualization
     ../../mixins/tailscale
