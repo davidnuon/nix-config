@@ -12,6 +12,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
+    ./nvidia.nix
     ./proart.nix
 
     ../../mixins/kde
