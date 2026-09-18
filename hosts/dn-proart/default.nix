@@ -13,6 +13,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./disk-config.nix
 
     ./nvidia.nix
+    ./prime.nix
     ./proart.nix
 
     ../../mixins/steam
