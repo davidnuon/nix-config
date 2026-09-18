@@ -20,16 +20,18 @@
     "sdhci_pci"
   ];
 
-  # FORCE these modules to load instantly
+  # Force the exact Live CD dependency chain
   boot.initrd.kernelModules = [
-    "i2c_designware_pci"
-    "i2c_designware_core"
+    "usbhid"
+    "i8042"
+    "i2c_piix4"
     "i2c_hid_acpi"
+    "asus_wmi"
+    "asus_nb_wmi"
     "hid_asus"
   ];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.kernelParams = ["usbcore.autosuspend=-1"];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
