@@ -15,6 +15,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     affinity-nix.url = "github:davidnuon/affinity-nix";
   };
 
@@ -23,6 +26,7 @@
     nixpkgs,
     affinity-nix,
     aerothemeplasma-nix,
+    disko,
     ...
   }: let
     inherit
