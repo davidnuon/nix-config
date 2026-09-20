@@ -7,6 +7,7 @@
     pkgs = import specialArgs.nixpkgs {
       system = "${system}";
     };
+    disko = specialArgs.disko.packages.${system}.default;
   in
     pkgs.mkShell {
       nativeBuildInputs = with pkgs; [
@@ -18,6 +19,7 @@
         alejandra
         nixVersions.latest
         nixos-rebuild
+        disko
       ];
     };
 }
