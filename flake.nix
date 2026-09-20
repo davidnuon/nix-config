@@ -18,6 +18,11 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     affinity-nix.url = "github:davidnuon/affinity-nix";
   };
 
@@ -27,6 +32,7 @@
     affinity-nix,
     aerothemeplasma-nix,
     disko,
+    antigravity-nix,
     ...
   }: let
     inherit
@@ -53,13 +59,14 @@
 
     nixosConfigurations = listToAttrs (map (name: {
       inherit name;
-      value = import ./hosts/${name}/default.nix {
-        specialArgs =
-          inputs
-          // {
-            cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
-          };
-      };
+      value =
+        import ./hosts/${name}/default.nix {
+          specialArgs =
+            inputs
+            // {
+              cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
+            };
+        };
     }) (attrNames (readDir ./hosts)));
   };
 }
