@@ -7,6 +7,23 @@
   pkgs,
   ...
 }: {
+  mixins.base.enable = true;
+  mixins.docker.enable = true;
+  mixins.tailscale.enable = true;
+  mixins.flatpak.enable = true;
+  mixins.xivlauncher.enable = true;
+  mixins.steam.enable = true;
+  mixins.lutris.enable = true;
+  mixins.kde.enable = true;
+  mixins.input-remapper.enable = true;
+  mixins.distrobox.enable = true;
+  mixins.forge-mtg.enable = true;
+  mixins.virtualization.enable = true;
+  mixins.godot.enable = true;
+  mixins.affinity.enable = true;
+  mixins.ts100-driver.enable = true;
+  mixins.guix.enable = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

@@ -4,6 +4,12 @@
   pkgs,
   ...
 }: {
+  mixins.base.enable = true;
+  mixins.docker.enable = true;
+  mixins.virtualization.enable = true;
+  mixins.tailscale.enable = true;
+  mixins.flatpak.enable = true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

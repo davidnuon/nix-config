@@ -9,6 +9,15 @@
     ./hardware-configuration.nix
   ];
 
+  mixins.base.enable = true;
+  mixins.aero.enable = true;
+  mixins.docker.enable = true;
+  mixins.tailscale.enable = true;
+  mixins.xosview.enable = true;
+  mixins.flatpak.enable = true;
+  mixins.waydroid.enable = true;
+  mixins.forge-mtg.enable = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

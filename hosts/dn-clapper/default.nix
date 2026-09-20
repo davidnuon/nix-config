@@ -11,12 +11,5 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import ../../users/lars {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins
-    {
-      mixins.base.enable = true;
-      mixins.kde.enable = true;
-      mixins.docker.enable = true;
-      mixins.tailscale.enable = true;
-      mixins.flatpak.enable = true;
-    }
   ];
 }

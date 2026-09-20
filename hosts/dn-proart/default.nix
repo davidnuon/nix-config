@@ -17,18 +17,5 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./proart.nix
 
     ../../mixins
-    {
-      mixins.steam.enable = true;
-      mixins.base.enable = true;
-      mixins.docker.enable = true;
-      mixins.xivlauncher.enable = true;
-      mixins.remote-desktop.enable = true;
-      mixins.virtualization.enable = true;
-      mixins.tailscale.enable = true;
-      mixins.flatpak.enable = true;
-      mixins.libreoffice.enable = true;
-      mixins.godot.enable = true;
-      mixins.agy.enable = true;
-    }
   ];
 }
