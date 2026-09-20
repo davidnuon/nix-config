@@ -25,6 +25,7 @@ where `<hostname>` is a host found in the `./hosts` diretory.
 | dn-ravenbook  | [Lenovo ThinkPad T480](https://en.wikipedia.org/wiki/ThinkPad_T_Series) | Laptop  |
 | dn-blackleg  | [Lenovo ThinkPad x13s Gen 1 ARM](https://wiki.gentoo.org/wiki/Lenovo_ThinkPad_X13s) | Laptop  |
 | dn-mememachine  | [Lenovo ThinkPad P71](https://en.wikipedia.org/wiki/ThinkPad_P_series) | Laptop  |
+| dn-proart  | [ASUS ProArt p16 H7606WV](https://en.wikipedia.org/wiki/ASUS_ProArt) | Laptop  |
 
 ### Servers and Machines that stay in one place
 | Hostname      | Model                              | Type    |
