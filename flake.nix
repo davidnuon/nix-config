@@ -66,8 +66,7 @@
             // {
               cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
             };
-        }
-        // inputs;
+        };
     }) (attrNames (readDir ./hosts)));
   };
 }
