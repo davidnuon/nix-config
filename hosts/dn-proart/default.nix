@@ -26,5 +26,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/flatpak
     ../../mixins/libreoffice
     ../../mixins/godot
+    ../../mixins/agy
   ];
 }
