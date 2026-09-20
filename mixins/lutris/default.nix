@@ -1,12 +1,17 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.lutris = {
+    enable = lib.mkEnableOption "Lutris";
+  };
 
-  environment.systemPackages = with pkgs; [
-    lutris
-    protonplus
-  ];
+  config = lib.mkIf config.mixins.lutris.enable {
+    environment.systemPackages = with pkgs; [
+      lutris
+      protonplus
+    ];
+  };
 }

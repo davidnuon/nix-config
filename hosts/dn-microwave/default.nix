@@ -9,10 +9,13 @@ specialArgs.nixpkgs-unstable.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
-    ../../mixins/base
-    ../../mixins/tailscale
-    ../../mixins/docker
-    ../../mixins/flatpak
+    ../../mixins
+    {
+      mixins.base.enable = true;
+      mixins.tailscale.enable = true;
+      mixins.docker.enable = true;
+      mixins.flatpak.enable = true;
+    }
 
     # Below two modules stolen from @jmbaur
     # https://github.com/jmbaur/homelab/tree/main/nixos-modules/hardware/

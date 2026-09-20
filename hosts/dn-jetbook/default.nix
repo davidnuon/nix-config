@@ -9,11 +9,14 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
-    ../../mixins/base
-    ../../mixins/forge-mtg
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/virtualization
+    ../../mixins
+    {
+      mixins.base.enable = true;
+      mixins.forge-mtg.enable = true;
+      mixins.docker.enable = true;
+      mixins.tailscale.enable = true;
+      mixins.flatpak.enable = true;
+      mixins.virtualization.enable = true;
+    }
   ];
 }

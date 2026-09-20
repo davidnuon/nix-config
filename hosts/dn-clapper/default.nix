@@ -10,10 +10,13 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
     (import ../../users/lars {stateVersion = specialArgs.cleanVersion;})
 
-    ../../mixins/base
-    ../../mixins/kde
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
+    ../../mixins
+    {
+      mixins.base.enable = true;
+      mixins.kde.enable = true;
+      mixins.docker.enable = true;
+      mixins.tailscale.enable = true;
+      mixins.flatpak.enable = true;
+    }
   ];
 }

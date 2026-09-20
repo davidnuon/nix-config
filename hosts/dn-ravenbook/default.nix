@@ -9,11 +9,14 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
-    ../../mixins/base
-    ../../mixins/aero
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/guix
+    ../../mixins
+    {
+      mixins.base.enable = true;
+      mixins.aero.enable = true;
+      mixins.docker.enable = true;
+      mixins.tailscale.enable = true;
+      mixins.flatpak.enable = true;
+      mixins.guix.enable = true;
+    }
   ];
 }

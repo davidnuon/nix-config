@@ -1,9 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.input-remapper = {
+    enable = lib.mkEnableOption "Input Remapper";
+  };
 
-  services.input-remapper.enable = true;
+  config = lib.mkIf config.mixins.input-remapper.enable {
+    services.input-remapper.enable = true;
+  };
 }

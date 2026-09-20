@@ -1,7 +1,16 @@
-{pkgs, ...}: {
-  imports = [];
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  options.mixins.remote-desktop = {
+    enable = lib.mkEnableOption "Remote Desktop (Remmina)";
+  };
 
-  environment.systemPackages = with pkgs; [
-    remmina
-  ];
+  config = lib.mkIf config.mixins.remote-desktop.enable {
+    environment.systemPackages = with pkgs; [
+      remmina
+    ];
+  };
 }

@@ -16,16 +16,19 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./prime.nix
     ./proart.nix
 
-    ../../mixins/steam
-    ../../mixins/base
-    ../../mixins/docker
-    ../../mixins/xivlauncher
-    ../../mixins/remote-desktop
-    ../../mixins/virtualization
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/libreoffice
-    ../../mixins/godot
-    ../../mixins/agy
+    ../../mixins
+    {
+      mixins.steam.enable = true;
+      mixins.base.enable = true;
+      mixins.docker.enable = true;
+      mixins.xivlauncher.enable = true;
+      mixins.remote-desktop.enable = true;
+      mixins.virtualization.enable = true;
+      mixins.tailscale.enable = true;
+      mixins.flatpak.enable = true;
+      mixins.libreoffice.enable = true;
+      mixins.godot.enable = true;
+      mixins.agy.enable = true;
+    }
   ];
 }

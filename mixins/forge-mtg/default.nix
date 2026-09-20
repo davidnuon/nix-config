@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   specialArgs,
   ...
 }: let
@@ -9,7 +10,13 @@
     config.allowUnfree = true;
   };
 in {
-  environment.systemPackages = with unstable-pkgs; [
-    forge-mtg
-  ];
+  options.mixins.forge-mtg = {
+    enable = lib.mkEnableOption "Forge MTG";
+  };
+
+  config = lib.mkIf config.mixins.forge-mtg.enable {
+    environment.systemPackages = with unstable-pkgs; [
+      forge-mtg
+    ];
+  };
 }

@@ -4,18 +4,24 @@
   lib,
   ...
 }: {
-  programs.steam = {
-    enable = true;
+  options.mixins.steam = {
+    enable = lib.mkEnableOption "Steam";
   };
 
-  environment.systemPackages = with pkgs; [
-    steam-run
-  ];
+  config = lib.mkIf config.mixins.steam.enable {
+    programs.steam = {
+      enable = true;
+    };
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-run"
+    environment.systemPackages = with pkgs; [
+      steam-run
     ];
+
+    nixpkgs.config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "steam"
+        "steam-original"
+        "steam-run"
+      ];
+  };
 }

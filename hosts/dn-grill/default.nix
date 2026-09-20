@@ -11,11 +11,15 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     "${specialArgs.nixos-hardware}/framework/13-inch/12th-gen-intel"
 
-    ../../mixins/base
-    ../../mixins/docker
-    ../../mixins/virtualization
-    ../../mixins/tailscale
-    ../../mixins/flatpak
+    ../../mixins
+    {
+      mixins.base.enable = true;
+      mixins.docker.enable = true;
+      mixins.virtualization.enable = true;
+      mixins.tailscale.enable = true;
+      mixins.flatpak.enable = true;
+    }
+
     ./k3s.nix
   ];
 }

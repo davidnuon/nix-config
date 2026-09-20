@@ -10,12 +10,15 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
-    ../../mixins/base
-    ../../mixins/steam
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/lutris
-    ../../mixins/affinity
+    ../../mixins
+    {
+      mixins.base.enable = true;
+      mixins.steam.enable = true;
+      mixins.docker.enable = true;
+      mixins.tailscale.enable = true;
+      mixins.flatpak.enable = true;
+      mixins.lutris.enable = true;
+      mixins.affinity.enable = true;
+    }
   ];
 }

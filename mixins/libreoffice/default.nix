@@ -1,11 +1,16 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.libreoffice = {
+    enable = lib.mkEnableOption "LibreOffice";
+  };
 
-  environment.systemPackages = with pkgs; [
-    libreoffice
-  ];
+  config = lib.mkIf config.mixins.libreoffice.enable {
+    environment.systemPackages = with pkgs; [
+      libreoffice
+    ];
+  };
 }

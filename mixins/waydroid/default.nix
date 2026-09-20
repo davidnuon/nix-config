@@ -1,9 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.waydroid = {
+    enable = lib.mkEnableOption "Waydroid";
+  };
 
-  virtualisation.waydroid.enable = true;
+  config = lib.mkIf config.mixins.waydroid.enable {
+    virtualisation.waydroid.enable = true;
+  };
 }

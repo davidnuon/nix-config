@@ -1,11 +1,16 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.xivlauncher = {
+    enable = lib.mkEnableOption "XIVLauncher";
+  };
 
-  environment.systemPackages = with pkgs; [
-    xivlauncher
-  ];
+  config = lib.mkIf config.mixins.xivlauncher.enable {
+    environment.systemPackages = with pkgs; [
+      xivlauncher
+    ];
+  };
 }
