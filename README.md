@@ -7,6 +7,20 @@
 
 ```bash
 $ nix  --experimental-features 'nix-command flakes' develop
+```
+
+or
+```bash
+$ ./startDevelop
+```
+
+```bash
+# To start a new installation on an existing host
+$ make nixos.run-disko host=<hostname>
+$ make nixos.install host=<hostname>
+
+# To build and apply new changes
+$ make nixos.build host=<hostname>
 $ make nixos.switch host=<hostname>
 ```
 
