@@ -6,6 +6,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
     ./x13s-nixos/module.nix
+    
+    specialArgs.disko.nixosModules.disko 
+    ./disk-config.nix
 
     ../../mixins/base
     ../../mixins/aero
