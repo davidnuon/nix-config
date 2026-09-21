@@ -8,6 +8,7 @@
     ./packages.nix
     ./gnome.nix
     ./git.nix
+    ./nixpkgs.nix
   ];
 
   home-manager.users.davidnuon.dconf.settings = lib.mkIf (config.virtualisation.libvirtd.enable) {
