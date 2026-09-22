@@ -10,7 +10,6 @@
     mkDefault
     mkEnableOption
     mkIf
-    versions
     ;
 
   wdk2023_syshacks = pkgs.fetchFromGitHub {
@@ -31,35 +30,7 @@ in {
     # kernel module.
     boot.initrd.systemd.tpm2.enable = false;
 
-    boot.kernelPackages = pkgs.linuxPackagesFor (
-      pkgs.callPackage
-      (
-        {buildLinux, ...} @ args:
-          buildLinux (
-            args
-            // rec {
-              version = "6.14.0-rc6";
-              extraMeta.branch = versions.majorMinor version;
-
-              # TODO(jared): remove this
-              ignoreConfigErrors = true;
-
-              src = pkgs.fetchFromGitHub {
-                owner = "jhovold";
-                repo = "linux";
-                # wip/sc8280xp-6.14-rc6
-                rev = "755290802eba30e0621b420f6d6617965669e4cf";
-                hash = "sha256-SivrKO3+5l30In58X9n/z2XqvlFmJQ/oYo1qxxR7NYo=";
-              };
-              kernelPatches = args.kernelPatches or [];
-            }
-            // (args.argsOverride or {})
-          )
-      )
-      {
-        defconfig = "johan_defconfig";
-      }
-    );
+    boot.kernelPackages = mkDefault pkgs.linuxPackages;
 
     boot.consoleLogLevel = 7;
 
@@ -75,21 +46,15 @@ in {
     };
 
     hardware.firmware = [
-      (pkgs.linux-firmware.overrideAttrs (old: {
-        postInstall =
-          (old.postInstall or "")
-          + ''
-            # symlink exists in armbian/firmware
-            pushd $out/lib/firmware/qcom
-            ln -sf {a660_gmu.bin,a690_gmu.bin}
-            popd
-
-            # copy in updated ath11k wireless firmware
-            pushd ${wdk2023_syshacks}/usr/lib/firmware/updates
-            find . ! -name '*zst' -type f -exec sh -c 'cp -vf {} $out/lib/firmware/{}' \;
-            popd
-          '';
-      }))
+      (pkgs.runCommand "blackrock-extra-firmware" {} ''
+        pushd ${wdk2023_syshacks}/usr/lib/firmware/updates
+        find . ! -name "*zst" -type f | while read -r f; do
+          dest="$out/lib/firmware/$f"
+          mkdir -p "$(dirname "$dest")"
+          cp -v "$f" "$dest"
+        done
+        popd
+      '')
       (pkgs.fetchurl {
         name = "wdk2023-firmware";
         url = "https://github.com/armbian/firmware/archive/8dbb28d2ee8fa3d5f67a9d9dbc64c3d2b3b0adac.tar.gz";
@@ -125,7 +90,7 @@ in {
       "phy_qcom_qmp_usbc"
       "phy_qcom_qusb2"
       "phy_qcom_sgmii_eth"
-      "phy_qcom_snps_eusb2"
+      "phy_snps_eusb2"
       "phy_qcom_snps_femto_v2"
       "phy_qcom_usb_hs"
       "phy_qcom_usb_hs_28nm"
@@ -143,7 +108,6 @@ in {
 
       # storage
       "nvme"
-      "pcie_qcom"
       "phy_qcom_qmp_pcie"
 
       # keyboard
