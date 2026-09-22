@@ -10,6 +10,10 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixpkgs-x13s.url = "github:NixOS/nixpkgs/47472570b1e607482890801aeaf29bfb749884f6";
+    home-manager-x13s.url = "github:nix-community/home-manager/4ce190229c73d44536caa7072f6308fb2d8feeb3";
+    home-manager-x13s.inputs.nixpkgs.follows = "nixpkgs-x13s";
+
     aerothemeplasma-nix = {
       url = "github:nyakase/aerothemeplasma-nix/26.05";
       inputs.nixpkgs.follows = "nixpkgs";
