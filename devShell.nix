@@ -19,6 +19,7 @@
         alejandra
         nixVersions.latest
         nixos-rebuild
+        nixos-install-tools
         disko
       ];
     };
