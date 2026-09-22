@@ -12,7 +12,7 @@
     isNormalUser = true;
     description = "David Nuon";
     extraGroups = [
-      "networkmanager"
+      "networkManager"
       "wheel"
 
       (lib.mkIf (config.virtualisation.libvirtd.enable) "libvirtd")

@@ -7,8 +7,8 @@ specialArgs.nixpkgs-x13s.lib.nixosSystem {
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
     ./x13s-nixos/module.nix
     # ./wwan.nix
-    
-    specialArgs.disko.nixosModules.disko 
+
+    specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
     ../../mixins/base
