@@ -84,11 +84,13 @@ in {
           type = "gsm";
           autoconnect = cfg.autoconnect;
         };
-        gsm = {
-          apn = cfg.apn;
-        } // lib.optionalAttrs (cfg.pin != null) {
-          pin = cfg.pin;
-        };
+        gsm =
+          {
+            apn = cfg.apn;
+          }
+          // lib.optionalAttrs (cfg.pin != null) {
+            pin = cfg.pin;
+          };
         ipv4 = {
           method = "auto";
         };

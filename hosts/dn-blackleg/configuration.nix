@@ -25,10 +25,10 @@
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Declarative WWAN / 5G modem support
-  hardware.wwan = {
-    enable = true;
-    # apn = "fast.t-mobile.com"; # Change if using another carrier (e.g. "wholesale", "vzwinternet", "broadband")
-  };
+  #  hardware.wwan = {
+  #   enable = true;
+  #  # apn = "fast.t-mobile.com"; # Change if using another carrier (e.g. "wholesale", "vzwinternet", "broadband")
+  #};
 
   users.users.davidnuon = {
     isNormalUser = true;
