@@ -24,10 +24,16 @@
   networking.hostName = "dn-blackleg";
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
+  # Declarative WWAN / 5G modem support
+  hardware.wwan = {
+    enable = true;
+    # apn = "fast.t-mobile.com"; # Change if using another carrier (e.g. "wholesale", "vzwinternet", "broadband")
+  };
+
   users.users.davidnuon = {
     isNormalUser = true;
     home = "/home/davidnuon";
-    extraGroups = ["wheel" "networkManager"];
+    extraGroups = ["wheel" "networkmanager"];
   };
 
   systemd.tpm2.enable = false;
