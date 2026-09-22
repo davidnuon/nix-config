@@ -12,12 +12,34 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [
+    "dtb=dtbs/x13s-${config.boot.kernelPackages.kernel.version}.dtb"
+    "clk_ignore_unused"
+    "pd_ignore_unused"
+    "arm64.nopauth"
+  ];
 
-  nixos-x13s.enable = true;
-  nixos-x13s.kernel = "mainline"; # jhovold is default, but mainline supported
-  # specialisation = {
-  #   mainline.configuration.nixos-x13s.kernel = "jhovold";
-  # };
+  boot.initrd.kernelModules = [
+    "nvme"
+    "phy-qcom-qmp-pcie"
+
+    "i2c-core"
+    "i2c-hid"
+    "i2c-hid-of"
+    "i2c-qcom-geni"
+
+    "leds_qcom_lpg"
+    "pwm_bl"
+    "qrtr"
+    "pmic_glink_altmode"
+    "gpio_sbu_mux"
+    "phy-qcom-qmp-combo"
+    "gpucc_sc8280xp"
+    "dispcc_sc8280xp"
+    "phy_qcom_edp"
+    "panel-edp"
+    "msm"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
