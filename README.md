@@ -1,5 +1,13 @@
 # NixOS Workstation Config
 
+## Make sure you have Nix installed
+
+If you're on a non-NixOS system, you can run this command to install nix
+
+```bash
+curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
+```
+
 ## Quickstart
 
 1. Clone the repo
