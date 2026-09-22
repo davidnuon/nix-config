@@ -2,17 +2,12 @@
   description = "davidnuon's NixOS configuration";
   inputs = {
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-x13s.url = "github:davidnuon/x13s-nixos/x13s-changes";
-
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixpkgs-x13s.url = "github:NixOS/nixpkgs/b3fe9581c9061c749abef42b6d4ee7b7c05c33fa?narHash=sha256-2V/6imsUgB7mPZlHY54oeVBRDoZbPKnvzwkAHUSSufk%3D";
-    home-manager-x13s.url = "github:nix-community/home-manager/4ce190229c73d44536caa7072f6308fb2d8feeb3?narHash=sha256-ZWyzLbS1yKUTeFJLmdVuWNnHttL333/ldJbEE%2BKzCrM%3D";
-    home-manager-x13s.inputs.nixpkgs.follows = "nixpkgs-x13s";
 
     aerothemeplasma-nix = {
       url = "github:nyakase/aerothemeplasma-nix/26.05";

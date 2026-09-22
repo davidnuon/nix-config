@@ -1,11 +1,11 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-x13s.lib.nixosSystem {
+specialArgs.nixpkgs.lib.nixosSystem {
   inherit specialArgs;
   system = "aarch64-linux";
   modules = [
-    (import "${specialArgs.home-manager-x13s}/nixos")
+    (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-    ./x13s-nixos/module.nix
+    specialArgs.nixos-hardware.nixosModules.lenovo-thinkpad-x13s
     # ./wwan.nix
 
     specialArgs.disko.nixosModules.disko
