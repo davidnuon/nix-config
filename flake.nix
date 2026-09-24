@@ -40,7 +40,64 @@
       map
       readDir
       attrNames
+      filter
+      pathExists
       ;
+
+    cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
+    extendedSpecialArgs =
+      inputs
+      // {
+        inherit cleanVersion;
+      };
+
+    # Filter out directories in ./hosts that are not NixOS host definitions
+    isHost = name: pathExists (./hosts + "/${name}/configuration.nix");
+    hostNames = filter isHost (attrNames (readDir ./hosts));
+
+    # Base host configurations
+    baseConfigurations = listToAttrs (map (name: {
+        inherit name;
+        value = import ./hosts/${name}/default.nix {
+          specialArgs = extendedSpecialArgs;
+        };
+      })
+      hostNames);
+
+    # Installer ISO configurations for each host
+    isoConfigurations = listToAttrs (map (name: {
+        name = "${name}-iso";
+        value = baseConfigurations.${name}.extendModules {
+          modules = [./mixins/installer];
+        };
+      })
+      hostNames);
+
+    # Group ISO packages by host system architecture
+    supportedSystems = ["x86_64-linux" "aarch64-linux"];
+    packagesBySystem = listToAttrs (map (system: {
+        name = system;
+        value = listToAttrs (
+          nixpkgs.lib.concatLists (map (name: let
+            isoConfig = isoConfigurations."${name}-iso";
+            hostSystem = baseConfigurations.${name}.config.nixpkgs.hostPlatform.system;
+          in
+            if hostSystem == system
+            then [
+              {
+                name = "${name}-iso";
+                value = isoConfig.config.system.build.isoImage;
+              }
+              {
+                name = "${name}-installer";
+                value = isoConfig.config.system.build.isoImage;
+              }
+            ]
+            else [])
+          hostNames)
+        );
+      })
+      supportedSystems);
   in {
     devShells = let
       systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
@@ -56,15 +113,8 @@
         })
         systems);
 
-    nixosConfigurations = listToAttrs (map (name: {
-      inherit name;
-      value = import ./hosts/${name}/default.nix {
-        specialArgs =
-          inputs
-          // {
-            cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
-          };
-      };
-    }) (attrNames (readDir ./hosts)));
+    packages = packagesBySystem;
+
+    nixosConfigurations = baseConfigurations // isoConfigurations;
   };
 }
