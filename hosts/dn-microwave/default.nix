@@ -1,5 +1,5 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-unstable.lib.nixosSystem {
+specialArgs.nixpkgs.lib.nixosSystem {
   inherit specialArgs;
   system = "aarch64-linux";
   modules = [
@@ -10,6 +10,7 @@ specialArgs.nixpkgs-unstable.lib.nixosSystem {
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins/base
+    ../../mixins/agy
     ../../mixins/tailscale
     ../../mixins/docker
     ../../mixins/flatpak
