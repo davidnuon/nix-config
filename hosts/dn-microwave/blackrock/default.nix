@@ -34,11 +34,16 @@ in {
 
     boot.consoleLogLevel = 7;
 
-    boot.initrd.extraFirmwarePaths = map (file: "qcom/sc8280xp/microsoft/blackrock/${file}") [
-      "qcadsp8280.mbn"
-      "qccdsp8280.mbn"
-      "qcdxkmsuc8280.mbn"
-    ];
+    boot.initrd.extraFirmwarePaths =
+      (map (file: "qcom/sc8280xp/microsoft/blackrock/${file}") [
+        "qcadsp8280.mbn"
+        "qccdsp8280.mbn"
+        "qcdxkmsuc8280.mbn"
+      ])
+      ++ [
+        "qcom/a660_gmu.bin"
+        "qcom/a660_sqe.fw"
+      ];
 
     hardware.deviceTree = {
       enable = true;
@@ -71,6 +76,48 @@ in {
     ];
 
     boot.initrd.includeDefaultModules = false;
+
+    boot.initrd.kernelModules = [
+      # storage
+      "nvme"
+      "phy_qcom_qmp_pcie"
+
+      # display & GPU
+      "dispcc_sc8280xp"
+      "gpucc_sc8280xp"
+      "phy_qcom_edp"
+      "phy_qcom_qmp_combo"
+      "pmic_glink_altmode"
+      "gpio_sbu_mux"
+      "qrtr"
+      "display_connector"
+      "aux_bridge"
+      "aux_hpd_bridge"
+      "msm"
+    ];
+
+    boot.kernelModules = [
+      # storage
+      "nvme"
+      "phy_qcom_qmp_pcie"
+
+      # keyboard / input
+      "i2c_hid_of"
+      "i2c_qcom_geni"
+
+      # display & GPU
+      "dispcc_sc8280xp"
+      "gpucc_sc8280xp"
+      "phy_qcom_edp"
+      "phy_qcom_qmp_combo"
+      "pmic_glink_altmode"
+      "gpio_sbu_mux"
+      "qrtr"
+      "display_connector"
+      "aux_bridge"
+      "aux_hpd_bridge"
+      "msm"
+    ];
 
     # TODO(jared): pare these down
     boot.initrd.availableKernelModules = [
@@ -126,6 +173,9 @@ in {
       "pmic_glink_altmode"
       "pwm_bl"
       "qrtr"
+      "display_connector"
+      "aux_bridge"
+      "aux_hpd_bridge"
     ];
 
     boot.kernelParams = [
