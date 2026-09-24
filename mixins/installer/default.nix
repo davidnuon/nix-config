@@ -31,6 +31,8 @@ in {
     "overlay"
     "usb_storage"
     "uas"
+    "sr_mod"
+    "cdrom"
   ];
 
   # Silence ZFS root import warning on modern nixpkgs
@@ -94,12 +96,69 @@ in {
       }
     ];
 
-  # Ensure dtb parameter is set in kernelParams if deviceTree.name is defined
-  boot.kernelParams =
-    optionals (
-      (config.hardware.deviceTree.enable or false)
-      && ((config.hardware.deviceTree.name or null) != null)
-    ) [
-      "dtb=dtbs/${config.hardware.deviceTree.name}"
-    ];
+  # TODO: Rename this attr so that way it;s clearer this is special for non BIOS ARM machines
+  # For ARM64 hosts with a device tree, GRUB needs to load the DTB using
+  # the 'devicetree' command, and 'dtb=' must NOT be in kernel command line arguments
+  # (as the kernel EFI stub cannot load a DTB from GRUB's memory-mapped image handle).
+  system.build.installerIso = let
+    baseIso = config.system.build.isoImage;
+
+    extraFilesDtb = lib.findFirst
+      (k: lib.hasSuffix ".dtb" k)
+      null
+      (lib.attrNames (config.boot.loader.systemd-boot.extraFiles or {}));
+
+    deviceTreeDtb =
+      if (config.hardware.deviceTree.enable or false) && ((config.hardware.deviceTree.name or null) != null)
+      then "dtbs/${config.hardware.deviceTree.name}"
+      else null;
+
+    dtbRelPath =
+      if extraFilesDtb != null then extraFilesDtb
+      else deviceTreeDtb;
+
+    pairs = lib.zipListsWith (target: source: { inherit target source; }) baseIso.targets baseIso.sources;
+    origEfiPair = lib.findFirst (p: p.target == "/EFI") null pairs;
+    origEfiImgPair = lib.findFirst (p: p.target == "/boot/efi.img") null pairs;
+
+    patchedEfiDir = pkgs.runCommand "patched-efi-dir" {
+      nativeBuildInputs = [ pkgs.buildPackages.gnused pkgs.grub2_efi ];
+    } ''
+      mkdir -p $out
+      cp -rp "${origEfiPair.source}/." "$out/"
+      chmod -R u+w "$out"
+
+      # 1. Strip dtb= from grub.cfg so the Linux EFI stub does not attempt
+      # to open a DTB from a non-existent EFI filesystem handle.
+      sed -i -E 's/dtb=[^ ]+ //g; s/ dtb=[^ ]+//g' "$out/BOOT/grub.cfg"
+
+      # 2. Add devicetree command right after each initrd line so GRUB installs
+      # the FDT into the UEFI configuration table.
+      sed -i -E '/^[[:space:]]*initrd[[:space:]]+/a\  devicetree ($root)/${dtbRelPath}' "$out/BOOT/grub.cfg"
+
+      # 3. Validate grub syntax
+      grub-script-check "$out/BOOT/grub.cfg"
+    '';
+
+    patchedEfiImg = pkgs.runCommand "patched-efi-img" {
+      nativeBuildInputs = [ pkgs.buildPackages.mtools ];
+    } ''
+      cp "${origEfiImgPair.source}" "$out"
+      chmod u+w "$out"
+      mcopy -o -i "$out" "${patchedEfiDir}/BOOT/grub.cfg" "::/EFI/BOOT/grub.cfg"
+    '';
+
+    patchedSources = lib.zipListsWith (target: source:
+      if target == "/EFI" then
+        patchedEfiDir
+      else if target == "/boot/efi.img" then
+        patchedEfiImg
+      else
+        source
+    ) baseIso.targets baseIso.sources;
+  in
+    if dtbRelPath != null && origEfiPair != null && origEfiImgPair != null
+    then baseIso.overrideAttrs (_: { sources = patchedSources; })
+    else baseIso;
 }
+

@@ -65,10 +65,20 @@
       hostNames);
 
     # Installer ISO configurations for each host
-    isoConfigurations = listToAttrs (map (name: {
+    rawIsoConfigurations = listToAttrs (map (name: {
         name = "${name}-iso";
         value = baseConfigurations.${name}.extendModules {
           modules = [./mixins/installer];
+        };
+      })
+      hostNames);
+
+    isoConfigurations = listToAttrs (map (name: {
+        name = "${name}-iso";
+        value = rawIsoConfigurations."${name}-iso".extendModules {
+          modules = [{
+            system.build.isoImage = nixpkgs.lib.mkForce (rawIsoConfigurations."${name}-iso".config.system.build.installerIso or rawIsoConfigurations."${name}-iso".config.system.build.isoImage);
+          }];
         };
       })
       hostNames);
