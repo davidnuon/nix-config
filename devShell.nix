@@ -18,6 +18,7 @@
         gnumake
         alejandra
         nixVersions.latest
+        nix-output-monitor
         nixos-rebuild
         nixos-install-tools
         disko
