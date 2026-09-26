@@ -62,9 +62,17 @@ in {
   # Enable copytoram by default: loads the 1.5GB ISO into a RAM tmpfs during stage 1.
   # On 16GB+ RAM machines (like X13s and Dev Kit), this completely eliminates
   # USB read timeouts, dropped blocks, and squashfs I/O errors caused by USB link latency.
+  #
+  # Qualcomm SC8280XP (X13s and Dev Kit 2023) hardware flags:
+  # - clk_ignore_unused: Prevents Common Clock Framework (CCF) from gating display/GPU clocks
+  # - pd_ignore_unused: Prevents power domain framework from powering down multimedia/display domains
+  # - arm64.nopauth: Disables pointer authentication to prevent firmware boot hangs/crashes
   boot.kernelParams = [
     "copytoram"
     "usbcore.autosuspend=-1"
+    "clk_ignore_unused"
+    "pd_ignore_unused"
+    "arm64.nopauth"
   ];
 
   # Force single-threaded read-only mounting for squashfs and the ISO filesystem.

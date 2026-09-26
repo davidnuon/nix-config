@@ -54,14 +54,12 @@ def main():
 
         new_entries.append(
             f"""menuentry "NixOS Installer - {name}" --class installer --class nixos {{
-  terminal_output console
   {base_linux}{extra_str}
   {base_initrd}
   devicetree ($root)/{dtb}
 }}
 
 menuentry "NixOS Installer - {name} (Safe Graphics)" --class installer --class nixos {{
-  terminal_output console
   {base_linux}{extra_str} nomodeset
   {base_initrd}
   devicetree ($root)/{dtb}

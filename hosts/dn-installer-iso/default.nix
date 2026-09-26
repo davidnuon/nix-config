@@ -49,6 +49,9 @@
         # Include firmware for both ThinkPad X13s and Windows Dev Kit 2023
         hardware.firmware = blackrockFirmware;
 
+        # Ensure full kernel dmesg logging is visible during early boot
+        boot.consoleLogLevel = lib.mkDefault 7;
+
         # Early initrd firmware for Qualcomm Adreno 660 GPU and Dev Kit DSP/display
         boot.initrd.extraFirmwarePaths = [
           "qcom/a660_gmu.bin"
@@ -56,12 +59,14 @@
           "qcom/sc8280xp/microsoft/blackrock/qcadsp8280.mbn"
           "qcom/sc8280xp/microsoft/blackrock/qccdsp8280.mbn"
           "qcom/sc8280xp/microsoft/blackrock/qcdxkmsuc8280.mbn"
+          "qcom/sc8280xp/microsoft/blackrock/qcvss8280.mbn"
         ];
 
         # Provide device trees for both platforms in the ISO EFI/boot directory
         boot.loader.systemd-boot.extraFiles = {
           "dtbs/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb" = "${config.boot.kernelPackages.kernel}/dtbs/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb";
           "dtbs/qcom/sc8280xp-microsoft-blackrock.dtb" = "${config.boot.kernelPackages.kernel}/dtbs/qcom/sc8280xp-microsoft-blackrock.dtb";
+          "dtbs/qcom/sc8280xp-microsoft-blackrock-el2.dtb" = "${config.boot.kernelPackages.kernel}/dtbs/qcom/sc8280xp-microsoft-blackrock-el2.dtb";
         };
 
         # Configure GRUB boot menu entries with hardware auto-detection for both machines
@@ -78,6 +83,58 @@
             extraParams = "efi=noruntime";
             smbiosModel = "Windows Dev Kit 2023";
           }
+          {
+            name = "Windows Dev Kit 2023 (dn-microwave, EL2)";
+            dtb = "dtbs/qcom/sc8280xp-microsoft-blackrock-el2.dtb";
+            extraParams = "efi=noruntime";
+            smbiosModel = null;
+          }
+        ];
+
+        # Ensure all Qualcomm hardware drivers are copied into the initrd for udev autoloading
+        boot.initrd.availableKernelModules = [
+          # Qualcomm SC8280XP interconnect, clock, power domains, and communication
+          "icc_bwmon"
+          "lpasscc_sc8280xp"
+          "dispcc_sc8280xp"
+          "gpucc_sc8280xp"
+          "qcom_glink_smem"
+          "qcom_q6v5_pas"
+          "qcom_rpm"
+          "qrtr"
+          "pmic_glink"
+          "pmic_glink_altmode"
+          "ucsi_glink"
+
+          # PHY drivers
+          "phy_qcom_qmp_pcie"
+          "phy_qcom_qmp_usb"
+          "phy_qcom_qmp_combo"
+          "phy-qcom-qmp-combo"
+          "phy_qcom_edp"
+          "phy_qcom_snps_femto_v2"
+          "phy_snps_eusb2"
+
+          # Display & GPU drivers
+          "msm"
+          "display_connector"
+          "aux_bridge"
+          "aux_hpd_bridge"
+          "gpio_sbu_mux"
+          "panel-edp"
+          "panel_edp"
+          "leds_qcom_lpg"
+          "pwm_bl"
+
+          # Storage & USB
+          "nvme"
+          "usb_storage"
+          "uas"
+          "sd_mod"
+
+          # Input & I2C
+          "i2c_hid_of"
+          "i2c_qcom_geni"
         ];
 
         # Union of kernel modules for ThinkPad X13s and Windows Dev Kit 2023
@@ -87,9 +144,13 @@
           "phy-qcom-qmp-pcie"
           "phy_qcom_qmp_pcie"
 
-          # USB & Type-C controller and PHYs (for virtual optical drives / flash drives)
-          "phy_qcom_qmp_usb"
-          "phy_qcom_snps_femto_v2"
+          # Qualcomm SoC subsystem, SMEM, G-Link & firmware loading
+          "qcom_glink_smem"
+          "qcom_q6v5_pas"
+          "qcom_rpm"
+          "qrtr"
+          "icc_bwmon"
+          "lpasscc_sc8280xp"
           "pmic_glink"
           "pmic_glink_altmode"
           "ucsi_glink"
@@ -97,6 +158,11 @@
           "typec_ucsi"
           "usb_storage"
           "sd_mod"
+
+          # USB & Type-C PHYs
+          "phy_qcom_qmp_usb"
+          "phy_qcom_snps_femto_v2"
+          "phy_snps_eusb2"
 
           # Input & I2C controllers (keyboards, trackpads, touchscreens)
           "i2c-core"
@@ -111,9 +177,9 @@
           "gpucc_sc8280xp"
           "phy_qcom_edp"
           "panel-edp"
+          "phy_qcom_qmp_combo"
           "phy-qcom-qmp-combo"
           "gpio_sbu_mux"
-          "qrtr"
           "display_connector"
           "aux_bridge"
           "aux_hpd_bridge"
