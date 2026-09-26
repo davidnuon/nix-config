@@ -20,6 +20,7 @@
         nixVersions.latest
         nixos-rebuild
         nixos-install-tools
+        nix-output-monitor
         disko
       ];
     };

@@ -46,3 +46,17 @@ nixos.upgrade: check-env check-target update nixos.build
 
 nixos.build-vm: check-env 
 	sudo nixos-rebuild build-vm --flake .#${HOSTS_PATH}/vm.nix
+
+iso.blackleg: check-env
+	nix build .#dn-blackleg-iso
+
+iso.microwave: check-env
+	nix build .#dn-microwave-iso
+
+vhd.blackleg: check-env
+	nix build .#dn-blackleg-vhd
+
+vhd.microwave: check-env
+	nix build .#dn-microwave-vhd
+
+
