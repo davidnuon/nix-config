@@ -62,6 +62,9 @@
         dn-microwave-iso = self.nixosConfigurations.dn-microwave-iso.config.system.build.isoImage;
         dn-blackleg-vhd = self.nixosConfigurations.dn-blackleg-iso.config.system.build.installerVhd;
         dn-microwave-vhd = self.nixosConfigurations.dn-microwave-iso.config.system.build.installerVhd;
+        dn-installer-iso = self.nixosConfigurations.dn-installer-iso.config.system.build.isoImage;
+        dn-installer-vhd = self.nixosConfigurations.dn-installer-iso.config.system.build.installerVhd;
+        dn-installer = self.nixosConfigurations.dn-installer-iso.config.system.build.installerVhd;
       };
     };
 

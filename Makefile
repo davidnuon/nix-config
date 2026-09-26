@@ -59,4 +59,8 @@ vhd.blackleg: check-env
 vhd.microwave: check-env
 	nix build .#dn-microwave-vhd
 
+iso.installer: check-env
+	nix build .#dn-installer-iso
 
+vhd.installer: check-env
+	nix build .#dn-installer-vhd

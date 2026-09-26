@@ -9,6 +9,7 @@
   hostName = config.networking.hostName;
 in {
   imports = [
+    ./options.nix
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
 
@@ -217,25 +218,33 @@ in {
       then extraFilesDtb
       else deviceTreeDtb;
 
+    hasMenuEntries = (config.installer.menuEntries or []) != [];
+    menuEntriesJSON = builtins.toJSON (config.installer.menuEntries or []);
+
     pairs = lib.zipListsWith (target: source: {inherit target source;}) baseIso.targets baseIso.sources;
     origEfiPair = lib.findFirst (p: p.target == "/EFI") null pairs;
     origEfiImgPair = lib.findFirst (p: p.target == "/boot/efi.img") null pairs;
 
     patchedEfiDir =
       pkgs.runCommand "patched-efi-dir" {
-        nativeBuildInputs = [pkgs.buildPackages.gnused pkgs.grub2_efi];
+        nativeBuildInputs = [pkgs.buildPackages.gnused pkgs.buildPackages.python3 pkgs.grub2_efi];
       } ''
         mkdir -p $out
         cp -rp "${origEfiPair.source}/." "$out/"
         chmod -R u+w "$out"
 
-        # 1. Strip dtb= from grub.cfg so the Linux EFI stub does not attempt
-        # to open a DTB from a non-existent EFI filesystem handle.
-        sed -i -E 's/(^|[[:space:]])dtb=[^[:space:]]+//g' "$out/BOOT/grub.cfg"
+        if [ "${lib.boolToString hasMenuEntries}" = "true" ]; then
+          python3 ${./patch-grub.py} "$out/BOOT/grub.cfg" "${pkgs.writeText "entries.json" menuEntriesJSON}"
+        else
+          # Single DTB fallback
+          # 1. Strip dtb= from grub.cfg so the Linux EFI stub does not attempt
+          # to open a DTB from a non-existent EFI filesystem handle.
+          sed -i -E 's/(^|[[:space:]])dtb=[^[:space:]]+//g' "$out/BOOT/grub.cfg"
 
-        # 2. Add devicetree command right after each initrd line so GRUB installs
-        # the FDT into the UEFI configuration table.
-        sed -i -E '/^[[:space:]]*initrd[[:space:]]+/a\  devicetree ($root)/${dtbRelPath}' "$out/BOOT/grub.cfg"
+          # 2. Add devicetree command right after each initrd line so GRUB installs
+          # the FDT into the UEFI configuration table.
+          sed -i -E '/^[[:space:]]*initrd[[:space:]]+/a\  devicetree ($root)/${dtbRelPath}' "$out/BOOT/grub.cfg"
+        fi
 
         # 3. Validate grub syntax
         grub-script-check "$out/BOOT/grub.cfg"
@@ -278,7 +287,7 @@ in {
   in
     baseIso.overrideAttrs (_: {
       sources =
-        if dtbRelPath != null && origEfiPair != null && origEfiImgPair != null
+        if (hasMenuEntries || dtbRelPath != null) && origEfiPair != null && origEfiImgPair != null
         then patchedSources
         else baseIso.sources;
       buildCommandPath = patchedBuildScript;
