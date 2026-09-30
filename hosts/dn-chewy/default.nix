@@ -17,5 +17,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/flatpak
     ../../mixins/lutris
     ../../mixins/affinity
+    ../../mixins/ts100-driver
   ];
 }
