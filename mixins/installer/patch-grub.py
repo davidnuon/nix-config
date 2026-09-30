@@ -50,7 +50,9 @@ def main():
         name = e["name"]
         dtb = e["dtb"]
         extra = e.get("extraParams", "").strip()
-        extra_str = f" {extra}" if extra else ""
+        base_words = set(base_linux.split())
+        extra_words = [w for w in extra.split() if w not in base_words]
+        extra_str = f" {' '.join(extra_words)}" if extra_words else ""
 
         new_entries.append(
             f"""menuentry "NixOS Installer - {name}" --class installer --class nixos {{
@@ -68,8 +70,9 @@ menuentry "NixOS Installer - {name} (Safe Graphics)" --class installer --class n
 }}"""
         )
 
-    smbios_code = "\n" + "\n".join(smbios_blocks) + "\n"
-    cleaned = re.sub(r"(set timeout=[0-9]+)", r"\1\n" + smbios_code, cleaned)
+    if "insmod smbios" not in cleaned:
+        smbios_code = "\n" + "\n".join(smbios_blocks) + "\n"
+        cleaned = re.sub(r"(set timeout=[0-9]+)", r"\1\n" + smbios_code, cleaned, count=1)
 
     # 4. Replace the first top-level menuentry block with our multi-platform entries
     first_menuentry_pattern = r"menuentry\s+['\"][^'\"]+['\"][^{]*\{[\s\S]*?\n\}"

@@ -75,7 +75,7 @@
           {
             name = "Windows Dev Kit 2023 (dn-microwave)";
             dtb = "dtbs/qcom/sc8280xp-microsoft-blackrock.dtb";
-            extraParams = "efi=noruntime";
+            extraParams = "clk_ignore_unused pd_ignore_unused arm64.nopauth efi=noruntime loglevel=7";
             smbiosModel = "Windows Dev Kit 2023";
           }
         ];

@@ -7,10 +7,17 @@
       ../dn-microwave/blackrock
       ../dn-microwave/qualcomm
 
-      ({config, ...}: {
+      ({
+        config,
+        lib,
+        ...
+      }: {
         networking.hostName = "dn-microwave";
 
         hardware.blackrock.enable = true;
+
+        # Force include default modules so USB host controllers (xhci) and input devices work
+        boot.initrd.includeDefaultModules = lib.mkForce true;
 
         # Place DTB also into systemd-boot.extraFiles so installer mixin can locate it reliably
         boot.loader.systemd-boot.extraFiles = {
@@ -18,8 +25,6 @@
         };
 
         # Early initrd modules for USB, display, and storage on Windows Dev Kit 2023 (Blackrock)
-        # Note: blackrock default.nix sets boot.initrd.includeDefaultModules = false,
-        # so we must explicitly ensure USB PHYs, Type-C, and storage modules are loaded in initrd.
         boot.initrd.kernelModules = [
           # Storage & USB PHYs (crucial for iODD ST300 detection)
           "nvme"
@@ -29,6 +34,8 @@
           "pmic_glink"
           "pmic_glink_altmode"
           "ucsi_glink"
+          "typec"
+          "typec_ucsi"
 
           # Input & display
           "i2c_hid_of"
