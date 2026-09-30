@@ -9,7 +9,11 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
+    specialArgs.disko.nixosModules.disko
+    ./disk-config.nix
+
     ../../mixins/base
+    ../../mixins/server
     ../../mixins/agy
     ../../mixins/tailscale
     ../../mixins/docker

@@ -27,6 +27,8 @@
     pciutils
     hwinfo
 
+    nix-output-monitor
+
     dnsutils
   ];
 }
