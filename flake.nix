@@ -41,6 +41,20 @@
       readDir
       attrNames
       ;
+    extendedSpecialArgs =
+      inputs
+      // {
+        cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
+      };
+
+    mkConfigurationsFrom = dir:
+      nixpkgs.lib.genAttrs (attrNames (readDir dir)) (name:
+        import (dir + "/${name}") {
+          specialArgs = extendedSpecialArgs;
+        });
+
+    hostConfigurations = mkConfigurationsFrom ./hosts;
+    isoConfigurations = mkConfigurationsFrom ./isos;
   in {
     devShells = let
       systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
@@ -68,15 +82,6 @@
       };
     };
 
-    nixosConfigurations = listToAttrs (map (name: {
-      inherit name;
-      value = import ./hosts/${name}/default.nix {
-        specialArgs =
-          inputs
-          // {
-            cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
-          };
-      };
-    }) (attrNames (readDir ./hosts)));
+    nixosConfigurations = hostConfigurations // isoConfigurations;
   };
 }
