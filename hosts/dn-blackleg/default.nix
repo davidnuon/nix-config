@@ -20,6 +20,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/flatpak
     ../../mixins/waydroid
     ../../mixins/forge-mtg
+    ../../mixins/remote-builder
     ./hardware-configuration.nix
     ./configuration.nix
   ];

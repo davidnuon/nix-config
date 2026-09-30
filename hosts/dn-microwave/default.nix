@@ -18,6 +18,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/tailscale
     ../../mixins/docker
     ../../mixins/flatpak
+    ../../mixins/remote-builder
 
     # Below two modules stolen from @jmbaur
     # https://github.com/jmbaur/homelab/tree/main/nixos-modules/hardware/
