@@ -13,6 +13,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./disk-config.nix
 
     ../../mixins/base
+    ../../mixins/server
     ../../mixins/agy
     ../../mixins/tailscale
     ../../mixins/docker
