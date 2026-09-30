@@ -4,8 +4,8 @@
     system = "aarch64-linux";
     modules = [
       ../../mixins/installer
-      ../dn-microwave/blackrock
-      ../dn-microwave/qualcomm
+      ../../hosts/dn-microwave/blackrock
+      ../../hosts/dn-microwave/qualcomm
 
       ({
         config,
