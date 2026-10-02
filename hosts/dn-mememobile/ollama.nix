@@ -2,8 +2,14 @@
   config,
   lib,
   pkgs,
+  specialArgs,
   ...
-}: {
+}: let
+  unstable-pkgs = import specialArgs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config.allowUnfree = true;
+  };
+in {
   services.open-webui = {
     enable = true;
     openFirewall = true;
@@ -18,4 +24,8 @@
     openFirewall = true;
     host = "0.0.0.0";
   };
+
+  environment.systemPackages = with unstable-pkgs; [
+    opencode
+  ];
 }
