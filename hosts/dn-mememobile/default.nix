@@ -13,6 +13,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     ../../mixins/base
     ../../mixins/docker
+    ../../mixins/agy
     ../../mixins/tailscale
     ../../mixins/flatpak
     ../../mixins/xivlauncher
