@@ -38,7 +38,19 @@
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # NVIDIA dropped Pascal (GP104) support in driver 590+.
+    # legacy_580 is the final branch supporting Pascal, with security updates through 2028.
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      # Intel Kaby Lake GT2 P630: 00:02.0 -> PCI:0:2:0
+      # NVIDIA Quadro P5000:       01:00.0 -> PCI:1:0:0
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 }
