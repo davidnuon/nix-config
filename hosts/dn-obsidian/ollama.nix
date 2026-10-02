@@ -23,10 +23,24 @@ in {
   services.ollama = {
     enable = true;
     # Optional: preload models, see https://ollama.com/library
-    loadModels = ["llama3.2:3b" "deepseek-r1:1.5b" "gpt-oss"];
+    loadModels = [
+      "qwen2.5-coder:7b"
+      "hermes3:latest"
+      "nomic-embed-text"
+      "llama3.2:3b"
+      "deepseek-r1:1.5b"
+      "gpt-oss"
+    ];
     openFirewall = true;
     package = unstable-pkgs.ollama-vulkan;
     host = "0.0.0.0";
+    environmentVariables = {
+      OLLAMA_KEEP_ALIVE = "-1";
+      OLLAMA_FLASH_ATTENTION = "1";
+      OLLAMA_NUM_PARALLEL = "1";
+      OLLAMA_MAX_LOADED_MODELS = "2";
+      OLLAMA_VULKAN = "1";
+    };
   };
 
   environment.systemPackages = with unstable-pkgs; [
