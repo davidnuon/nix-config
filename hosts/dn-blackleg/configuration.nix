@@ -63,7 +63,7 @@
 
   services.avahi.enable = true;
 
-  programs.forge-mtg.useUpToDate = true;
+  programs.forge-mtg.useHead = true;
 
   system.stateVersion = "25.11"; # Did you read the comment?
 }

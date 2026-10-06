@@ -25,12 +25,6 @@
         mvnHash = cfg.mvnHash;
         installPhase = builtins.replaceStrings ["-${old.version}-"] ["-*-"] old.installPhase;
       }));
-
-  isUpToDate =
-    cfg.useUpToDate
-    || cfg.upToDate
-    || (config.forge-mtg.useUpToDate or false)
-    || (config.forge-mtg.upToDate or false);
 in {
   options = {
     programs.forge-mtg = {
@@ -40,16 +34,10 @@ in {
         description = "Whether to install Forge MTG.";
       };
 
-      useUpToDate = lib.mkOption {
+      useHead = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Whether to use the up-to-date build for Forge pinned via flake input.";
-      };
-
-      upToDate = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Alias for programs.forge-mtg.useUpToDate.";
+        description = "Whether to use the HEAD build for Forge pinned via flake input.";
       };
 
       mvnHash = lib.mkOption {
@@ -61,26 +49,11 @@ in {
       package = lib.mkOption {
         type = lib.types.package;
         default =
-          if isUpToDate
+          if cfg.useHead
           then forge-git
           else unstable-pkgs.forge-mtg;
-        defaultText = lib.literalExpression "if config.programs.forge-mtg.useUpToDate then <forge-git> else unstable-pkgs.forge-mtg";
+        defaultText = lib.literalExpression "if config.programs.forge-mtg.useHead then <forge-git> else unstable-pkgs.forge-mtg";
         description = "The Forge MTG package to install.";
-      };
-    };
-
-    # Convenient alias options directly under forge-mtg
-    forge-mtg = {
-      useUpToDate = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Alias for programs.forge-mtg.useUpToDate.";
-      };
-
-      upToDate = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Alias for programs.forge-mtg.useUpToDate.";
       };
     };
   };
