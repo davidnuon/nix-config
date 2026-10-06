@@ -23,6 +23,11 @@
     };
 
     affinity-nix.url = "github:davidnuon/affinity-nix";
+
+    forge = {
+      url = "github:Card-Forge/forge";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -45,6 +50,7 @@
       inputs
       // {
         cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
+        forge-src = inputs.forge;
       };
 
     mkConfigurationsFrom = dir:
