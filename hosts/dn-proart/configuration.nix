@@ -19,5 +19,7 @@
     font = "ter-v32n"; # or "ter-u28n" for a slightly smaller large option
   };
 
+  programs.forge-mtg.useHead = true;
+
   system.stateVersion = "26.05"; # Did you read the comment?
 }
