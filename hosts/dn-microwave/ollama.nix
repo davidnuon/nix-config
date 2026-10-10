@@ -16,7 +16,7 @@
 
   services.ollama = {
     enable = true;
-    package = pkgs.ollama-vulkan;
+    package = pkgs.ollama;
     openFirewall = true;
     host = "0.0.0.0";
     loadModels = [
@@ -30,8 +30,6 @@
       OLLAMA_FLASH_ATTENTION = "0";
       OLLAMA_NUM_PARALLEL = "1";
       OLLAMA_MAX_LOADED_MODELS = "1";
-      OLLAMA_VULKAN = "1";
-      OLLAMA_IGPU_ENABLE = "1";
     };
   };
 
