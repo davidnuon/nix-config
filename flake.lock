@@ -71,6 +71,26 @@
         "type": "github"
       }
     },
+    "artcraft-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791716195,
+        "narHash": "sha256-Yeejgx2EdVbUf1H2znW7G7+DfsgnAelsEPQpnHWSls0=",
+        "owner": "ipeglin",
+        "repo": "artcraft-nix",
+        "rev": "e6f7615107be37828b61085741ad446a8f5f46fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipeglin",
+        "repo": "artcraft-nix",
+        "type": "github"
+      }
+    },
     "corefonts": {
       "flake": false,
       "locked": {
@@ -500,6 +520,7 @@
         "aerothemeplasma-nix": "aerothemeplasma-nix",
         "affinity-nix": "affinity-nix",
         "antigravity-nix": "antigravity-nix",
+        "artcraft-nix": "artcraft-nix",
         "disko": "disko",
         "forge": "forge",
         "home-manager": "home-manager",
