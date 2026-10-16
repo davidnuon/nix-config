@@ -24,6 +24,11 @@
 
     affinity-nix.url = "github:davidnuon/affinity-nix";
 
+    artcraft-nix = {
+      url = "github:ipeglin/artcraft-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     forge = {
       url = "github:Card-Forge/forge";
       flake = false;
@@ -37,6 +42,7 @@
     aerothemeplasma-nix,
     disko,
     antigravity-nix,
+    artcraft-nix,
     ...
   }: let
     inherit
