@@ -27,6 +27,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/godot
     ../../mixins/affinity
     ../../mixins/artcraft
+    ../../mixins/officecraft
     ../../mixins/ts100-driver
     ../../mixins/guix
   ];
