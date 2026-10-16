@@ -66,7 +66,9 @@ in
       libxkbcommon
     ];
 
-    runtimeDependencies = [
+    # lib.getLib: some of these (dbus) keep their shared objects in a separate
+    # `lib` output, and the default output on the RPATH holds no library at all.
+    runtimeDependencies = map lib.getLib [
       dbus
       libGL
       vulkan-loader
