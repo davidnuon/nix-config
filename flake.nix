@@ -29,6 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-photo-gimp = {
+      url = "github:Libadoxon/nix-photo-gimp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     forge = {
       url = "github:Card-Forge/forge";
       flake = false;
@@ -43,6 +48,7 @@
     disko,
     antigravity-nix,
     artcraft-nix,
+    nix-photo-gimp,
     ...
   }: let
     inherit

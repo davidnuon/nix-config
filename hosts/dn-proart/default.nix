@@ -30,5 +30,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/agy
     ../../mixins/artcraft
     ../../mixins/officecraft
+    ../../mixins/photogimp
   ];
 }
