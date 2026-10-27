@@ -33,14 +33,6 @@
       url = "github:Card-Forge/forge";
       flake = false;
     };
-
-    cinnaxp.url = "git+ssh://git@github.com/davidnuon/cinnaxp-nix";
-    cinnaxp.inputs.nixpkgs.follows = "nixpkgs";
-
-    xplasma = {
-      url = "git+https://tangled.org/hotsocket.fyi/xplasma";
-      flake = false;
-    };
   };
 
   outputs = inputs @ {
@@ -51,8 +43,6 @@
     disko,
     antigravity-nix,
     artcraft-nix,
-    cinnaxp,
-    xplasma,
     ...
   }: let
     inherit
