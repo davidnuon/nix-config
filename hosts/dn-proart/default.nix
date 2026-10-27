@@ -28,5 +28,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/libreoffice
     ../../mixins/godot
     ../../mixins/agy
+    ../../mixins/artcraft
+    ../../mixins/officecraft
   ];
 }
