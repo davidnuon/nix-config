@@ -31,5 +31,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/artcraft
     ../../mixins/officecraft
     ../../mixins/photogimp
+    ../../mixins/lutris
+    ../../mixins/battlenet
   ];
 }

@@ -393,6 +393,26 @@
         "type": "github"
       }
     },
+    "nix-battle-net": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790270027,
+        "narHash": "sha256-FLX7DUnVRsI/8ss577ncObFh6g1arvsinrOxRpzjwVY=",
+        "owner": "gmaxpwnage",
+        "repo": "nix-battle-net",
+        "rev": "f32f69dc1ea48ef7a30d2696f694697814d475da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gmaxpwnage",
+        "repo": "nix-battle-net",
+        "type": "github"
+      }
+    },
     "nix-photo-gimp": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -636,6 +656,7 @@
         "disko": "disko",
         "forge": "forge",
         "home-manager": "home-manager",
+        "nix-battle-net": "nix-battle-net",
         "nix-photo-gimp": "nix-photo-gimp",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
