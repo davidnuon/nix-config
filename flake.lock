@@ -91,6 +91,26 @@
         "type": "github"
       }
     },
+    "cinnaxp": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792972556,
+        "narHash": "sha256-ogYNEfWLhnmD2RFZYHTV/dee3FxqPxY1wY5rW8VZzhg=",
+        "ref": "refs/heads/main",
+        "rev": "6e3d9e85f53173d1636740e189f12888f1fbcef9",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/davidnuon/cinnaxp-nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/davidnuon/cinnaxp-nix"
+      }
+    },
     "corefonts": {
       "flake": false,
       "locked": {
@@ -521,12 +541,14 @@
         "affinity-nix": "affinity-nix",
         "antigravity-nix": "antigravity-nix",
         "artcraft-nix": "artcraft-nix",
+        "cinnaxp": "cinnaxp",
         "disko": "disko",
         "forge": "forge",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "xplasma": "xplasma"
       }
     },
     "rust-analyzer-src": {
@@ -577,6 +599,22 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
+      }
+    },
+    "xplasma": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792815068,
+        "narHash": "sha256-cu2NgpLBFNoyN69Vn+xztStvRquGtkaj5lMWt8xof6Y=",
+        "ref": "refs/heads/trunk",
+        "rev": "51abc3880ae2ae4efa1c7ff56e110b4d11ce1538",
+        "revCount": 232,
+        "type": "git",
+        "url": "https://tangled.org/hotsocket.fyi/xplasma"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://tangled.org/hotsocket.fyi/xplasma"
       }
     }
   },

@@ -93,11 +93,10 @@ in {
     }
     (lib.mkIf cfg.linkFonts {
       fonts.fontDir.enable = true;
-      systemd.tmpfiles.rules =
-        lib.optionals (!((config.programs.artcraft.enable or false) && (config.programs.artcraft.linkFonts or false))) [
-          "d /usr/share 0755 root root -"
-          "L+ /usr/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
-        ];
+      systemd.tmpfiles.rules = lib.optionals (!((config.programs.artcraft.enable or false) && (config.programs.artcraft.linkFonts or false))) [
+        "d /usr/share 0755 root root -"
+        "L+ /usr/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
+      ];
     })
   ]);
 }

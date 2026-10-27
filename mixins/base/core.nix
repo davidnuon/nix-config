@@ -11,7 +11,7 @@
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-
+  fonts.fontDir.enable = true;
   # Select internationalisation propserties.
   i18n.defaultLocale = "en_US.UTF-8";
 
