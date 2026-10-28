@@ -37,6 +37,14 @@ in {
       description = "umu-launcher package to use with Battle.net.";
     };
 
+    environment = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = {
+        WINE_SIMULATE_WRITECOPY = "1";
+      };
+      description = "Extra environment variables passed to Battle.net via nix-battle-net.env.";
+    };
+
     package = lib.mkOption {
       type = lib.types.package;
       default = let
@@ -47,6 +55,7 @@ in {
           bnet.override (lib.filterAttrs (_: v: v != null) {
             protonVersion = cfg.protonPackage;
             umu-launcher = cfg.umuPackage;
+            environment = cfg.environment;
           })
         else bnet;
       description = "Battle.net package to install.";
