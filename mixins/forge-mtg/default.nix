@@ -42,7 +42,7 @@ in {
 
       mvnHash = lib.mkOption {
         type = lib.types.str;
-        default = "sha256-LkrZ1Ufem57dfYpBadQxsdb38kLedGYtJAceMi+jt2w=";
+        default = "sha256-Dek7HJ89eOx7Yu+X76uAddyd2v7Y0Lre767F5gWTuIY=";
         description = "Maven dependencies output hash when building Forge from source.";
       };
 
