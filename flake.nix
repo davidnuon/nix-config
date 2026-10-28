@@ -34,11 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-battle-net = {
-      url = "github:gmaxpwnage/nix-battle-net";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     forge = {
       url = "github:Card-Forge/forge";
       flake = false;
