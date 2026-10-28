@@ -7,6 +7,10 @@
 }: let
   cfg = config.programs.battlenet;
   system = pkgs.stdenv.hostPlatform.system;
+  unstable-pkgs = import specialArgs.nixpkgs-unstable {
+    inherit system;
+    config.allowUnfree = true;
+  };
 in {
   imports = [
     (lib.mkAliasOptionModule ["programs" "battle-net"] ["programs" "battlenet"])
@@ -25,6 +29,22 @@ in {
       description = "Proton compatibility tool to use with Battle.net (e.g. pkgs.proton-ge-bin).";
     };
 
+    umuPackage = lib.mkOption {
+      type = lib.types.nullOr lib.types.package;
+      default = pkgs.umu-launcher.override {
+        umu-launcher-unwrapped = unstable-pkgs.umu-launcher-unwrapped;
+      };
+      description = "umu-launcher package to use with Battle.net.";
+    };
+
+    environment = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = {
+        WINE_SIMULATE_WRITECOPY = "1";
+      };
+      description = "Extra environment variables passed to Battle.net via nix-battle-net.env.";
+    };
+
     package = lib.mkOption {
       type = lib.types.package;
       default = let
@@ -34,6 +54,8 @@ in {
         then
           bnet.override (lib.filterAttrs (_: v: v != null) {
             protonVersion = cfg.protonPackage;
+            umu-launcher = cfg.umuPackage;
+            environment = cfg.environment;
           })
         else bnet;
       description = "Battle.net package to install.";
