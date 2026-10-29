@@ -8,17 +8,20 @@
   unstable-pkgs = import specialArgs.nixpkgs-unstable {
     inherit (pkgs.stdenv.hostPlatform) system;
     config.allowUnfree = true;
+    config.problems.handlers = {
+      posthog.broken = "warn"; # or "ignore"
+    };
   };
 in {
   networking.firewall.allowedTCPPorts = [1337];
 
-  services.open-webui = {
-    enable = true;
-    openFirewall = true;
-    host = "0.0.0.0";
-    port = 1337;
-    package = unstable-pkgs.open-webui;
-  };
+  #   services.open-webui = {
+  #     enable = true;
+  #     openFirewall = true;
+  #     host = "0.0.0.0";
+  #     port = 1337;
+  # #    package = unstable-pkgs.open-webui;
+  #   };
 
   services.ollama = {
     enable = true;
