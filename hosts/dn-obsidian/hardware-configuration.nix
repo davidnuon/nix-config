@@ -16,35 +16,9 @@
   boot.initrd.kernelModules = ["uinput"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0b4e1232-447f-49f4-b59e-c0c62935b1aa";
-    fsType = "ext4";
-  };
 
   boot.kernelParams = [
     "usbcore.autosuspend=-1"
-  ];
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/12CE-A600";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
-
-  # NVMe SSD
-  fileSystems."/games/steam" = {
-    device = "/dev/disk/by-uuid/f5554d50-6328-4a99-b431-39aafe5d502d";
-    fsType = "ext4";
-  };
-
-  # SATA SSD
-  fileSystems."/games/steam-slow" = {
-    device = "/dev/disk/by-uuid/5ade1a48-9710-4bb2-b408-a63e0da330b4";
-    fsType = "ext4";
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/f137f589-c051-4fed-9592-c172a5a69555";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
