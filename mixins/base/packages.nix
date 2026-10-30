@@ -20,6 +20,8 @@
     ncdu
     hyfetch
 
+    github-cli
+
     zellij
     btop
 
