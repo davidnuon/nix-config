@@ -43,6 +43,11 @@
       url = "github:Card-Forge/forge";
       flake = false;
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -69,6 +74,7 @@
       // {
         cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
         forge-src = inputs.forge;
+        hosts = import ./hosts.nix;
       };
 
     mkConfigurationsFrom = dir:

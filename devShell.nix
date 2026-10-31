@@ -22,6 +22,8 @@
         nixos-install-tools
         nix-output-monitor
         disko
+        sops
+        ssh-to-age
       ];
     };
 }

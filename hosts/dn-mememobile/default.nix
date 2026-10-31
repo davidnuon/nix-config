@@ -7,6 +7,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./hardware-configuration.nix
     ./nvidia.nix
     ./ollama.nix
+    ./secrets.nix
+
+    specialArgs.sops-nix.nixosModules.sops
 
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})

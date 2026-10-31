@@ -1,0 +1,19 @@
+# .sops.yaml
+# SOPS configuration for nix-config
+# Host Age keys are derived from their ed25519 SSH host keys:
+#   ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
+
+keys:
+  # --- Host Keys ---
+  - &dn-mememobile age1ftzlyrkrr0xaa7yfgam3lrvr3x24czp6k3gf3x3xvv03ez6uvdmsymuu5d
+
+  # --- Admin / User Keys ---
+  - &davidnuon age1rhufcqd6mjxrlxnh60rjgnwt69c33jqcfug539g84pyq84kvxgeqcr5s6u
+
+creation_rules:
+  # Per-host secret files
+  - path_regex: hosts/dn-mememobile/secrets\.yaml$
+    key_groups:
+      - age:
+          - *dn-mememobile
+          - *davidnuon
