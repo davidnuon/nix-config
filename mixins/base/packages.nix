@@ -30,6 +30,7 @@
     hwinfo
 
     nix-output-monitor
+    k9s
 
     dnsutils
   ];

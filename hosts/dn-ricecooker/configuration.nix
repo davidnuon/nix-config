@@ -27,7 +27,8 @@
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  networking.interfaces.wlp2s0.useDHCP = false;
+  # Disable Wi-Fi interface (wlp2s0 - Realtek RTL8852BE PCIe)
+  boot.blacklistedKernelModules = ["rtw89_8852be"];
 
   system.stateVersion = "25.11";
 }
