@@ -29,6 +29,13 @@ nixos.run-disko: check-env check-target
 nixos.build: check-env check-target
 	sudo nixos-rebuild build --flake .#${TARGET}
 
+nixos.build-all-x86: check-env
+	nix build .#all-x86
+
+hydra.trigger-x86:
+	curl -f -s -X POST 'http://localhost:3000/api/push?jobsets=nix-config:x86-hosts&force=1' -H 'Origin: http://localhost:3000'
+	@echo "Hydra x86-hosts build job triggered!"
+
 nixos.dry-build: check-env check-target
 	sudo nixos-rebuild dry-build --flake .#${TARGET}
 

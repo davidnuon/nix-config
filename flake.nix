@@ -77,15 +77,28 @@
         hosts = import ./hosts.nix;
       };
 
-    mkConfigurationsFrom = dir:
-      nixpkgs.lib.genAttrs (attrNames (readDir dir)) (name:
+    mkConfigurationsFrom = dir: let
+      entries = nixpkgs.lib.filterAttrs (name: type: type == "directory" && name != "vm") (readDir dir);
+    in
+      nixpkgs.lib.genAttrs (attrNames entries) (name:
         import (dir + "/${name}") {
           specialArgs = extendedSpecialArgs;
         });
 
     hostConfigurations = mkConfigurationsFrom ./hosts;
     isoConfigurations = mkConfigurationsFrom ./isos;
+
+    x86HostConfigurations =
+      nixpkgs.lib.filterAttrs (
+        name: cfg:
+          (cfg.config.nixpkgs.system or "") == "x86_64-linux"
+      )
+      hostConfigurations;
+
+    hydraJobs = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations;
   in {
+    inherit hydraJobs;
+
     devShells = let
       systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
     in
@@ -101,6 +114,20 @@
         systems);
 
     packages = {
+      x86_64-linux = let
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      in
+        {
+          all-x86 = pkgs.linkFarm "all-x86-configurations" (
+            nixpkgs.lib.mapAttrsToList (name: cfg: {
+              inherit name;
+              path = cfg.config.system.build.toplevel;
+            })
+            x86HostConfigurations
+          );
+        }
+        // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations);
+
       aarch64-linux = {
         dn-blackleg-iso = self.nixosConfigurations.dn-blackleg-iso.config.system.build.isoImage;
         dn-microwave-iso = self.nixosConfigurations.dn-microwave-iso.config.system.build.isoImage;
