@@ -11,6 +11,11 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
+    specialArgs.disko.nixosModules.disko
+    ./disk-config.nix
+
+    ./mounts.nix
+
     ../../mixins/base
     ../../mixins/battlenet
     ../../mixins/agy
@@ -21,6 +26,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/steam
     ../../mixins/lutris
     ../../mixins/kde
+    ../../mixins/nixcache/client.nix
     ../../mixins/input-remapper
     ../../mixins/distrobox
     ../../mixins/forge-mtg

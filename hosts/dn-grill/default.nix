@@ -12,6 +12,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     "${specialArgs.nixos-hardware}/framework/13-inch/12th-gen-intel"
 
     ../../mixins/base
+    ../../mixins/nixcache/client.nix
     ../../mixins/docker
     ../../mixins/virtualization
     ../../mixins/tailscale
