@@ -16,9 +16,10 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./prime.nix
     ./proart.nix
 
-    ../../mixins/steam
     ../../mixins/base
     ../../mixins/docker
+    ../../mixins/affinity
+    ../../mixins/steam
     ../../mixins/forge-mtg
     ../../mixins/xivlauncher
     ../../mixins/remote-desktop
