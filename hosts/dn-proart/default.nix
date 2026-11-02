@@ -19,6 +19,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/base
     ../../mixins/docker
     ../../mixins/affinity
+    ../../mixins/nixcache/client.nix
     ../../mixins/steam
     ../../mixins/forge-mtg
     ../../mixins/xivlauncher
