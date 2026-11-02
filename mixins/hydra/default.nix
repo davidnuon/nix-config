@@ -65,20 +65,6 @@ in {
     chmod 2775 ${cfg.gcRootsDir}
   '';
 
-  systemd.services.hydra-setup-project = {
-    description = "Setup default Hydra projects and jobsets";
-    after = ["hydra-init.service" "postgresql.service"];
-    requires = ["hydra-init.service" "postgresql.service"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      runuser -u ${config.services.postgresql.superUser} -- ${config.services.postgresql.package}/bin/psql -d hydra -f ${./setup.sql}
-    '';
-  };
-
   systemd.services.hydra-trigger-x86 = {
     description = "Trigger Hydra build for x86 NixOS configurations";
     after = ["hydra-server.service" "network-online.target"];
@@ -87,15 +73,6 @@ in {
       Type = "oneshot";
       User = "hydra";
       ExecStart = "${pkgs.curl}/bin/curl -f -s -X POST 'http://localhost:3000/api/push?jobsets=nix-config:x86-hosts&force=1' -H 'Origin: http://localhost:3000'";
-    };
-  };
-
-  systemd.timers.hydra-trigger-x86 = {
-    description = "Daily timer to build all x86 NixOS configurations in Hydra";
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "*-*-* 03:00:00";
-      Persistent = true;
     };
   };
 }
