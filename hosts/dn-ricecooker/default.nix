@@ -10,6 +10,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins/base
+    ../../mixins/nixcache/client.nix
     ../../mixins/server
     ../../mixins/docker
     ../../mixins/agy

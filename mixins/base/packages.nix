@@ -20,6 +20,8 @@
     ncdu
     hyfetch
 
+    github-cli
+
     zellij
     btop
 
@@ -28,6 +30,7 @@
     hwinfo
 
     nix-output-monitor
+    k9s
 
     dnsutils
   ];
