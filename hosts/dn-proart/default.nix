@@ -23,6 +23,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/xivlauncher
     ../../mixins/remote-desktop
     ../../mixins/virtualization
+    ../../mixins/nixcache/client.nix
     ../../mixins/tailscale
     ../../mixins/flatpak
     ../../mixins/libreoffice
