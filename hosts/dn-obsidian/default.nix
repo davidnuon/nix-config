@@ -26,6 +26,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/steam
     ../../mixins/lutris
     ../../mixins/kde
+    ../../mixins/nixcache/client.nix
     ../../mixins/input-remapper
     ../../mixins/distrobox
     ../../mixins/forge-mtg
