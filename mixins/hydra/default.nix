@@ -14,6 +14,7 @@ in {
     enable = true;
     hydraURL = lib.mkDefault "http://localhost:3000";
     notificationSender = lib.mkDefault "hydra@localhost";
+    useSubstitutes = true;
   };
 
   networking.firewall.allowedTCPPorts = [3000];
