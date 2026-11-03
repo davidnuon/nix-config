@@ -96,8 +96,15 @@
       hostConfigurations;
 
     hydraJobs = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations;
+
+    herculesCI = { ... }@args: {
+      onPush.default.outputs = {
+        nixosConfigurations = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations;
+        packages = self.packages;
+      };
+    };
   in {
-    inherit hydraJobs;
+    inherit hydraJobs herculesCI;
 
     devShells = let
       systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];

@@ -27,6 +27,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/forge-mtg
     ../../mixins/virtualization
     ../../mixins/nixcache
-    ../../mixins/hydra
+    ../../mixins/hercules-ci
   ];
 }
