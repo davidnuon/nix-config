@@ -8,15 +8,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1791653139,
-        "narHash": "sha256-vXroqaLC13EDSESYWj1VZIv8914GJNkbNj+Yz28Y1js=",
-        "owner": "nyakase",
+        "lastModified": 1793697028,
+        "narHash": "sha256-m8A8c0Xaos7YYwgY1zAPA0B7Ak7UczltyOQdksvDEC8=",
+        "owner": "davidnuon",
         "repo": "aerothemeplasma-nix",
-        "rev": "d31f0442ef008952da73262ce481e9c5e8b53e6f",
+        "rev": "cff690cc111b4334af4d86d0820346c0b29b37bd",
         "type": "github"
       },
       "original": {
-        "owner": "nyakase",
+        "owner": "davidnuon",
         "ref": "26.05",
         "repo": "aerothemeplasma-nix",
         "type": "github"
