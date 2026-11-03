@@ -18,6 +18,10 @@ in {
     authBackend = "none";
     allowUnauthenticatedControl = true;
     enableNginx = true;
+    buildSystems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
 
     workersFile = pkgs.writeText "workers.json" (builtins.toJSON [
       {
@@ -45,6 +49,7 @@ in {
 
   # Allow access via IP or hostname
   services.nginx.virtualHosts."${config.services.buildbot-nix.master.domain}".serverAliases = [
+    "10.0.0.12"
     "${config.networking.hostName}"
     "${config.networking.hostName}.local"
   ];

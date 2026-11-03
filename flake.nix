@@ -79,6 +79,7 @@
         cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
         forge-src = inputs.forge;
         hosts = import ./hosts.nix;
+        builders = import ./builders.nix;
       };
 
     mkConfigurationsFrom = dir: let
@@ -99,7 +100,7 @@
       )
       hostConfigurations;
 
-    hydraJobs = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations;
+    hydraJobs = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) hostConfigurations;
   in {
     inherit hydraJobs;
 
@@ -133,6 +134,8 @@
         // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations);
 
       aarch64-linux = {
+        dn-blackleg = self.nixosConfigurations.dn-blackleg.config.system.build.toplevel;
+        dn-microwave = self.nixosConfigurations.dn-microwave.config.system.build.toplevel;
         dn-blackleg-iso = self.nixosConfigurations.dn-blackleg-iso.config.system.build.isoImage;
         dn-microwave-iso = self.nixosConfigurations.dn-microwave-iso.config.system.build.isoImage;
         dn-blackleg-vhd = self.nixosConfigurations.dn-blackleg-iso.config.system.build.installerVhd;

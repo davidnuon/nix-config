@@ -28,5 +28,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ../../mixins/virtualization
     ../../mixins/nixcache
     ../../mixins/buildbot
+    ../../mixins/remote-builder/client.nix
   ];
 }
