@@ -7,6 +7,8 @@
   pkg-config,
   python3,
   qt6,
+  gtk3,
+  gsettings-desktop-schemas,
   libGL,
   fontconfig,
 }:
@@ -50,6 +52,13 @@ stdenv.mkDerivation rec {
     "-DPATCHY_BUILD_TESTS=OFF"
     "-DPATCHY_REQUIRE_AI_SELECTION=OFF"
     "-DPATCHY_REQUIRE_GEGL=OFF"
+  ];
+
+  qtWrapperArgs = [
+    "--prefix"
+    "XDG_DATA_DIRS"
+    ":"
+    "${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}"
   ];
 
   meta = with lib; {
