@@ -17,24 +17,30 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./proart.nix
 
     ../../mixins/base
-    ../../mixins/docker
-    ../../mixins/affinity
     ../../mixins/nixcache/client.nix
+
+    ../../mixins/docker
+
+    ../../mixins/remote-desktop
+    ../../mixins/virtualization
+    ../../mixins/flatpak
+
+    ../../mixins/tailscale
+
+    ../../mixins/lutris
+    ../../mixins/battlenet
     ../../mixins/steam
     ../../mixins/forge-mtg
     ../../mixins/xivlauncher
-    ../../mixins/remote-desktop
-    ../../mixins/virtualization
-    ../../mixins/nixcache/client.nix
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/libreoffice
     ../../mixins/godot
-    ../../mixins/agy
     ../../mixins/artcraft
+
+    ../../mixins/patchy
+    ../../mixins/affinity
     ../../mixins/officecraft
     ../../mixins/photogimp
-    ../../mixins/lutris
-    ../../mixins/battlenet
+    ../../mixins/libreoffice
+
+    ../../mixins/agy
   ];
 }
