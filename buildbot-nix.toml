@@ -1,0 +1,3 @@
+# buildbot-nix configuration
+# Tells buildbot-nix which flake attribute to evaluate and build
+attribute = "hydraJobs"

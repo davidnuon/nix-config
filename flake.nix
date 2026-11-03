@@ -48,6 +48,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    buildbot-nix = {
+      url = "github:nix-community/buildbot-nix";
+    };
   };
 
   outputs = inputs @ {
