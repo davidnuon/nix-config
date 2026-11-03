@@ -79,6 +79,7 @@
         cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
         forge-src = inputs.forge;
         hosts = import ./hosts.nix;
+        builders = import ./builders.nix;
       };
 
     mkConfigurationsFrom = dir: let
@@ -99,7 +100,7 @@
       )
       hostConfigurations;
 
-    hydraJobs = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations;
+    hydraJobs = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) hostConfigurations;
   in {
     inherit hydraJobs;
 

@@ -15,6 +15,8 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     ../../mixins/base
     ../../mixins/server
+    ../../mixins/nixcache/client.nix
+    ../../mixins/remote-builder/worker.nix
     ../../mixins/agy
     ../../mixins/tailscale
     ../../mixins/docker
