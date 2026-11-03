@@ -10,7 +10,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     aerothemeplasma-nix = {
-      url = "github:nyakase/aerothemeplasma-nix/26.05";
+      url = "github:davidnuon/aerothemeplasma-nix/26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
