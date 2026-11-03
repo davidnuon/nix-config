@@ -64,4 +64,15 @@ in {
     chown hydra:hydra ${cfg.gcRootsDir}
     chmod 2775 ${cfg.gcRootsDir}
   '';
+
+  systemd.services.hydra-trigger-x86 = {
+    description = "Trigger Hydra build for x86 NixOS configurations";
+    after = ["hydra-server.service" "network-online.target"];
+    wants = ["network-online.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "hydra";
+      ExecStart = "${pkgs.curl}/bin/curl -f -s -X POST 'http://localhost:3000/api/push?jobsets=nix-config:x86-hosts&force=1' -H 'Origin: http://localhost:3000'";
+    };
+  };
 }

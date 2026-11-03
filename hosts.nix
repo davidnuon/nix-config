@@ -1,6 +1,5 @@
 # hosts.nix
 # Central registry of hosts and their IP addresses
-
 {
   dn-grill = "10.0.0.60";
   dn-mememobile = "10.0.0.12";
