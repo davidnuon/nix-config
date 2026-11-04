@@ -13,6 +13,8 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     ../../mixins/base
 
+    ../../mixins/patchy
+
     ../../mixins/nixcache/client.nix
     ../../mixins/remote-builder/client.nix
     ../../mixins/aero
