@@ -12,6 +12,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./disk-config.nix
 
     ../../mixins/base
+
+    ../../mixins/nixcache/client.nix
+    ../../mixins/remote-builder/client.nix
     ../../mixins/aero
     ../../mixins/agy
     ../../mixins/docker
