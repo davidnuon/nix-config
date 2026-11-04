@@ -15,13 +15,13 @@
 
 stdenv.mkDerivation rec {
   pname = "patchy";
-  version = "1.25";
+  version = "1.26";
 
   src = fetchFromGitHub {
     owner = "SethRobinson";
     repo = "Patchy";
     rev = "v${version}";
-    hash = "sha256-EUMGjuQi9G/3GqgYoA71xxoZzuVIcRGuvYi8h6s3r9U=";
+    hash = "sha256-HVmTl2c0JGLJULVyPuCDKuo4cGsVKtDoN2oczOaa4gc=";
   };
 
   postPatch = ''
@@ -60,6 +60,10 @@ stdenv.mkDerivation rec {
     ":"
     "${gsettings-desktop-schemas}/share/gsettings-schemas/${gsettings-desktop-schemas.name}:${gtk3}/share/gsettings-schemas/${gtk3.name}"
   ];
+
+  passthru = {
+    updateScript = ./update.sh;
+  };
 
   meta = with lib; {
     description = "Open-source image editor focused on PSD compatibility and workflows familiar to Adobe Photoshop users";
