@@ -18,6 +18,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     ../../mixins/base
     ../../mixins/battlenet
+    ../../mixins/patchy
     ../../mixins/agy
     ../../mixins/docker
     ../../mixins/tailscale
