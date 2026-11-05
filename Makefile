@@ -23,6 +23,10 @@ nixos.install: check-env check-target
 	sudo nixos-install --flake .#${TARGET}
 	echo "Don't forget to run sudo nixos-enter to assign a password to davidnuon!"
 
+nixos.install-lan: check-env check-target
+	sudo nixos-install --flake .#${TARGET} --option extra-substituters 'http://10.0.0.12:5000' --option extra-trusted-public-keys 'dn-mememobile-1:WltXjnqq31qus5i6nkhMsk5OCcRbwFM1VwJ7kLmFSQg='
+	echo "Don't forget to run sudo nixos-enter to assign a password to davidnuon!"
+
 nixos.run-disko: check-env check-target
 	sudo disko --mode destroy,format,mount ./hosts/${TARGET}/disk-config.nix
 

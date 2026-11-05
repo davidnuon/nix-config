@@ -8,7 +8,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-    (import ../../users/lars {stateVersion = specialArgs.cleanVersion;})
+
+    specialArgs.disko.nixosModules.disko
+    ./disk-config.nix
 
     ../../mixins/nixcache/client.nix
     ../../mixins/base
