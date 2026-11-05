@@ -14,6 +14,8 @@ specialArgs.nixpkgs.lib.nixosSystem {
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
     ../../mixins/base
+    ../../mixins/battlenet
+    ../../mixins/nixcache/client.nix
     ../../mixins/steam
     ../../mixins/docker
     ../../mixins/tailscale
