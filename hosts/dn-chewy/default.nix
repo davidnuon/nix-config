@@ -7,6 +7,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./hardware-configuration.nix
     ./chuwi.nix
 
+    specialArgs.disko.nixosModules.disko
+    ./disk-config.nix
+
     (import "${specialArgs.home-manager}/nixos")
     (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
 
