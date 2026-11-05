@@ -27,6 +27,9 @@ $ ./startDevelop
 $ make nixos.run-disko host=<hostname>
 $ make nixos.install host=<hostname>
 
+# Or do this if you have dn-mememobile as your local nix cache at 10.0.0.12
+$ make nixos.install-lan host=<hostname>
+
 # To build and apply new changes
 $ make nixos.build host=<hostname>
 $ make nixos.switch host=<hostname>
