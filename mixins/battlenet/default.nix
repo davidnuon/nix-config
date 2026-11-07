@@ -45,9 +45,27 @@ in {
       description = "Extra environment variables passed to Battle.net via nix-battle-net.env.";
     };
 
+    enableControllerSupport = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to configure hardware rules, uinput, and Proton environment variables for controller support.";
+    };
+
+    enableXboxWireless = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether to enable the xpadneo kernel module for Xbox wireless controllers over Bluetooth.";
+    };
+
     package = lib.mkOption {
       type = lib.types.package;
       default = let
+        controllerEnv = lib.optionalAttrs cfg.enableControllerSupport {
+          PROTON_SONY_HIDRAW_XINPUT = "1";
+          PROTON_ENABLE_HIDRAW = "1";
+          PROTON_PREFER_SDL = "1";
+          SDL_JOYSTICK_HIDAPI = "1";
+        };
         bnet = specialArgs.nix-battle-net.packages.${system}.battle-net or pkgs.emptyDirectory;
       in
         if bnet ? override
@@ -55,7 +73,7 @@ in {
           bnet.override (lib.filterAttrs (_: v: v != null) {
             protonVersion = cfg.protonPackage;
             umu-launcher = cfg.umuPackage;
-            environment = cfg.environment;
+            environment = controllerEnv // cfg.environment;
           })
         else bnet;
       description = "Battle.net package to install.";
@@ -69,6 +87,11 @@ in {
         message = "nix-battle-net does not support system ${system}.";
       }
     ];
+
+    hardware.steam-hardware.enable = lib.mkIf cfg.enableControllerSupport (lib.mkDefault true);
+    hardware.uinput.enable = lib.mkIf cfg.enableControllerSupport (lib.mkDefault true);
+    boot.kernelModules = lib.mkIf cfg.enableControllerSupport ["uinput"];
+    hardware.xpadneo.enable = lib.mkIf cfg.enableXboxWireless (lib.mkDefault true);
 
     nixpkgs.overlays = [
       (_final: _prev: {
