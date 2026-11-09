@@ -100,7 +100,29 @@
       )
       hostConfigurations;
 
-    hydraJobs = nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) hostConfigurations;
+    aarch64HostConfigurations =
+      nixpkgs.lib.filterAttrs (
+        name: cfg:
+          (cfg.config.nixpkgs.system or "") == "aarch64-linux"
+      )
+      hostConfigurations;
+
+    hydraJobs = {
+      hosts = nixpkgs.lib.mapAttrs (_: cfg: {
+        toplevel = cfg.config.system.build.toplevel;
+      } // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? diskoScript) {
+        disko = cfg.config.system.build.diskoScript;
+      })) hostConfigurations;
+
+      isos = nixpkgs.lib.mapAttrs (_: cfg: (
+        {
+          iso = cfg.config.system.build.isoImage;
+        }
+        // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? installerVhd) {
+          vhd = cfg.config.system.build.installerVhd;
+        })
+      )) isoConfigurations;
+    };
   in {
     inherit hydraJobs;
 
@@ -121,6 +143,8 @@
     packages = {
       x86_64-linux = let
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        systemHosts = x86HostConfigurations;
+        systemIsos = nixpkgs.lib.filterAttrs (_: cfg: (cfg.config.nixpkgs.system or "") == "x86_64-linux") isoConfigurations;
       in
         {
           all-x86 = pkgs.linkFarm "all-x86-configurations" (
@@ -128,22 +152,43 @@
               inherit name;
               path = cfg.config.system.build.toplevel;
             })
-            x86HostConfigurations
+            systemHosts
           );
         }
-        // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) x86HostConfigurations);
+        // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) systemHosts)
+        // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.isoImage) systemIsos);
 
-      aarch64-linux = {
-        dn-blackleg = self.nixosConfigurations.dn-blackleg.config.system.build.toplevel;
-        dn-microwave = self.nixosConfigurations.dn-microwave.config.system.build.toplevel;
-        dn-blackleg-iso = self.nixosConfigurations.dn-blackleg-iso.config.system.build.isoImage;
-        dn-microwave-iso = self.nixosConfigurations.dn-microwave-iso.config.system.build.isoImage;
-        dn-blackleg-vhd = self.nixosConfigurations.dn-blackleg-iso.config.system.build.installerVhd;
-        dn-microwave-vhd = self.nixosConfigurations.dn-microwave-iso.config.system.build.installerVhd;
-        dn-installer-iso = self.nixosConfigurations.dn-installer-iso.config.system.build.isoImage;
-        dn-installer-vhd = self.nixosConfigurations.dn-installer-iso.config.system.build.installerVhd;
-        dn-installer = self.nixosConfigurations.dn-installer-iso.config.system.build.installerVhd;
-      };
+      aarch64-linux = let
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        systemHosts = aarch64HostConfigurations;
+        systemIsos = nixpkgs.lib.filterAttrs (_: cfg: (cfg.config.nixpkgs.system or "") == "aarch64-linux") isoConfigurations;
+      in
+        {
+          all-aarch64 = pkgs.linkFarm "all-aarch64-configurations" (
+            nixpkgs.lib.mapAttrsToList (name: cfg: {
+              inherit name;
+              path = cfg.config.system.build.toplevel;
+            })
+            systemHosts
+          );
+        }
+        // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) systemHosts)
+        // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.isoImage) systemIsos)
+        // (nixpkgs.lib.concatMapAttrs (name: cfg:
+          (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? installerVhd) {
+            "${name}-vhd" = cfg.config.system.build.installerVhd;
+          })
+          // (nixpkgs.lib.optionalAttrs (name == "dn-blackleg-iso" && cfg.config.system.build ? installerVhd) {
+            "dn-blackleg-vhd" = cfg.config.system.build.installerVhd;
+          })
+          // (nixpkgs.lib.optionalAttrs (name == "dn-microwave-iso" && cfg.config.system.build ? installerVhd) {
+            "dn-microwave-vhd" = cfg.config.system.build.installerVhd;
+          })
+          // (nixpkgs.lib.optionalAttrs (name == "dn-installer-iso" && cfg.config.system.build ? installerVhd) {
+            "dn-installer-vhd" = cfg.config.system.build.installerVhd;
+            "dn-installer" = cfg.config.system.build.installerVhd;
+          })
+        ) systemIsos);
     };
 
     nixosConfigurations = hostConfigurations // isoConfigurations;
