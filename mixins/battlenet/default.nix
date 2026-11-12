@@ -33,6 +33,13 @@ in {
       type = lib.types.nullOr lib.types.package;
       default = pkgs.umu-launcher.override {
         umu-launcher-unwrapped = unstable-pkgs.umu-launcher-unwrapped;
+        # buildFHSEnv's /etc/profile exports TZ=<IANA zone> (e.g. TZ=America/Los_Angeles).
+        # Wine copies TZ into the Windows environment block, where Microsoft's UCRT (_tzset)
+        # only understands legacy 3-letter POSIX TZ strings and misparses IANA names as UTC.
+        # Unsetting TZ lets glibc/Wine read /etc/localtime and Windows CRT use GetTimeZoneInformation().
+        extraProfile = ''
+          unset TZ
+        '';
       };
       description = "umu-launcher package to use with Battle.net.";
     };
