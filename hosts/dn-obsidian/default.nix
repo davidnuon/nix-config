@@ -18,6 +18,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     ../../mixins/base
     ../../mixins/battlenet
+    ../../mixins/nexon-launcher
     ../../mixins/patchy
     ../../mixins/agy
     ../../mixins/docker
