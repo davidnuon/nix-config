@@ -1,29 +1,32 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  config = lib.mkIf config.mixins.base.enable {
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
-  networking.networkmanager.enable = true;
+    networking.networkmanager.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-  fonts.fontDir.enable = true;
-  # Select internationalisation propserties.
-  i18n.defaultLocale = "en_US.UTF-8";
+    nixpkgs.config.allowUnfree = true;
+    fonts.fontDir.enable = true;
+    # Select internationalisation propserties.
+    i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
   };
 }

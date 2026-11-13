@@ -191,6 +191,8 @@
         ) systemIsos);
     };
 
+    overlays.default = import ./pkgs;
+
     nixosConfigurations = hostConfigurations // isoConfigurations;
   };
 }

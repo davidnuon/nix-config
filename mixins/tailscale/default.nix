@@ -1,11 +1,15 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.tailscale = {
+    enable = lib.mkEnableOption "Tailscale";
+  };
 
-  # Tailscale
-  networking.firewall.checkReversePath = "loose";
-  services.tailscale.enable = true;
+  config = lib.mkIf config.mixins.tailscale.enable {
+    networking.firewall.checkReversePath = "loose";
+    services.tailscale.enable = true;
+  };
 }

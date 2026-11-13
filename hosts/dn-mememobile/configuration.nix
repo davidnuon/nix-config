@@ -7,6 +7,26 @@
   pkgs,
   ...
 }: {
+  mixins = {
+    base.enable = true;
+    docker.enable = true;
+    agy.enable = true;
+    tailscale.enable = true;
+    flatpak.enable = true;
+    kde.enable = true;
+    input-remapper.enable = true;
+    distrobox.enable = true;
+    virtualization.enable = true;
+    nixcache.enable = true;
+    buildbot.enable = true;
+    remote-builder.client.enable = true;
+
+    gaming = {
+      xivlauncher.enable = true;
+      steam.enable = true;
+      forge-mtg.enable = true;
+    };
+  };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

@@ -1,11 +1,16 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.xosview = {
+    enable = lib.mkEnableOption "xosview";
+  };
 
-  environment.systemPackages = with pkgs; [
-    xosview
-  ];
+  config = lib.mkIf config.mixins.xosview.enable {
+    environment.systemPackages = with pkgs; [
+      xosview
+    ];
+  };
 }

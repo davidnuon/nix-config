@@ -4,8 +4,10 @@
   ...
 }: {
   imports = [
-    ../../mixins/base
+    ../../mixins
   ];
+
+  mixins.base.enable = true;
 
   users.users = {
     admin = {

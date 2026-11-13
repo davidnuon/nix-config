@@ -7,10 +7,21 @@
   cfg = config.programs.remote-builders;
   selectedMachines = map (name: builders.machines.${name}) cfg.targets;
 in {
+  options.mixins.remote-builder = {
+    enable = lib.mkEnableOption "remote builder client";
+    client = {
+      enable = lib.mkEnableOption "remote builder client";
+    };
+  };
+
+  options.mixins.remote-builder-client = {
+    enable = lib.mkEnableOption "remote builder client";
+  };
+
   options.programs.remote-builders = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = config.mixins.remote-builder.enable || config.mixins.remote-builder.client.enable || config.mixins.remote-builder-client.enable;
       description = "Whether to enable delegating Nix builds to remote builders defined in builders.nix.";
     };
 
@@ -52,10 +63,10 @@ in {
           maxJobs
           speedFactor
           supportedFeatures
+          mandatoryFeatures
           ;
-        protocol = "ssh-ng";
         sshUser = "nixremote";
-        inherit (cfg) sshKey;
+        sshKey = cfg.sshKey;
       })
       selectedMachines;
   };

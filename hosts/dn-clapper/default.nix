@@ -12,11 +12,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
-    ../../mixins/nixcache/client.nix
-    ../../mixins/base
-    ../../mixins/kde
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
+    ../../mixins
   ];
 }

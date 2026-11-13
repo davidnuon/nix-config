@@ -8,10 +8,18 @@
   cfg = config.programs.photogimp;
   system = pkgs.stdenv.hostPlatform.system;
 in {
+  imports = [
+    (lib.mkAliasOptionModule ["mixins" "photo-gimp"] ["mixins" "photogimp"])
+  ];
+
+  options.mixins.photogimp = {
+    enable = lib.mkEnableOption "PhotoGIMP";
+  };
+
   options.programs.photogimp = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = config.mixins.photogimp.enable;
       description = "Whether to enable PhotoGIMP.";
     };
 

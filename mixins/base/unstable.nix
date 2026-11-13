@@ -2,6 +2,7 @@
   config,
   pkgs,
   specialArgs,
+  lib,
   ...
 }: let
   unstable-pkgs = import specialArgs.nixpkgs-unstable {
@@ -9,7 +10,9 @@
     config.allowUnfree = true;
   };
 in {
-  environment.systemPackages = with unstable-pkgs; [
-    vscode
-  ];
+  config = lib.mkIf config.mixins.base.enable {
+    environment.systemPackages = with unstable-pkgs; [
+      vscode
+    ];
+  };
 }

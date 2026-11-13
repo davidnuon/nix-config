@@ -13,14 +13,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
-    ../../mixins/base
-    ../../mixins/server
-    ../../mixins/nixcache/client.nix
-    ../../mixins/remote-builder/worker.nix
-    ../../mixins/agy
-    ../../mixins/tailscale
-    ../../mixins/docker
-    ../../mixins/flatpak
+    ../../mixins
 
     # Below two modules stolen from @jmbaur
     # https://github.com/jmbaur/homelab/tree/main/nixos-modules/hardware/

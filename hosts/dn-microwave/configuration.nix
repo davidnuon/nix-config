@@ -4,6 +4,16 @@
   pkgs,
   ...
 }: {
+  mixins = {
+    base.enable = true;
+    server.enable = true;
+    nixcache.client.enable = true;
+    remote-builder.worker.enable = true;
+    agy.enable = true;
+    tailscale.enable = true;
+    docker.enable = true;
+    flatpak.enable = true;
+  };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

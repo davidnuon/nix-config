@@ -11,16 +11,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     "${specialArgs.nixos-hardware}/framework/13-inch/7040-amd"
 
-    ../../mixins/nixcache/client.nix
-    ../../mixins/kde
-    ../../mixins/steam
-    ../../mixins/base
-    ../../mixins/docker
-    ../../mixins/remote-desktop
-    ../../mixins/virtualization
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/libreoffice
-    ../../mixins/godot
+    ../../mixins
   ];
 }

@@ -7,6 +7,34 @@
   pkgs,
   ...
 }: {
+  mixins = {
+    base.enable = true;
+    patchy.enable = true;
+    agy.enable = true;
+    docker.enable = true;
+    tailscale.enable = true;
+    flatpak.enable = true;
+    kde.enable = true;
+    nixcache.client.enable = true;
+    input-remapper.enable = true;
+    distrobox.enable = true;
+    virtualization.enable = true;
+    affinity.enable = true;
+    artcraft.enable = true;
+    officecraft.enable = true;
+    ts100-driver.enable = true;
+    guix.enable = true;
+
+    gaming = {
+      battlenet.enable = true;
+      nexon-launcher.enable = true;
+      xivlauncher.enable = true;
+      steam.enable = true;
+      lutris.enable = true;
+      forge-mtg.enable = true;
+      godot.enable = true;
+    };
+  };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

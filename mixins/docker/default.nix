@@ -1,7 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  virtualisation.docker.enable = true;
+  options.mixins.docker = {
+    enable = lib.mkEnableOption "Docker";
+  };
+
+  config = lib.mkIf config.mixins.docker.enable {
+    virtualisation.docker.enable = true;
+  };
 }

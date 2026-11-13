@@ -8,6 +8,22 @@
     ./hardware-configuration.nix
   ];
 
+  mixins = {
+    base.enable = true;
+    nixcache.client.enable = true;
+    docker.enable = true;
+    tailscale.enable = true;
+    flatpak.enable = true;
+    affinity.enable = true;
+    ts100-driver.enable = true;
+
+    gaming = {
+      battlenet.enable = true;
+      steam.enable = true;
+      lutris.enable = true;
+    };
+  };
+
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;

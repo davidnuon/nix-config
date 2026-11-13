@@ -27,4 +27,12 @@
       description = "List of hardware menu entries for multi-platform installers";
     };
   };
+
+  options.mixins.installer = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to enable installer configuration";
+    };
+  };
 }

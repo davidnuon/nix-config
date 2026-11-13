@@ -1,9 +1,14 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [];
+  options.mixins.distrobox = {
+    enable = lib.mkEnableOption "Distrobox";
+  };
 
-  environment.systemPackages = [pkgs.distrobox];
+  config = lib.mkIf config.mixins.distrobox.enable {
+    environment.systemPackages = [pkgs.distrobox];
+  };
 }

@@ -11,20 +11,7 @@ specialArgs.nixpkgs.lib.nixosSystem {
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
-    ../../mixins/base
-
-    ../../mixins/patchy
-
-    ../../mixins/nixcache/client.nix
-    ../../mixins/remote-builder/client.nix
-    ../../mixins/aero
-    ../../mixins/agy
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/xosview
-    ../../mixins/flatpak
-    ../../mixins/waydroid
-    ../../mixins/forge-mtg
+    ../../mixins
     ./hardware-configuration.nix
     ./configuration.nix
   ];

@@ -33,10 +33,14 @@
     )
     rawArtcraft;
 in {
+  options.mixins.artcraft = {
+    enable = lib.mkEnableOption "ArtCraft apps";
+  };
+
   options.programs.artcraft = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = config.mixins.artcraft.enable;
       description = "Whether to enable the ArtCraft apps.";
     };
 
@@ -59,6 +63,7 @@ in {
       nixpkgs.overlays = [
         (_final: _prev: {
           artcraft = artcraftPackages;
+          inherit (artcraftPackages) photocraft pixelcraft vectorcraft filmcraft fontcraft rawcraft;
         })
       ];
 

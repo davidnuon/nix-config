@@ -9,6 +9,21 @@
     ./hardware-configuration.nix
   ];
 
+  mixins = {
+    base.enable = true;
+    patchy.enable = true;
+    nixcache.client.enable = true;
+    remote-builder.client.enable = true;
+    aero.enable = true;
+    agy.enable = true;
+    docker.enable = true;
+    tailscale.enable = true;
+    xosview.enable = true;
+    flatpak.enable = true;
+    waydroid.enable = true;
+    gaming.forge-mtg.enable = true;
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
