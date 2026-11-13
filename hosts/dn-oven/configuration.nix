@@ -10,9 +10,9 @@
 
   mixins = {
     base.enable = true;
-    docker.enable = true;
-    tailscale.enable = true;
-    flatpak.enable = true;
+    virtualization.docker.enable = true;
+    system.tailscale.enable = true;
+    desktop.flatpak.enable = true;
   };
 
   # Bootloader.

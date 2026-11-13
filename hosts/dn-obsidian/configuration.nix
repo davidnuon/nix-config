@@ -9,21 +9,29 @@
 }: {
   mixins = {
     base.enable = true;
-    patchy.enable = true;
-    agy.enable = true;
-    docker.enable = true;
-    tailscale.enable = true;
-    flatpak.enable = true;
-    kde.enable = true;
-    nixcache.client.enable = true;
-    input-remapper.enable = true;
-    distrobox.enable = true;
-    virtualization.enable = true;
-    affinity.enable = true;
-    artcraft.enable = true;
-    officecraft.enable = true;
-    ts100-driver.enable = true;
-    guix.enable = true;
+    tools = {
+      agy.enable = true;
+      guix.enable = true;
+    };
+    hardware.ts100-driver.enable = true;
+    virtualization = {
+      docker.enable = true;
+      distrobox.enable = true;
+      libvirt.enable = true;
+    };
+    desktop = {
+      kde.enable = true;
+      flatpak.enable = true;
+    };
+    system.tailscale.enable = true;
+    nix-infra.nixcache.client.enable = true;
+
+    creative = {
+      affinity.enable = true;
+      artcraft.enable = true;
+      officecraft.enable = true;
+      patchy.enable = true;
+    };
 
     gaming = {
       battlenet.enable = true;
@@ -33,6 +41,7 @@
       lutris.enable = true;
       forge-mtg.enable = true;
       godot.enable = true;
+      input-remapper.enable = true;
     };
   };
   boot.loader.systemd-boot.enable = true;

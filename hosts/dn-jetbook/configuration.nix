@@ -10,10 +10,12 @@
 
   mixins = {
     base.enable = true;
-    docker.enable = true;
-    tailscale.enable = true;
-    flatpak.enable = true;
-    virtualization.enable = true;
+    virtualization = {
+      docker.enable = true;
+      libvirt.enable = true;
+    };
+    system.tailscale.enable = true;
+    desktop.flatpak.enable = true;
 
     gaming.forge-mtg.enable = true;
   };

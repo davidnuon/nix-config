@@ -4,34 +4,15 @@
   ];
 
   imports = [
-    ./aero
-    ./affinity
-    ./agy
-    ./artcraft
     ./base
-    ./buildbot
-    ./distrobox
-    ./docker
-    ./flatpak
-    ./garage
+    ./creative.nix
+    ./desktop.nix
     ./gaming.nix
-    ./guix
-    ./hydra
-    ./input-remapper
-    ./kde
-    ./libreoffice
-    ./nixcache
-    ./officecraft
-    ./patchy
-    ./photogimp
-    ./remote-builder
-    ./remote-desktop
-    ./server
-    ./tailscale
-    ./ts100-driver
-    ./virtualbox
-    ./virtualization
-    ./waydroid
-    ./xosview
+    ./hardware.nix
+    ./nix-infra.nix
+    ./server.nix
+    ./system.nix
+    ./tools.nix
+    ./virtualization.nix
   ];
 }

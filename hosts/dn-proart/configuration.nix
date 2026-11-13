@@ -6,19 +6,26 @@
 }: {
   mixins = {
     base.enable = true;
-    nixcache.client.enable = true;
-    docker.enable = true;
-    remote-desktop.enable = true;
-    virtualization.enable = true;
-    flatpak.enable = true;
-    tailscale.enable = true;
-    artcraft.enable = true;
-    patchy.enable = true;
-    affinity.enable = true;
-    officecraft.enable = true;
-    photogimp.enable = true;
-    libreoffice.enable = true;
-    agy.enable = true;
+    nix-infra.nixcache.client.enable = true;
+    virtualization = {
+      docker.enable = true;
+      libvirt.enable = true;
+    };
+    desktop = {
+      remote-desktop.enable = true;
+      flatpak.enable = true;
+    };
+    system.tailscale.enable = true;
+    tools.agy.enable = true;
+
+    creative = {
+      affinity.enable = true;
+      artcraft.enable = true;
+      libreoffice.enable = true;
+      officecraft.enable = true;
+      patchy.enable = true;
+      photogimp.enable = true;
+    };
 
     gaming = {
       lutris.enable = true;

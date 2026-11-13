@@ -11,16 +11,24 @@
 
   mixins = {
     base.enable = true;
-    patchy.enable = true;
-    nixcache.client.enable = true;
-    remote-builder.client.enable = true;
-    aero.enable = true;
-    agy.enable = true;
-    docker.enable = true;
-    tailscale.enable = true;
-    xosview.enable = true;
-    flatpak.enable = true;
-    waydroid.enable = true;
+    creative.patchy.enable = true;
+    nix-infra = {
+      nixcache.client.enable = true;
+      remote-builder.client.enable = true;
+    };
+    desktop = {
+      aero.enable = true;
+      flatpak.enable = true;
+    };
+    tools = {
+      agy.enable = true;
+      xosview.enable = true;
+    };
+    virtualization = {
+      docker.enable = true;
+      waydroid.enable = true;
+    };
+    system.tailscale.enable = true;
     gaming.forge-mtg.enable = true;
   };
 

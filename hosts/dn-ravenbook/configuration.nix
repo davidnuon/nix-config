@@ -10,12 +10,14 @@
 
   mixins = {
     base.enable = true;
-    nixcache.client.enable = true;
-    aero.enable = true;
-    docker.enable = true;
-    tailscale.enable = true;
-    flatpak.enable = true;
-    guix.enable = true;
+    nix-infra.nixcache.client.enable = true;
+    desktop = {
+      aero.enable = true;
+      flatpak.enable = true;
+    };
+    virtualization.docker.enable = true;
+    system.tailscale.enable = true;
+    tools.guix.enable = true;
   };
 
   # Bootloader.

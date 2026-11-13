@@ -6,14 +6,18 @@
 }: {
   mixins = {
     base.enable = true;
-    nixcache.client.enable = true;
-    kde.enable = true;
-    docker.enable = true;
-    remote-desktop.enable = true;
-    virtualization.enable = true;
-    tailscale.enable = true;
-    flatpak.enable = true;
-    libreoffice.enable = true;
+    nix-infra.nixcache.client.enable = true;
+    virtualization = {
+      docker.enable = true;
+      libvirt.enable = true;
+    };
+    desktop = {
+      kde.enable = true;
+      remote-desktop.enable = true;
+      flatpak.enable = true;
+    };
+    system.tailscale.enable = true;
+    creative.libreoffice.enable = true;
 
     gaming = {
       steam.enable = true;

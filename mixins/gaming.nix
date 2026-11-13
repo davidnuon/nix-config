@@ -30,27 +30,6 @@
         installPhase = builtins.replaceStrings ["-${old.version}-"] ["-*-"] old.installPhase;
       }));
 in {
-  imports = [
-    # Top-level backwards compatibility aliases
-    (lib.mkAliasOptionModule ["mixins" "steam"] ["mixins" "gaming" "steam"])
-    (lib.mkAliasOptionModule ["mixins" "lutris"] ["mixins" "gaming" "lutris"])
-    (lib.mkAliasOptionModule ["mixins" "battlenet"] ["mixins" "gaming" "battlenet"])
-    (lib.mkAliasOptionModule ["mixins" "battle-net"] ["mixins" "gaming" "battlenet"])
-    (lib.mkAliasOptionModule ["mixins" "gaming" "battle-net"] ["mixins" "gaming" "battlenet"])
-    (lib.mkAliasOptionModule ["mixins" "xivlauncher"] ["mixins" "gaming" "xivlauncher"])
-    (lib.mkAliasOptionModule ["mixins" "forge-mtg"] ["mixins" "gaming" "forge-mtg"])
-    (lib.mkAliasOptionModule ["mixins" "forge"] ["mixins" "gaming" "forge-mtg"])
-    (lib.mkAliasOptionModule ["mixins" "gaming" "forge"] ["mixins" "gaming" "forge-mtg"])
-    (lib.mkAliasOptionModule ["mixins" "nexon-launcher"] ["mixins" "gaming" "nexon-launcher"])
-    (lib.mkAliasOptionModule ["mixins" "nexon"] ["mixins" "gaming" "nexon-launcher"])
-    (lib.mkAliasOptionModule ["mixins" "gaming" "nexon"] ["mixins" "gaming" "nexon-launcher"])
-    (lib.mkAliasOptionModule ["mixins" "godot"] ["mixins" "gaming" "godot"])
-    (lib.mkAliasOptionModule ["mixins" "sunshine"] ["mixins" "gaming" "sunshine"])
-
-    # Battle.net program alias
-    (lib.mkAliasOptionModule ["programs" "battle-net"] ["programs" "battlenet"])
-  ];
-
   options.mixins.gaming = {
     steam = {
       enable = lib.mkEnableOption "Steam";
@@ -77,6 +56,10 @@ in {
 
     forge-mtg = {
       enable = lib.mkEnableOption "Forge MTG";
+    };
+
+    input-remapper = {
+      enable = lib.mkEnableOption "input-remapper service";
     };
   };
 
@@ -270,6 +253,16 @@ in {
     (lib.mkIf forgeCfg.enable {
       environment.systemPackages = [
         forgeCfg.package
+      ];
+    })
+
+    # input-remapper
+    (lib.mkIf cfg.input-remapper.enable {
+      services.input-remapper.enable = true;
+
+      # Clean up stale IPC pipe symlinks on boot to prevent PID reuse collisions
+      systemd.tmpfiles.rules = [
+        "R! /tmp/input-remapper-*"
       ];
     })
   ];

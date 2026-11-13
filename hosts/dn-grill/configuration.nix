@@ -6,11 +6,13 @@
 }: {
   mixins = {
     base.enable = true;
-    nixcache.client.enable = true;
-    docker.enable = true;
-    virtualization.enable = true;
-    tailscale.enable = true;
-    flatpak.enable = true;
+    nix-infra.nixcache.client.enable = true;
+    virtualization = {
+      docker.enable = true;
+      libvirt.enable = true;
+    };
+    system.tailscale.enable = true;
+    desktop.flatpak.enable = true;
   };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

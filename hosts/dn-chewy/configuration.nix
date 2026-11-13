@@ -10,12 +10,12 @@
 
   mixins = {
     base.enable = true;
-    nixcache.client.enable = true;
-    docker.enable = true;
-    tailscale.enable = true;
-    flatpak.enable = true;
-    affinity.enable = true;
-    ts100-driver.enable = true;
+    nix-infra.nixcache.client.enable = true;
+    virtualization.docker.enable = true;
+    system.tailscale.enable = true;
+    desktop.flatpak.enable = true;
+    creative.affinity.enable = true;
+    hardware.ts100-driver.enable = true;
 
     gaming = {
       battlenet.enable = true;
