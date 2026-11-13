@@ -9,11 +9,6 @@
 
   # --- Battle.net setup ---
   bnetCfg = config.programs.battlenet;
-  system = pkgs.stdenv.hostPlatform.system;
-  unstable-pkgs = import specialArgs.nixpkgs-unstable {
-    inherit system;
-    config.allowUnfree = true;
-  };
 
   # --- Forge MTG setup ---
   forge-src = specialArgs.forge or specialArgs.forge-src or null;
@@ -22,7 +17,7 @@
     if forge-src == null
     then throw "forge input is not provided in flake inputs"
     else
-      (unstable-pkgs.forge-mtg.overrideMavenAttrs (old: {
+      (pkgs.unstable.forge-mtg.overrideMavenAttrs (old: {
         pname = "forge-mtg";
         version = "unstable-${forge-src.shortRev or "latest"}";
         src = forge-src;
@@ -80,7 +75,7 @@ in {
     umuPackage = lib.mkOption {
       type = lib.types.nullOr lib.types.package;
       default = pkgs.umu-launcher.override {
-        umu-launcher-unwrapped = unstable-pkgs.umu-launcher-unwrapped;
+        umu-launcher-unwrapped = pkgs.unstable.umu-launcher-unwrapped;
         extraProfile = ''
           unset TZ
         '';
@@ -117,7 +112,7 @@ in {
           PROTON_PREFER_SDL = "1";
           SDL_JOYSTICK_HIDAPI = "1";
         };
-        bnet = specialArgs.nix-battle-net.packages.${system}.battle-net or pkgs.emptyDirectory;
+        bnet = pkgs.battle-net-flake or pkgs.emptyDirectory;
       in
         if bnet ? override
         then
@@ -155,8 +150,8 @@ in {
       default =
         if forgeCfg.useHead
         then forge-git
-        else unstable-pkgs.forge-mtg;
-      defaultText = lib.literalExpression "if config.programs.forge-mtg.useHead then <forge-git> else unstable-pkgs.forge-mtg";
+        else pkgs.unstable.forge-mtg;
+      defaultText = lib.literalExpression "if config.programs.forge-mtg.useHead then <forge-git> else pkgs.unstable.forge-mtg";
       description = "The Forge MTG package to install.";
     };
   };
@@ -223,8 +218,8 @@ in {
     (lib.mkIf bnetCfg.enable {
       assertions = [
         {
-          assertion = specialArgs.nix-battle-net.packages ? ${system}.battle-net;
-          message = "nix-battle-net does not support system ${system}.";
+          assertion = pkgs.battle-net-flake != null;
+          message = "nix-battle-net does not support system ${pkgs.stdenv.hostPlatform.system}.";
         }
       ];
 
@@ -232,12 +227,6 @@ in {
       hardware.uinput.enable = lib.mkIf bnetCfg.enableControllerSupport (lib.mkDefault true);
       boot.kernelModules = lib.mkIf bnetCfg.enableControllerSupport ["uinput"];
       hardware.xpadneo.enable = lib.mkIf bnetCfg.enableXboxWireless (lib.mkDefault true);
-
-      nixpkgs.overlays = [
-        (_final: _prev: {
-          battle-net = bnetCfg.package;
-        })
-      ];
 
       environment.systemPackages = [
         bnetCfg.package

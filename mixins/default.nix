@@ -1,6 +1,6 @@
-{...}: {
+{specialArgs, ...}: {
   nixpkgs.overlays = [
-    (import ../pkgs)
+    (import ../pkgs specialArgs)
   ];
 
   imports = [

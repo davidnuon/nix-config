@@ -6,10 +6,6 @@
   ...
 }: let
   cfg = config.mixins.creative;
-  system = pkgs.stdenv.hostPlatform.system;
-
-  # --- Affinity setup ---
-  affinity-nix = specialArgs.affinity-nix or null;
 
   # --- ArtCraft setup ---
   artcraftCfg = config.programs.artcraft;
@@ -106,8 +102,8 @@ in {
       type = lib.types.package;
       default =
         if photogimpCfg.withPlugins
-        then specialArgs.nix-photo-gimp.packages.${system}.photo-gimp-with-plugins
-        else specialArgs.nix-photo-gimp.packages.${system}.default;
+        then pkgs.photo-gimp-with-plugins
+        else pkgs.photo-gimp;
       description = "PhotoGIMP package to install.";
     };
   };
@@ -115,14 +111,6 @@ in {
   config = lib.mkMerge [
     # Affinity
     (lib.mkIf cfg.affinity.enable {
-      nixpkgs.overlays = [
-        affinity-nix.overlays.default
-        (final: prev: {
-          msitools = prev.msitools.overrideAttrs (_: {
-            doCheck = false;
-          });
-        })
-      ];
       environment.systemPackages = [pkgs.affinity-v3];
     })
 
@@ -165,11 +153,6 @@ in {
 
     # PhotoGIMP
     (lib.mkIf photogimpCfg.enable {
-      nixpkgs.overlays = [
-        (_final: _prev: {
-          photogimp = photogimpCfg.package;
-        })
-      ];
       environment.systemPackages = [
         photogimpCfg.package
       ];
