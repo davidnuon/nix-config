@@ -10,10 +10,5 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./secrets.nix
 
     specialArgs.sops-nix.nixosModules.sops
-
-    (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-
-    ../../mixins
   ];
 }

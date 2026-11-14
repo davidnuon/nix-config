@@ -9,10 +9,5 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
-
-    (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-
-    ../../mixins
   ];
 }

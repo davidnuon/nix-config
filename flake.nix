@@ -90,7 +90,17 @@
           specialArgs = extendedSpecialArgs;
         });
 
-    hostConfigurations = mkConfigurationsFrom ./hosts;
+    sharedHostModules = [
+      inputs.home-manager.nixosModules.home-manager
+      (import ./users/davidnuon {stateVersion = extendedSpecialArgs.cleanVersion;})
+      ./mixins
+    ];
+
+    hostConfigurations = nixpkgs.lib.mapAttrs (_: cfg:
+      cfg.extendModules {
+        modules = sharedHostModules;
+      }
+    ) (mkConfigurationsFrom ./hosts);
     isoConfigurations = mkConfigurationsFrom ./isos;
 
     x86HostConfigurations =

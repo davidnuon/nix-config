@@ -6,10 +6,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
 
-    (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-
-    ../../mixins
     ./jenkins.nix
   ];
 }

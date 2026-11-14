@@ -6,16 +6,11 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
 
-    (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
     ./nvidia.nix
     ./prime.nix
     ./proart.nix
-
-    ../../mixins
   ];
 }
