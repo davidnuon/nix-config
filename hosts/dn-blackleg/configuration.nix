@@ -9,6 +9,29 @@
     ./hardware-configuration.nix
   ];
 
+  mixins = {
+    base.enable = true;
+    creative.patchy.enable = true;
+    nix-infra = {
+      nixcache.client.enable = true;
+      remote-builder.client.enable = true;
+    };
+    desktop = {
+      aero.enable = true;
+      flatpak.enable = true;
+    };
+    tools = {
+      agy.enable = true;
+      xosview.enable = true;
+    };
+    virtualization = {
+      docker.enable = true;
+      waydroid.enable = true;
+    };
+    system.tailscale.enable = true;
+    gaming.forge-mtg.enable = true;
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

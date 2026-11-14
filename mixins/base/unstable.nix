@@ -1,15 +1,12 @@
 {
   config,
   pkgs,
-  specialArgs,
+  lib,
   ...
-}: let
-  unstable-pkgs = import specialArgs.nixpkgs-unstable {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config.allowUnfree = true;
+}: {
+  config = lib.mkIf config.mixins.base.enable {
+    environment.systemPackages = with pkgs.unstable; [
+      vscode
+    ];
   };
-in {
-  environment.systemPackages = with unstable-pkgs; [
-    vscode
-  ];
 }

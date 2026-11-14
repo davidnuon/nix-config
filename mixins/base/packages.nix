@@ -1,37 +1,40 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    curl
-    tmux
-    htop
-    git
-    nettools
-    gnumake
-    alejandra
-    python314
+  config = lib.mkIf config.mixins.base.enable {
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = with pkgs; [
+      vim
+      wget
+      curl
+      tmux
+      htop
+      git
+      nettools
+      gnumake
+      alejandra
+      python314
 
-    ncdu
-    hyfetch
+      ncdu
+      hyfetch
 
-    github-cli
+      github-cli
 
-    zellij
-    btop
+      zellij
+      btop
 
-    usbutils
-    pciutils
-    hwinfo
+      usbutils
+      pciutils
+      hwinfo
 
-    nix-output-monitor
-    k9s
+      nix-output-monitor
+      k9s
 
-    dnsutils
-  ];
+      dnsutils
+    ];
+  };
 }

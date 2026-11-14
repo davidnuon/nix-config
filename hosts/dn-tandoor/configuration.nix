@@ -8,6 +8,14 @@
     ./hardware-configuration.nix
   ];
 
+  mixins = {
+    base.enable = true;
+    nix-infra.nixcache.client.enable = true;
+    virtualization.docker.enable = true;
+    system.tailscale.enable = true;
+    desktop.flatpak.enable = true;
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -9,19 +9,5 @@ specialArgs.nixpkgs.lib.nixosSystem {
 
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
-
-    (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-
-    ../../mixins/base
-    ../../mixins/battlenet
-    ../../mixins/nixcache/client.nix
-    ../../mixins/steam
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/lutris
-    ../../mixins/affinity
-    ../../mixins/ts100-driver
   ];
 }

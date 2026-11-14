@@ -8,36 +8,9 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./amd.nix
     ./ollama.nix
 
-    (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
     ./mounts.nix
-
-    ../../mixins/base
-    ../../mixins/battlenet
-    ../../mixins/nexon-launcher
-    ../../mixins/patchy
-    ../../mixins/agy
-    ../../mixins/docker
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/xivlauncher
-    ../../mixins/steam
-    ../../mixins/lutris
-    ../../mixins/kde
-    ../../mixins/nixcache/client.nix
-    ../../mixins/input-remapper
-    ../../mixins/distrobox
-    ../../mixins/forge-mtg
-    ../../mixins/virtualization
-    ../../mixins/godot
-    ../../mixins/affinity
-    ../../mixins/artcraft
-    ../../mixins/officecraft
-    ../../mixins/ts100-driver
-    ../../mixins/guix
   ];
 }

@@ -10,24 +10,5 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./secrets.nix
 
     specialArgs.sops-nix.nixosModules.sops
-
-    (import "${specialArgs.home-manager}/nixos")
-    (import ../../users/davidnuon {stateVersion = specialArgs.cleanVersion;})
-
-    ../../mixins/base
-    ../../mixins/docker
-    ../../mixins/agy
-    ../../mixins/tailscale
-    ../../mixins/flatpak
-    ../../mixins/xivlauncher
-    ../../mixins/steam
-    ../../mixins/kde
-    ../../mixins/input-remapper
-    ../../mixins/distrobox
-    ../../mixins/forge-mtg
-    ../../mixins/virtualization
-    ../../mixins/nixcache
-    ../../mixins/buildbot
-    ../../mixins/remote-builder/client.nix
   ];
 }
