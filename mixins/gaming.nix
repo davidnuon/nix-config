@@ -230,6 +230,7 @@ in {
 
       environment.systemPackages = [
         bnetCfg.package
+        pkgs.unstable.instawow
       ];
 
       nixpkgs.config.allowUnfreePredicate = pkg:
