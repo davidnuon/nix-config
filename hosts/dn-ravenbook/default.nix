@@ -5,5 +5,8 @@ specialArgs.nixpkgs.lib.nixosSystem {
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
+
+    specialArgs.disko.nixosModules.disko
+    ./disk-config.nix
   ];
 }
