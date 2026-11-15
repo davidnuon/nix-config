@@ -17,7 +17,7 @@
       remote-builder.client.enable = true;
     };
     desktop = {
-      aero.enable = true;
+      kde.enable = true;
       flatpak.enable = true;
     };
     tools = {
