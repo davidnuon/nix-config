@@ -45,14 +45,16 @@
     };
   };
 
-  packages = lib.mapAttrs (
-    pname: spec:
-      pkgs.callPackage ./package.nix (xlibs
-        // spec
-        // {
-          inherit pname craftFonts;
-        })
-  ) appSpecs;
+  packages =
+    lib.mapAttrs (
+      pname: spec:
+        pkgs.callPackage ./package.nix (xlibs
+          // spec
+          // {
+            inherit pname craftFonts;
+          })
+    )
+    appSpecs;
 in
   packages
   // {

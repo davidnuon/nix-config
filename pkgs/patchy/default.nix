@@ -12,7 +12,6 @@
   libGL,
   fontconfig,
 }:
-
 stdenv.mkDerivation rec {
   pname = "patchy";
   version = "1.26";

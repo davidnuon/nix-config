@@ -31,6 +31,7 @@
       artcraft.enable = true;
       officecraft.enable = true;
       patchy.enable = true;
+      graphite-editor.enable = true;
     };
 
     gaming = {
