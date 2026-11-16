@@ -5,19 +5,7 @@
   specialArgs,
   ...
 }: let
-  unstable-pkgs = import specialArgs.nixpkgs-unstable {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config.allowUnfree = true;
-    overlays = [
-      (final: prev: {
-        opencode = prev.opencode.overrideAttrs (old: {
-          node_modules = old.node_modules.overrideAttrs (_: {
-            outputHash = "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
-          });
-        });
-      })
-    ];
-  };
+  unstable-pkgs = pkgs.unstable;
 in {
   # services.open-webui = {
   #   enable = true;
