@@ -41,7 +41,7 @@
   boot.extraModulePackages = [];
   boot.kernelParams = ["nvidia_drm.fbdev=1"];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_3;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
