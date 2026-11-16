@@ -24,6 +24,7 @@
         disko
         sops
         ssh-to-age
+        efibootmgr
       ];
     };
 }
