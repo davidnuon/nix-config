@@ -56,6 +56,16 @@
       ];
     };
 
+    fonts.fontconfig = {
+      enable = true;
+      defaultFonts = {
+        serif = ["Noto Serif"];
+        sansSerif = ["Noto Sans" "Ubuntu"];
+        monospace = ["Noto Sans Mono" "Ubuntu Mono"];
+        emoji = ["Noto Color Emoji"];
+      };
+    };
+
     # Set your time zone.
     time.timeZone = "America/Los_Angeles";
   };
