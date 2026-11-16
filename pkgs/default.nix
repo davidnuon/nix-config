@@ -35,6 +35,7 @@ args: let
 
       # Battle.net package from flake
       battle-net-flake = inputs.nix-battle-net.packages.${system}.battle-net or null;
+      graphite-editor = inputs.graphite-editor.packages.x86_64-linux.default or null;
 
       # Global msitools check skip for Affinity/Windows tools
       msitools = prev.msitools.overrideAttrs (_: {

@@ -51,6 +51,12 @@
 
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    graphite-editor = {
+      url = "github:GraphiteEditor/Graphite";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -64,6 +70,7 @@
     artcraft-nix,
     nix-photo-gimp,
     nix-battle-net,
+    graphite-editor,
     ...
   }: let
     inherit
@@ -96,10 +103,11 @@
       ./mixins
     ];
 
-    hostConfigurations = nixpkgs.lib.mapAttrs (_: cfg:
-      cfg.extendModules {
-        modules = sharedHostModules;
-      }
+    hostConfigurations = nixpkgs.lib.mapAttrs (
+      _: cfg:
+        cfg.extendModules {
+          modules = sharedHostModules;
+        }
     ) (mkConfigurationsFrom ./hosts);
     isoConfigurations = mkConfigurationsFrom ./isos;
 
@@ -118,20 +126,25 @@
       hostConfigurations;
 
     hydraJobs = {
-      hosts = nixpkgs.lib.mapAttrs (_: cfg: {
-        toplevel = cfg.config.system.build.toplevel;
-      } // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? diskoScript) {
-        disko = cfg.config.system.build.diskoScript;
-      })) hostConfigurations;
-
-      isos = nixpkgs.lib.mapAttrs (_: cfg: (
+      hosts = nixpkgs.lib.mapAttrs (_: cfg:
         {
-          iso = cfg.config.system.build.isoImage;
+          toplevel = cfg.config.system.build.toplevel;
         }
-        // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? installerVhd) {
-          vhd = cfg.config.system.build.installerVhd;
-        })
-      )) isoConfigurations;
+        // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? diskoScript) {
+          disko = cfg.config.system.build.diskoScript;
+        }))
+      hostConfigurations;
+
+      isos =
+        nixpkgs.lib.mapAttrs (_: cfg: (
+          {
+            iso = cfg.config.system.build.isoImage;
+          }
+          // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? installerVhd) {
+            vhd = cfg.config.system.build.installerVhd;
+          })
+        ))
+        isoConfigurations;
     };
   in {
     inherit hydraJobs;
@@ -184,21 +197,23 @@
         }
         // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) systemHosts)
         // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.isoImage) systemIsos)
-        // (nixpkgs.lib.concatMapAttrs (name: cfg:
-          (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? installerVhd) {
-            "${name}-vhd" = cfg.config.system.build.installerVhd;
-          })
-          // (nixpkgs.lib.optionalAttrs (name == "dn-blackleg-iso" && cfg.config.system.build ? installerVhd) {
-            "dn-blackleg-vhd" = cfg.config.system.build.installerVhd;
-          })
-          // (nixpkgs.lib.optionalAttrs (name == "dn-microwave-iso" && cfg.config.system.build ? installerVhd) {
-            "dn-microwave-vhd" = cfg.config.system.build.installerVhd;
-          })
-          // (nixpkgs.lib.optionalAttrs (name == "dn-installer-iso" && cfg.config.system.build ? installerVhd) {
-            "dn-installer-vhd" = cfg.config.system.build.installerVhd;
-            "dn-installer" = cfg.config.system.build.installerVhd;
-          })
-        ) systemIsos);
+        // (nixpkgs.lib.concatMapAttrs (
+            name: cfg:
+              (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? installerVhd) {
+                "${name}-vhd" = cfg.config.system.build.installerVhd;
+              })
+              // (nixpkgs.lib.optionalAttrs (name == "dn-blackleg-iso" && cfg.config.system.build ? installerVhd) {
+                "dn-blackleg-vhd" = cfg.config.system.build.installerVhd;
+              })
+              // (nixpkgs.lib.optionalAttrs (name == "dn-microwave-iso" && cfg.config.system.build ? installerVhd) {
+                "dn-microwave-vhd" = cfg.config.system.build.installerVhd;
+              })
+              // (nixpkgs.lib.optionalAttrs (name == "dn-installer-iso" && cfg.config.system.build ? installerVhd) {
+                "dn-installer-vhd" = cfg.config.system.build.installerVhd;
+                "dn-installer" = cfg.config.system.build.installerVhd;
+              })
+          )
+          systemIsos);
     };
 
     overlays.default = import ./pkgs extendedSpecialArgs;

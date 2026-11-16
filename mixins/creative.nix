@@ -48,6 +48,9 @@ in {
     artcraft = {
       enable = lib.mkEnableOption "ArtCraft apps";
     };
+    graphite-editor = {
+      enable = lib.mkEnableOption "Graphite Editor";
+    };
     officecraft = {
       enable = lib.mkEnableOption "OfficeCraft apps";
     };
@@ -132,6 +135,12 @@ in {
         pkgs.officecraft.figcraft
         pkgs.officecraft.deckcraft
         pkgs.officecraft.gridcraft
+      ];
+    })
+
+    (lib.mkIf cfg.graphite-editor.enable {
+      environment.systemPackages = [
+        pkgs.graphite-editor
       ];
     })
 
