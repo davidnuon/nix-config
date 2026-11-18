@@ -14,8 +14,6 @@
   extendedSpecialArgs =
     inputs
     // {
-      cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
-      forge-src = inputs.forge;
       hosts = import ../hosts.nix;
       builders = import ../builders.nix;
     };
@@ -26,6 +24,7 @@
       import (dir + "/${name}") {
         specialArgs = extendedSpecialArgs;
       });
+  cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
 in {
-  inherit extendedSpecialArgs mkConfigurationsFrom;
+  inherit extendedSpecialArgs mkConfigurationsFrom cleanVersion;
 }
