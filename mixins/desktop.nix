@@ -14,6 +14,14 @@ in {
   options.mixins.desktop = {
     kde = {
       enable = lib.mkEnableOption "KDE Plasma 6 desktop";
+      panelProfile = lib.mkOption {
+        type = lib.types.nullOr (lib.types.enum [
+          "desktop-widescreen"
+        ]);
+        default = null;
+        example = "desktop-widescreen";
+        description = "KDE Plasma panel layout profile for this host (defined under users/davidnuon/home-manager/plasma/panels/).";
+      };
     };
 
     aero = {
@@ -30,6 +38,15 @@ in {
   };
 
   config = lib.mkMerge [
+    {
+      assertions = [
+        {
+          assertion = cfg.kde.panelProfile == null || cfg.kde.enable;
+          message = "mixins.desktop.kde.panelProfile requires mixins.desktop.kde.enable = true.";
+        }
+      ];
+    }
+
     # KDE
     (lib.mkIf cfg.kde.enable {
       services.displayManager.sddm.enable = lib.mkIf (!config.services.displayManager.gdm.enable) true;

@@ -19,7 +19,10 @@
       libvirt.enable = true;
     };
     desktop = {
-      kde.enable = true;
+      kde = {
+        enable = true;
+        panelProfile = "desktop-widescreen";
+      };
       flatpak.enable = true;
     };
     system.tailscale.enable = true;

@@ -7,6 +7,7 @@
   imports = [
     ./packages.nix
     ./gnome.nix
+    ./plasma
     ./git.nix
     ./nixpkgs.nix
   ];

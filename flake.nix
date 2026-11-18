@@ -58,6 +58,12 @@
       url = "github:GraphiteEditor/Graphite";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = inputs: import ./flake inputs;
