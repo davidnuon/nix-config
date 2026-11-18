@@ -19,64 +19,25 @@ inputs @ {
     readDir
     attrNames
     ;
-
-  extendedSpecialArgs =
-    inputs
-    // {
-      cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
-      forge-src = forge;
-      hosts = import ../hosts.nix;
-      builders = import ../builders.nix;
-    };
+  systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
   flakeLib = import ./lib.nix {inherit nixpkgs inputs;};
-
   mkConfigurationsFrom = flakeLib.mkConfigurationsFrom;
+  configuratons = import ./configurations.nix {
+    inherit
+      inputs
+      nixpkgs
+      mkConfigurationsFrom
+      ;
+    cleanVersion = flakeLib.extendedSpecialArgs.cleanVersion;
+  };
 
-  sharedHostModules = [
-    inputs.home-manager.nixosModules.home-manager
-    (import ../users/davidnuon {stateVersion = extendedSpecialArgs.cleanVersion;})
-    ../mixins
-  ];
-
-  hostConfigurations = nixpkgs.lib.mapAttrs (
-    _: cfg:
-      cfg.extendModules {
-        modules = sharedHostModules;
-      }
-  ) (mkConfigurationsFrom ../hosts);
-  isoConfigurations = mkConfigurationsFrom ../isos;
-
-  x86HostConfigurations =
-    nixpkgs.lib.filterAttrs (
-      name: cfg:
-        (cfg.config.nixpkgs.system or "") == "x86_64-linux"
-    )
-    hostConfigurations;
-
-  aarch64HostConfigurations =
-    nixpkgs.lib.filterAttrs (
-      name: cfg:
-        (cfg.config.nixpkgs.system or "") == "aarch64-linux"
-    )
-    hostConfigurations;
+  inherit (configuratons) hostConfigurations x86HostConfigurations aarch64HostConfigurations isoConfigurations;
 in {
   hydraJobs = import ./hydra.nix {
     inherit nixpkgs hostConfigurations isoConfigurations;
   };
 
-  devShells = let
-    systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
-  in
-    listToAttrs (map (system: {
-        name = system;
-        value =
-          import ../devShell.nix
-          {
-            inherit system;
-            specialArgs = inputs;
-          };
-      })
-      systems);
+  devShells = import ./devShell.nix {inherit inputs systems;};
 
   packages = {
     x86_64-linux = let
@@ -131,7 +92,7 @@ in {
         systemIsos);
   };
 
-  overlays.default = import ../pkgs extendedSpecialArgs;
+  overlays.default = import ../pkgs flakeLib.extendedSpecialArgs;
 
   nixosConfigurations = hostConfigurations // isoConfigurations;
 }

@@ -19,7 +19,6 @@
       hosts = import ../hosts.nix;
       builders = import ../builders.nix;
     };
-in {
   mkConfigurationsFrom = dir: let
     entries = lib.filterAttrs (name: type: type == "directory" && name != "vm") (readDir dir);
   in
@@ -27,4 +26,6 @@ in {
       import (dir + "/${name}") {
         specialArgs = extendedSpecialArgs;
       });
+in {
+  inherit extendedSpecialArgs mkConfigurationsFrom;
 }
