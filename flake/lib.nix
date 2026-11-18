@@ -11,9 +11,11 @@
     attrNames
     ;
   inherit (inputs.nixpkgs) lib;
+  stateVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
   extendedSpecialArgs =
     inputs
     // {
+      inherit stateVersion;
       hosts = import ../hosts.nix;
       builders = import ../builders.nix;
     };
@@ -24,7 +26,6 @@
       import (dir + "/${name}") {
         specialArgs = extendedSpecialArgs;
       });
-  cleanVersion = builtins.head (builtins.match "([0-9]+\\.[0-9]+).*" nixpkgs.lib.version);
 in {
-  inherit extendedSpecialArgs mkConfigurationsFrom cleanVersion;
+  inherit extendedSpecialArgs mkConfigurationsFrom stateVersion;
 }

@@ -1,7 +1,8 @@
-{stateVersion}: {
+{
   pkgs,
   config,
   lib,
+  stateVersion,
   ...
 }: {
   imports = [

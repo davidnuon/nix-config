@@ -2,12 +2,12 @@
   inputs,
   nixpkgs,
   mkConfigurationsFrom,
-  cleanVersion,
+  stateVersion,
   ...
 }: let
   sharedHostModules = [
     inputs.home-manager.nixosModules.home-manager
-    (import ../users/davidnuon {stateVersion = cleanVersion;})
+    ../users/davidnuon
     ../mixins
   ];
   hostConfigurations = nixpkgs.lib.mapAttrs (

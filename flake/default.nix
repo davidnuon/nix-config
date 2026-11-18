@@ -6,7 +6,7 @@ inputs @ {
   systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
   flakeLib = import ./lib.nix {inherit nixpkgs inputs;};
   configuratons = import ./configurations.nix {
-    inherit (flakeLib) cleanVersion mkConfigurationsFrom;
+    inherit (flakeLib) stateVersion mkConfigurationsFrom;
     inherit inputs nixpkgs;
   };
   inherit (configuratons) hostConfigurations x86HostConfigurations aarch64HostConfigurations isoConfigurations;
