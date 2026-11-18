@@ -1,13 +1,16 @@
-{specialArgs, ...}:
-specialArgs.nixpkgs.lib.nixosSystem {
-  inherit specialArgs;
+{
+  nixpkgs,
+  disko,
+  ...
+}:
+nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
     ./chuwi.nix
 
-    specialArgs.disko.nixosModules.disko
+    disko.nixosModules.disko
     ./disk-config.nix
   ];
 }

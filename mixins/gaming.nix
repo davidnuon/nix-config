@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  specialArgs,
+  forge ? null,
   ...
 }: let
   cfg = config.mixins.gaming;
@@ -11,19 +11,15 @@
   bnetCfg = config.programs.battlenet;
 
   # --- Forge MTG setup ---
-  forge-src = specialArgs.forge or specialArgs.forge-src or null;
+  forge-src = forge;
   forgeCfg = config.programs.forge-mtg;
-  forge-git =
-    if forge-src == null
-    then throw "forge input is not provided in flake inputs"
-    else
-      (pkgs.unstable.forge-mtg.overrideMavenAttrs (old: {
-        pname = "forge-mtg";
-        version = "unstable-${forge-src.shortRev or "latest"}";
-        src = forge-src;
-        mvnHash = forgeCfg.mvnHash;
-        installPhase = builtins.replaceStrings ["-${old.version}-"] ["-*-"] old.installPhase;
-      }));
+  forge-git = pkgs.unstable.forge-mtg.overrideMavenAttrs (old: {
+    pname = "forge-mtg";
+    version = "unstable-${forge-src.shortRev or "latest"}";
+    src = forge-src;
+    mvnHash = forgeCfg.mvnHash;
+    installPhase = builtins.replaceStrings ["-${old.version}-"] ["-*-"] old.installPhase;
+  });
 in {
   options.mixins.gaming = {
     steam = {

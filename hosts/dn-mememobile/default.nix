@@ -1,6 +1,9 @@
-{specialArgs, ...}:
-specialArgs.nixpkgs.lib.nixosSystem {
-  inherit specialArgs;
+{
+  nixpkgs,
+  sops-nix,
+  ...
+}:
+nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
     ./configuration.nix
@@ -9,6 +12,6 @@ specialArgs.nixpkgs.lib.nixosSystem {
     ./ollama.nix
     ./secrets.nix
 
-    specialArgs.sops-nix.nixosModules.sops
+    sops-nix.nixosModules.sops
   ];
 }

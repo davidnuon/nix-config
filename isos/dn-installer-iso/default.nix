@@ -1,10 +1,13 @@
-{specialArgs, ...}: let
-  rawConfig = specialArgs.nixpkgs.lib.nixosSystem {
-    inherit specialArgs;
+{
+  nixpkgs,
+  nixos-hardware,
+  ...
+}: let
+  rawConfig = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     modules = [
       ../../mixins/installer
-      specialArgs.nixos-hardware.nixosModules.lenovo-thinkpad-x13s
+      nixos-hardware.nixosModules.lenovo-thinkpad-x13s
 
       ({
         config,
@@ -155,7 +158,7 @@ in
   rawConfig.extendModules {
     modules = [
       {
-        system.build.isoImage = specialArgs.nixpkgs.lib.mkForce (rawConfig.config.system.build.installerIso or rawConfig.config.system.build.isoImage);
+        system.build.isoImage = nixpkgs.lib.mkForce (rawConfig.config.system.build.installerIso or rawConfig.config.system.build.isoImage);
       }
     ];
   }

@@ -1,13 +1,16 @@
-{specialArgs, ...}:
-specialArgs.nixpkgs.lib.nixosSystem {
-  inherit specialArgs;
+{
+  nixpkgs,
+  disko,
+  ...
+}:
+nixpkgs.lib.nixosSystem {
   system = "aarch64-linux";
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
     ./ollama.nix
 
-    specialArgs.disko.nixosModules.disko
+    disko.nixosModules.disko
     ./disk-config.nix
 
     # Below two modules stolen from @jmbaur

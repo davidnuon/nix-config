@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  specialArgs,
   ...
 }: let
   unstable-pkgs = pkgs.unstable;
