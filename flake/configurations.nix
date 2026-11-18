@@ -19,6 +19,15 @@
       import (dir + "/${name}") inputs);
   sharedHostModules = [
     inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager = {
+        useUserPackages = true;
+        extraSpecialArgs = {inherit inputs;};
+        sharedModules = [
+          inputs.plasma-manager.homeModules.plasma-manager
+        ];
+      };
+    }
     ../users/davidnuon
     ../mixins
   ];

@@ -3,7 +3,7 @@
   systems,
   ...
 }: let
-  inherit (inputs) disko nixpkgs;
+  inherit (inputs) disko nixpkgs plasma-manager;
   mkShell = system: let
     disko-pkg = disko.packages.${system}.default;
     pkgs = import nixpkgs {
