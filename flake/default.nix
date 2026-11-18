@@ -19,6 +19,7 @@ inputs @ {
     readDir
     attrNames
     ;
+
   extendedSpecialArgs =
     inputs
     // {
@@ -27,14 +28,9 @@ inputs @ {
       hosts = import ../hosts.nix;
       builders = import ../builders.nix;
     };
+  flakeLib = import ./lib.nix {inherit nixpkgs inputs;};
 
-  mkConfigurationsFrom = dir: let
-    entries = nixpkgs.lib.filterAttrs (name: type: type == "directory" && name != "vm") (readDir dir);
-  in
-    nixpkgs.lib.genAttrs (attrNames entries) (name:
-      import (dir + "/${name}") {
-        specialArgs = extendedSpecialArgs;
-      });
+  mkConfigurationsFrom = flakeLib.mkConfigurationsFrom;
 
   sharedHostModules = [
     inputs.home-manager.nixosModules.home-manager
@@ -63,30 +59,10 @@ inputs @ {
         (cfg.config.nixpkgs.system or "") == "aarch64-linux"
     )
     hostConfigurations;
-
-  hydraJobs = {
-    hosts = nixpkgs.lib.mapAttrs (_: cfg:
-      {
-        toplevel = cfg.config.system.build.toplevel;
-      }
-      // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? diskoScript) {
-        disko = cfg.config.system.build.diskoScript;
-      }))
-    hostConfigurations;
-
-    isos =
-      nixpkgs.lib.mapAttrs (_: cfg: (
-        {
-          iso = cfg.config.system.build.isoImage;
-        }
-        // (nixpkgs.lib.optionalAttrs (cfg.config.system.build ? installerVhd) {
-          vhd = cfg.config.system.build.installerVhd;
-        })
-      ))
-      isoConfigurations;
-  };
 in {
-  inherit hydraJobs;
+  hydraJobs = import ./hydra.nix {
+    inherit nixpkgs hostConfigurations isoConfigurations;
+  };
 
   devShells = let
     systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
