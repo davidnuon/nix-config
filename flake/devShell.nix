@@ -5,7 +5,7 @@
 }: let
   inherit (inputs) disko nixpkgs;
   mkShell = system: let
-    disko = disko.packages.${system}.default;
+    disko-pkg = disko.packages.${system}.default;
     pkgs = import nixpkgs {
       system = "${system}";
     };
@@ -20,7 +20,7 @@
       nixos-rebuild
       nixos-install-tools
       nix-output-monitor
-      disko
+      disko-pkg
       sops
       ssh-to-age
       efibootmgr
