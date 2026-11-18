@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  specialArgs,
+  forge ? null,
   ...
 }: let
   cfg = config.mixins.gaming;
@@ -11,7 +11,7 @@
   bnetCfg = config.programs.battlenet;
 
   # --- Forge MTG setup ---
-  forge-src = specialArgs.forge or null;
+  forge-src = forge;
   forgeCfg = config.programs.forge-mtg;
   forge-git = pkgs.unstable.forge-mtg.overrideMavenAttrs (old: {
     pname = "forge-mtg";

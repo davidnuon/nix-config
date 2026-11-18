@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  specialArgs,
+  buildbot-nix,
   builders ? (import ../builders.nix),
   ...
 }: let
@@ -21,8 +21,8 @@
   selectedMachines = map (name: builders.machines.${name}) remoteBuilderCfg.targets;
 in {
   imports = [
-    specialArgs.buildbot-nix.nixosModules.buildbot-master
-    specialArgs.buildbot-nix.nixosModules.buildbot-worker
+    buildbot-nix.nixosModules.buildbot-master
+    buildbot-nix.nixosModules.buildbot-worker
   ];
 
   options.mixins.nix-infra = {

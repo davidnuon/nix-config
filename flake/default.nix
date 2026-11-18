@@ -6,12 +6,12 @@ inputs @ {
   systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
   flakeLib = import ./lib.nix {inherit nixpkgs inputs;};
   configuratons = import ./configurations.nix {
-    inherit (flakeLib) stateVersion mkConfigurationsFrom;
+    inherit (flakeLib) stateVersion extendedSpecialArgs;
     inherit inputs nixpkgs;
   };
   inherit (configuratons) hostConfigurations x86HostConfigurations aarch64HostConfigurations isoConfigurations;
 in {
-  overlays.default = import ../pkgs flakeLib.extendedSpecialArgs;
+  overlays.default = import ../pkgs inputs;
   devShells = import ./devShell.nix {inherit inputs systems;};
   nixosConfigurations = hostConfigurations // isoConfigurations;
 

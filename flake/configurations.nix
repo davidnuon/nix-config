@@ -1,10 +1,22 @@
 {
   inputs,
   nixpkgs,
-  mkConfigurationsFrom,
   stateVersion,
+  extendedSpecialArgs ?
+    inputs
+    // {
+      inherit inputs stateVersion;
+      hosts = import ../hosts.nix;
+      builders = import ../builders.nix;
+    },
   ...
 }: let
+  mkConfigurationsFrom = dir: let
+    inherit (nixpkgs) lib;
+    entries = lib.filterAttrs (name: type: type == "directory" && name != "vm") (builtins.readDir dir);
+  in
+    lib.genAttrs (builtins.attrNames entries) (name:
+      import (dir + "/${name}") inputs);
   sharedHostModules = [
     inputs.home-manager.nixosModules.home-manager
     ../users/davidnuon
@@ -13,6 +25,7 @@
   hostConfigurations = nixpkgs.lib.mapAttrs (
     _: cfg:
       cfg.extendModules {
+        specialArgs = extendedSpecialArgs;
         modules = sharedHostModules;
       }
   ) (mkConfigurationsFrom ../hosts);

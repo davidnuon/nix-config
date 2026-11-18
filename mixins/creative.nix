@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  specialArgs,
+  artcraft-nix ? null,
   ...
 }: let
   cfg = config.mixins.creative;
@@ -10,12 +10,12 @@
   # --- ArtCraft setup ---
   artcraftCfg = config.programs.artcraft;
   rawArtcraft =
-    if specialArgs ? artcraft-nix
-    then import (specialArgs.artcraft-nix + "/default.nix") {inherit pkgs;}
+    if artcraft-nix != null
+    then import (artcraft-nix + "/default.nix") {inherit pkgs;}
     else {};
   data =
-    if specialArgs ? artcraft-nix
-    then lib.importJSON (specialArgs.artcraft-nix + "/versions.json")
+    if artcraft-nix != null
+    then lib.importJSON (artcraft-nix + "/versions.json")
     else {apps = {};};
   artcraftAppList = lib.attrNames data.apps;
 

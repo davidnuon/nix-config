@@ -144,12 +144,12 @@ Create `hosts/dn-obsidian/secrets.nix`:
 }
 ```
 
-Import `specialArgs.sops-nix.nixosModules.sops` and `./secrets.nix` in `hosts/dn-obsidian/default.nix`:
+Import `sops-nix.nixosModules.sops` and `./secrets.nix` in `hosts/dn-obsidian/default.nix`:
 ```nix
 modules = [
   ...
   ./secrets.nix
-  specialArgs.sops-nix.nixosModules.sops
+  sops-nix.nixosModules.sops
   ...
 ];
 ```

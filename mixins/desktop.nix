@@ -1,14 +1,14 @@
 {
   config,
   pkgs,
-  specialArgs,
+  aerothemeplasma-nix,
   lib,
   ...
 }: let
   cfg = config.mixins.desktop;
 in {
   imports = [
-    specialArgs.aerothemeplasma-nix.nixosModules.aerothemeplasma-nix
+    aerothemeplasma-nix.nixosModules.aerothemeplasma-nix
   ];
 
   options.mixins.desktop = {
