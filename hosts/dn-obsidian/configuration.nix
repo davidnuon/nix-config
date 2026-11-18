@@ -11,7 +11,6 @@
     base.enable = true;
     tools = {
       agy.enable = true;
-      guix.enable = true;
     };
     hardware.ts100-driver.enable = true;
     virtualization = {
