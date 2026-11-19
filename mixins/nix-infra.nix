@@ -217,6 +217,8 @@ in {
     # Harmonia cache client substituter
     (lib.mkIf cfg.nixcache.client.enable {
       nix.settings = {
+        connect-timeout = lib.mkDefault 3;
+        fallback = lib.mkDefault true;
         extra-substituters = [
           "http://${builders.cacheHost}:${toString builders.cachePort}"
         ];
