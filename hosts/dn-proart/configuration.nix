@@ -12,6 +12,10 @@
       libvirt.enable = true;
     };
     desktop = {
+      kde = {
+        enable = true;
+        panelProfile = "desktop-widescreen";
+      };
       remote-desktop.enable = true;
       flatpak.enable = true;
     };
