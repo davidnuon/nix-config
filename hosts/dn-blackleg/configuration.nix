@@ -84,6 +84,7 @@
   systemd.tpm2.enable = false;
   boot.initrd.systemd.tpm2.enable = false;
 
+  services.openssh.enable = true;
   services.avahi.enable = true;
 
   programs.forge-mtg.useHead = true;

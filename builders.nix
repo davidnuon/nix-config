@@ -12,6 +12,8 @@ in {
   coordinatorAuthorizedKeys = [
     # dn-mememobile (/etc/ssh/ssh_host_ed25519_key.pub)
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ6x0tU7X4mePF5TgMycCL8epgzbMtiA7/Lk6xUt4pne root@dn-mememobile"
+    # dn-blackleg (/etc/ssh/ssh_host_ed25519_key.pub)
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmULdJ/LlMDcaKKuB6pJVwGziPpJuF0yUN75T8MerX4 root@dn-blackleg"
   ];
 
   # Remote builder definitions by role/group
