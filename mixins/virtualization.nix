@@ -37,11 +37,50 @@ in {
 
     # libvirt / virt-manager
     (lib.mkIf cfg.libvirt.enable {
+      hardware.graphics.enable = lib.mkDefault true;
+
       programs.virt-manager.enable = true;
       users.groups.libvirtd.members = ["davidnuon"];
       virtualisation.spiceUSBRedirection.enable = true;
 
-      virtualisation.libvirtd.enable = true;
+      virtualisation.libvirtd = {
+        enable = true;
+        qemu = {
+          swtpm.enable = true;
+          vhostUserPackages = [
+            config.virtualisation.libvirtd.qemu.package
+            pkgs.virtiofsd
+          ];
+          verbatimConfig = let
+            deviceAcl =
+              [
+                "/dev/null"
+                "/dev/full"
+                "/dev/zero"
+                "/dev/random"
+                "/dev/urandom"
+                "/dev/ptmx"
+                "/dev/userfaultfd"
+                "/dev/udmabuf"
+                "/dev/dri/renderD128"
+                "/dev/dri/renderD129"
+              ]
+              ++ lib.optionals config.hardware.nvidia.enabled [
+                "/dev/nvidiactl"
+                "/dev/nvidia0"
+                "/dev/nvidia1"
+                "/dev/nvidia-modeset"
+                "/dev/nvidia-uvm"
+                "/dev/nvidia-uvm-tools"
+              ];
+          in ''
+            namespaces = []
+            cgroup_device_acl = [
+              ${lib.concatMapStringsSep ",\n  " (d: ''"${d}"'') deviceAcl}
+            ]
+          '';
+        };
+      };
       programs.dconf.enable = true; # virt-manager requires dconf to remember settings
       environment.systemPackages = with pkgs; [
         virt-manager
