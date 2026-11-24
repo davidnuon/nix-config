@@ -34,6 +34,8 @@
       nix-output-monitor
       k9s
 
+      mc
+
       dnsutils
     ];
   };

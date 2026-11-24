@@ -163,6 +163,11 @@ in {
           "steam-original"
           "steam-run"
         ];
+
+      networking.firewall = {
+        enable = true;
+        allowedUDPPorts = [4171 4175 4179 4549];
+      };
     })
 
     # Lutris
