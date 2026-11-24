@@ -5,25 +5,20 @@
 }: let
   inherit (self.library) mkConfigurationsFrom;
 
-  x86HostConfigurations =
+  configurationsBySystem = system: configs:
     nixpkgs.lib.filterAttrs (
       name: cfg:
-        (cfg.config.nixpkgs.system or "") == "x86_64-linux"
+        (cfg.config.nixpkgs.system or "") == system
     )
-    self.nixosConfigurations;
+    configs;
 
-  aarch64HostConfigurations =
-    nixpkgs.lib.filterAttrs (
-      name: cfg:
-        (cfg.config.nixpkgs.system or "") == "aarch64-linux"
-    )
-    self.nixosConfigurations;
+  x86HostConfigurations = configurationsBySystem "x86_64-linux" self.nixosConfigurations;
+  aarch64HostConfigurations = configurationsBySystem "aarch64-linux" self.nixosConfigurations;
   isoConfigurations = mkConfigurationsFrom ../isos;
 in {
   x86_64-linux = let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
     systemHosts = x86HostConfigurations;
-    #   systemIsos = nixpkgs.lib.filterAttrs (_: cfg: (cfg.config.nixpkgs.system or "") == "x86_64-linux") isoConfigurations;
   in
     {
       all-x86 = pkgs.linkFarm "all-x86-configurations" (
@@ -38,7 +33,7 @@ in {
   aarch64-linux = let
     pkgs = nixpkgs.legacyPackages.aarch64-linux;
     systemHosts = aarch64HostConfigurations;
-    # systemIsos = nixpkgs.lib.filterAttrs (_: cfg: (cfg.config.nixpkgs.system or "") == "aarch64-linux") isoConfigurations;
+    systemIsos = nixpkgs.lib.filterAttrs (_: cfg: (cfg.config.nixpkgs.system or "") == "aarch64-linux") isoConfigurations;
   in
     {
       all-aarch64 = pkgs.linkFarm "all-aarch64-configurations" (
@@ -49,5 +44,6 @@ in {
         systemHosts
       );
     }
-    // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) systemHosts);
+    // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.toplevel) systemHosts)
+    // (nixpkgs.lib.mapAttrs (_: cfg: cfg.config.system.build.isoImage) systemIsos);
 }
