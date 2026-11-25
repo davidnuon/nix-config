@@ -19,6 +19,9 @@
       alejandra
       python314
 
+      google-chrome
+      mc
+
       ncdu
       hyfetch
 
