@@ -17,6 +17,7 @@
       "wheel"
 
       (lib.mkIf (config.virtualisation.libvirtd.enable) "libvirtd")
+      (lib.mkIf (config.virtualisation.libvirtd.enable) "kvm")
       (lib.mkIf (config.virtualisation.virtualbox.host.enable) "vboxusers")
       (lib.mkIf (config.virtualisation.docker.enable) "docker")
       (lib.mkIf (config.services.sunshine.enable || config.hardware.uinput.enable) "input")
