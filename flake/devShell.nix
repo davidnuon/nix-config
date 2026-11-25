@@ -1,9 +1,10 @@
 {
-  inputs,
-  systems,
+  disko,
+  nixpkgs,
+  plasma-manager,
   ...
 }: let
-  inherit (inputs) disko nixpkgs plasma-manager;
+  systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
   mkShell = system: let
     disko-pkg = disko.packages.${system}.default;
     pkgs = import nixpkgs {
