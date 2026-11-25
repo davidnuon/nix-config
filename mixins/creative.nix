@@ -63,6 +63,9 @@ in {
     libreoffice = {
       enable = lib.mkEnableOption "LibreOffice";
     };
+    davinci-resolve = {
+      enable = lib.mkEnableOption "DaVinci Resolve";
+    };
   };
 
   # Preserve programs.artcraft for custom options
@@ -171,6 +174,12 @@ in {
     (lib.mkIf cfg.libreoffice.enable {
       environment.systemPackages = with pkgs; [
         libreoffice
+      ];
+    })
+
+    (lib.mkIf cfg.davinci-resolve.enable {
+      environment.systemPackages = with pkgs; [
+        davinci-resolve
       ];
     })
   ];
