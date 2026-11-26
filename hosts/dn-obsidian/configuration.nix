@@ -34,7 +34,7 @@
       officecraft.enable = true;
       patchy.enable = true;
       graphite-editor.enable = true;
-      davinci-editor.enable = true;
+      davinci-resolve.enable = true;
     };
 
     gaming = {
